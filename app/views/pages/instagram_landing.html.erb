@@ -1,0 +1,68 @@
+<%= content_for :head do %>
+  <meta name="description" content="Re&ccedil;ois ma vid&eacute;o gratuite : la m&eacute;thode pour attirer les bonnes personnes sur les r&eacute;seaux.">
+<% end %>
+
+<section class="min-h-screen flex items-center justify-center bg-dark" data-controller="landing-form">
+  <div class="w-full max-w-xl mx-auto px-6 py-16">
+
+    <%# Formulaire %>
+    <div data-landing-form-target="form">
+      <div class="text-center mb-10">
+        <p class="font-accent text-3xl mb-4" style="color:rgba(252,223,181,0.70)">Bienvenue</p>
+        <h1 class="font-display text-4xl md:text-5xl text-light font-semibold leading-tight mb-6">
+          Tu g&egrave;res la com'&hellip;<br>mais c'est pas ton job ?
+        </h1>
+        <div class="w-16 h-0.5 bg-accent mx-auto mb-6"></div>
+        <p class="font-body text-lg md:text-xl leading-relaxed" style="color:rgba(246,241,232,0.80)">
+          Re&ccedil;ois ma vid&eacute;o gratuite&nbsp;:<br>
+          <span class="font-body text-xl md:text-2xl text-light font-medium italic">
+            La m&eacute;thode pour attirer les bonnes personnes sur les r&eacute;seaux sans y passer ta vie
+          </span>
+        </p>
+      </div>
+
+      <%# Erreurs %>
+      <p data-landing-form-target="errorMessage"
+         class="hidden text-light text-sm font-body text-center mb-4 rounded-xl px-4 py-2" style="background:rgba(246,241,232,0.15)"></p>
+
+      <form action="<%= subscribers_path %>" method="post" data-action="submit->landing-form#submit" class="space-y-4">
+        <input data-landing-form-target="firstName"
+               type="text" name="subscriber[first_name]" required
+               placeholder="Ton pr&eacute;nom"
+               class="w-full px-6 py-4 rounded-xl font-body text-light text-lg focus:outline-none focus:ring-2 focus:ring-accent/50 transition-colors" style="border:1px solid rgba(246,241,232,0.20);background:rgba(246,241,232,0.10);color:#f6f1e8" placeholder-style="color:rgba(246,241,232,0.40)">
+        <input data-landing-form-target="email"
+               type="email" name="subscriber[email]" required
+               placeholder="Ton adresse email"
+               class="w-full px-6 py-4 rounded-xl font-body text-light text-lg focus:outline-none focus:ring-2 focus:ring-accent/50 transition-colors" style="border:1px solid rgba(246,241,232,0.20);background:rgba(246,241,232,0.10);color:#f6f1e8">
+        <button data-landing-form-target="submit" type="submit"
+                class="w-full px-6 py-4 bg-accent text-dark font-body font-medium text-lg rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
+          Je re&ccedil;ois ma vid&eacute;o gratuite &rarr;
+        </button>
+      </form>
+
+      <p class="font-body text-xs text-center mt-4" style="color:rgba(246,241,232,0.30)">
+        100% gratuit &bull; Aucun spam &bull; Juste de la valeur
+      </p>
+    </div>
+
+    <%# Confirmation %>
+    <div data-landing-form-target="success" class="hidden text-center">
+      <div class="w-20 h-20 bg-muted/20 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+        </svg>
+      </div>
+      <h2 class="font-body text-3xl md:text-4xl text-light font-semibold mb-4">
+        C'est dans ta bo&icirc;te mail !
+      </h2>
+      <p class="font-body text-lg leading-relaxed mb-8" style="color:rgba(246,241,232,0.70)">
+        V&eacute;rifie tes spams si tu ne la vois pas.<br>
+        &Agrave; tout de suite dans la vid&eacute;o !
+      </p>
+      <a href="/" class="inline-flex items-center justify-center px-8 py-3 text-light font-body rounded-xl hover:opacity-80 transition-opacity" style="border:1px solid rgba(246,241,232,0.30)">
+        Visiter le site
+      </a>
+    </div>
+
+  </div>
+</section>

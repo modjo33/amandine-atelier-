@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/* ─── Self-hosted fonts ─── */
+@font-face {
+  font-family: "TAN Ashford";
+  src: url("/TAN-ASHFORD.woff2") format("woff2"),
+       url("/TAN-ASHFORD.woff") format("woff"),
+       url("/TAN-ASHFORD.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bryndan Write";
+  src: url("/BryndanWrite.woff2") format("woff2"),
+       url("/BryndanWrite.woff") format("woff"),
+       url("/BryndanWrite.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-light: #f6f1e8;
+  --color-dark: #4A3F38;
+  --color-dark-hover: #5E5448;
+  --color-accent: #fcdfb5;
+  --color-muted: #929471;
+
+  --font-display: "TAN Ashford", Georgia, serif;
+  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-accent: "Bryndan Write", cursive;
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+  body {
+    line-height: 1.8;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  /* Title badge */
+  .title-badge {
+    display: inline-block;
+    background-color: #f6f1e8;
+    color: #4A3F38;
+    border-radius: 4px;
+    padding: 8px 24px;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f6f1e8;
+    color: #4A3F38;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #fcdfb5;
+    transform: translateY(-2px);
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f6f1e8;
+    color: #f6f1e8;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  .btn-secondary:hover {
+    border-color: #fcdfb5;
+    color: #fcdfb5;
+    transform: translateY(-2px);
+  }
+
+  /* Glass cards */
+  .card-glass {
+    background: rgba(246, 241, 232, 0.06);
+    border: 1px solid rgba(246, 241, 232, 0.15);
+    border-radius: 20px;
+    transition: transform 0.35s ease, border-color 0.35s ease;
+  }
+  .card-glass:hover {
+    transform: translateY(-3px);
+    border-color: rgba(252, 223, 181, 0.30);
+  }
+
+  /* Offer cards */
+  .card-offer {
+    background: rgba(246, 241, 232, 0.08);
+    border: 1px solid rgba(246, 241, 232, 0.20);
+    border-radius: 24px;
+    transition: transform 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+  }
+  .card-offer:hover {
+    transform: translateY(-4px);
+    border-color: rgba(252, 223, 181, 0.40);
+    background: rgba(246, 241, 232, 0.12);
+  }
+
+  /* Section divider — thin elegant line */
+  .section-line {
+    width: 100%;
+    height: 1px;
+    background: rgba(246, 241, 232, 0.10);
+  }
+
+  /* Marquee animation for bandeau */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Sparkle traits sur font-accent */
+  .sparkle-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .sparkle-wrap .sparkle {
+    position: absolute;
+    width: 2px;
+    background: #fcdfb5;
+    border-radius: 1px;
+    opacity: 0;
+    animation: sparkle-pop 2.4s ease-in-out infinite;
+  }
+  .sparkle-wrap .sparkle:nth-child(1) { height: 10px; top: -14px; left: 15%; transform: rotate(0deg); animation-delay: 0s; }
+  .sparkle-wrap .sparkle:nth-child(2) { height: 8px; top: -8px; right: 10%; transform: rotate(45deg); animation-delay: 0.4s; }
+  .sparkle-wrap .sparkle:nth-child(3) { height: 12px; bottom: -10px; left: 40%; transform: rotate(-20deg); animation-delay: 0.8s; }
+  .sparkle-wrap .sparkle:nth-child(4) { height: 7px; top: -6px; left: 55%; transform: rotate(70deg); animation-delay: 1.2s; }
+  .sparkle-wrap .sparkle:nth-child(5) { height: 9px; bottom: -8px; right: 25%; transform: rotate(-50deg); animation-delay: 1.6s; }
+  .sparkle-wrap .sparkle:nth-child(6) { height: 6px; top: -12px; right: 40%; transform: rotate(30deg); animation-delay: 2.0s; }
+
+  @keyframes sparkle-pop {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.7; transform: scale(1); }
+  }
+}

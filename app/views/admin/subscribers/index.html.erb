@@ -1,0 +1,50 @@
+<div class="max-w-5xl mx-auto px-6 py-12">
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="font-body text-3xl text-dark font-semibold">Subscribers</h1>
+    <p class="font-body text-dark/50 text-sm"><%= @subscribers.count %> inscrit(e)s</p>
+  </div>
+
+  <% if @subscribers.any? %>
+    <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-dark/5">
+            <th class="px-5 py-3 text-left font-body font-medium text-dark/50 text-xs uppercase tracking-wider">Pr&eacute;nom</th>
+            <th class="px-5 py-3 text-left font-body font-medium text-dark/50 text-xs uppercase tracking-wider">Email</th>
+            <th class="px-5 py-3 text-center font-body font-medium text-dark/50 text-xs uppercase tracking-wider">Source</th>
+            <th class="px-5 py-3 text-right font-body font-medium text-dark/50 text-xs uppercase tracking-wider">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @subscribers.each do |subscriber| %>
+            <tr class="border-b border-dark/5 last:border-0 hover:bg-accent/20 transition-colors">
+              <td class="px-5 py-3">
+                <span class="font-body text-dark text-sm font-medium"><%= subscriber.first_name %></span>
+              </td>
+              <td class="px-5 py-3">
+                <span class="font-body text-dark/70 text-sm"><%= subscriber.email %></span>
+              </td>
+              <td class="px-5 py-3 text-center">
+                <% case subscriber.source %>
+                <% when "instagram" %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium bg-dark/10 text-dark">Instagram</span>
+                <% when "web" %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium bg-muted/15 text-muted">Web</span>
+                <% else %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium bg-dark/5 text-dark/50">Direct</span>
+                <% end %>
+              </td>
+              <td class="px-5 py-3 text-right">
+                <span class="font-body text-dark/50 text-sm"><%= subscriber.created_at.strftime("%d/%m/%Y %Hh%M") %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="text-center py-16 bg-white rounded-2xl">
+      <p class="font-body text-dark/40">Aucun inscrit pour le moment.</p>
+    </div>
+  <% end %>
+</div>

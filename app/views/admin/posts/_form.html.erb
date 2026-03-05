@@ -1,0 +1,63 @@
+<%= form_with model: [:admin, post], class: "space-y-6" do |f| %>
+  <% if post.errors.any? %>
+    <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+      <p class="font-body text-red-700 font-medium mb-2"><%= pluralize(post.errors.count, "erreur") %> :</p>
+      <ul class="list-disc list-inside text-red-600 text-sm font-body">
+        <% post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# Photo %>
+  <div>
+    <label class="block font-body font-medium text-dark mb-2">Photo</label>
+    <% if post.photo.attached? %>
+      <div class="mb-3">
+        <%= image_tag post.photo.variant(resize_to_limit: [200, 200]), class: "w-32 h-32 object-cover rounded-xl" %>
+      </div>
+    <% end %>
+    <%= f.file_field :photo, accept: "image/*",
+        class: "block w-full font-body text-sm text-dark/70 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-body file:font-medium file:bg-dark/10 file:text-dark hover:file:bg-dark/20 file:cursor-pointer" %>
+  </div>
+
+  <%# Caption %>
+  <div>
+    <label class="block font-body font-medium text-dark mb-2">Caption</label>
+    <%= f.text_area :caption, rows: 4,
+        class: "w-full px-4 py-3 rounded-xl border border-dark/10 bg-white font-body text-dark placeholder-dark/30 focus:outline-none focus:ring-2 focus:ring-dark/20 focus:border-dark/20",
+        placeholder: "Description du post..." %>
+  </div>
+
+  <%# Instagram URL %>
+  <div>
+    <label class="block font-body font-medium text-dark mb-2">URL Instagram</label>
+    <%= f.text_field :instagram_url,
+        class: "w-full px-4 py-3 rounded-xl border border-dark/10 bg-white font-body text-dark placeholder-dark/30 focus:outline-none focus:ring-2 focus:ring-dark/20 focus:border-dark/20",
+        placeholder: "https://instagram.com/p/..." %>
+  </div>
+
+  <%# Position + Active %>
+  <div class="grid grid-cols-2 gap-6">
+    <div>
+      <label class="block font-body font-medium text-dark mb-2">Position</label>
+      <%= f.number_field :position, min: 0,
+          class: "w-full px-4 py-3 rounded-xl border border-dark/10 bg-white font-body text-dark focus:outline-none focus:ring-2 focus:ring-dark/20 focus:border-dark/20" %>
+    </div>
+    <div class="flex items-end pb-2">
+      <label class="flex items-center gap-3 cursor-pointer">
+        <%= f.check_box :active, class: "w-5 h-5 rounded border-dark/20 text-dark focus:ring-dark/30" %>
+        <span class="font-body font-medium text-dark">Actif</span>
+      </label>
+    </div>
+  </div>
+
+  <%# Submit %>
+  <div class="flex items-center gap-4 pt-2">
+    <%= f.submit post.persisted? ? "Mettre \u00e0 jour" : "Cr\u00e9er le post",
+        class: "px-6 py-3 bg-dark text-light font-body font-medium rounded-xl hover:bg-dark-hover transition-colors cursor-pointer" %>
+    <%= link_to "Annuler", admin_posts_path,
+        class: "px-6 py-3 text-dark/60 font-body font-medium hover:text-dark transition-colors" %>
+  </div>
+<% end %>
