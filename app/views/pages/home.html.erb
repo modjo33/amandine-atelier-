@@ -2,10 +2,12 @@
   <meta name="description" content="Amandine Atelier Digital - Stratégie, formation et organisation pour ta communication digitale.">
 <% end %>
 
-<%# ══════════════════════════════════════ 1. NAVBAR ══════════════════════════════════════ %>
-<nav class="fixed top-0 inset-x-0 z-40 bg-dark/95 backdrop-blur-sm" style="height:70px;border-bottom:1px solid rgba(246,241,232,0.08)">
-  <div class="max-w-[1200px] mx-auto px-10 flex items-center justify-between h-full">
+<%# ══════════════════════════════════════ 1. NAVBAR (transparent → opaque on scroll + burger mobile) ══════════════════════════════════════ %>
+<nav data-controller="navbar" class="fixed top-0 inset-x-0 z-40" style="height:70px;border-bottom:1px solid rgba(246,241,232,0.08);transition:background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease">
+  <div class="max-w-[1200px] mx-auto px-6 lg:px-10 flex items-center justify-between h-full">
     <a href="/" class="font-body text-light" style="font-size:15px;font-weight:500;letter-spacing:2px;text-transform:uppercase">Amandine Atelier Digital</a>
+
+    <%# Desktop menu %>
     <div class="hidden md:flex items-center gap-14">
       <a href="#hero" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Accueil</a>
       <a href="#solution" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">À propos</a>
@@ -13,6 +15,22 @@
       <a href="#feed" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Instagram</a>
       <a href="#newsletter" class="btn-primary font-body uppercase" style="font-size:11px;letter-spacing:3px;padding:10px 28px">Contact</a>
     </div>
+
+    <%# Burger mobile %>
+    <button class="md:hidden flex flex-col gap-1.5 p-2" data-navbar-target="burger" data-action="click->navbar#toggleMenu">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </div>
+
+  <%# Mobile menu %>
+  <div data-navbar-target="menu" class="mobile-menu md:hidden">
+    <a href="#hero" class="font-body uppercase py-3 hover:text-accent transition-colors" style="font-size:12px;letter-spacing:3px;color:rgba(246,241,232,0.60)">Accueil</a>
+    <a href="#solution" class="font-body uppercase py-3 hover:text-accent transition-colors" style="font-size:12px;letter-spacing:3px;color:rgba(246,241,232,0.60)">À propos</a>
+    <a href="#offres" class="font-body uppercase py-3 hover:text-accent transition-colors" style="font-size:12px;letter-spacing:3px;color:rgba(246,241,232,0.60)">Offres</a>
+    <a href="#feed" class="font-body uppercase py-3 hover:text-accent transition-colors" style="font-size:12px;letter-spacing:3px;color:rgba(246,241,232,0.60)">Instagram</a>
+    <a href="#newsletter" class="btn-primary font-body uppercase mt-3 text-center" style="font-size:12px;letter-spacing:3px;padding:12px 28px">Contact</a>
   </div>
 </nav>
 
@@ -31,15 +49,16 @@
 </div>
 
 <%# ══════════════════════════════════════ 2. HERO ══════════════════════════════════════ %>
-<section id="hero" class="bg-dark overflow-hidden relative" style="padding-top:110px">
+<section id="hero" class="bg-dark overflow-hidden relative" style="padding-top:115px">
   <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.05;z-index:0" viewBox="0 0 800 600" fill="#f6f1e8">
     <path d="M150,120 L151.5,124 L155.5,125.5 L151.5,127 L150,131 L148.5,127 L144.5,125.5 L148.5,124Z"/>
     <path d="M380,80 L381,83 L384,84 L381,85 L380,88 L379,85 L376,84 L379,83Z"/>
     <path d="M90,400 L91,403 L94,404 L91,405 L90,408 L89,405 L86,404 L89,403Z"/>
     <path d="M450,500 L451.5,504 L455.5,505.5 L451.5,507 L450,511 L448.5,507 L444.5,505.5 L448.5,504Z"/>
   </svg>
-  <div class="grid lg:grid-cols-2 items-center relative" style="min-height:calc(100vh - 70px);z-index:1">
-    <div class="px-6 lg:px-16 xl:px-24 py-20" data-controller="reveal">
+  <div class="grid lg:grid-cols-2 items-center relative" style="min-height:calc(100vh - 115px);z-index:1">
+    <%# Texte — slide from left %>
+    <div class="px-6 lg:px-16 xl:px-24 py-20" data-controller="reveal" data-reveal-direction="left">
       <p class="font-accent text-accent mb-8" style="font-size:32px;letter-spacing:0.05em">
         <span class="sparkle-wrap">
           <%= c("hero_tagline") %>
@@ -63,8 +82,9 @@
         </a>
       </div>
     </div>
-    <div class="relative" style="padding:40px 0">
-      <div class="overflow-hidden" style="border-radius:9px 0 0 9px;height:550px">
+    <%# Photo — slide from right with parallax %>
+    <div class="relative" style="padding:40px 0" data-controller="reveal" data-reveal-direction="right">
+      <div class="overflow-hidden" style="border-radius:9px 0 0 9px;height:550px" data-controller="parallax" data-parallax-speed-value="0.08">
         <% if c_image("hero_image") %>
           <%= image_tag c_image("hero_image"), class: "w-full h-full object-cover", alt: "Amandine Atelier Digital" %>
         <% else %>
@@ -75,10 +95,29 @@
   </div>
 </section>
 
+<%# ══════════════════════════════════════ 3. CHIFFRES CLÉS (compteurs animés) ══════════════════════════════════════ %>
+<section class="bg-dark" style="padding:80px 0;border-top:1px solid rgba(246,241,232,0.08);border-bottom:1px solid rgba(246,241,232,0.08)">
+  <div class="max-w-[1000px] mx-auto px-6">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <% [1, 2, 3, 4].each_with_index do |i, idx| %>
+        <div class="counter-card" data-controller="reveal" data-reveal-direction="up" data-reveal-delay="<%= idx * 150 %>">
+          <p class="counter-number">
+            <span data-controller="counter"
+                  data-counter-target-value="<%= c("counter#{i}_number") %>"
+                  data-counter-suffix-value="<%= c("counter#{i}_suffix") %>"
+                  data-counter-duration-value="2500">0</span>
+          </p>
+          <p class="counter-label font-body"><%= c("counter#{i}_label") %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
 <%# ══════════════════════════════════════ 4. PROBLÈME ══════════════════════════════════════ %>
 <section id="probleme" class="bg-dark" style="padding:130px 0">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="text-center mb-20" data-controller="reveal">
+    <div class="text-center mb-20" data-controller="reveal" data-reveal-direction="scale">
       <h2>
         <span class="title-badge font-display" style="font-size:clamp(36px,5vw,58px);font-weight:400;line-height:1.15;padding:12px 32px">
           <%= c("problem_title") %>
@@ -87,8 +126,8 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-10">
-      <% [1, 2, 3].each do |i| %>
-        <div class="card-glass p-12 text-center" data-controller="reveal">
+      <% [1, 2, 3].each_with_index do |i, idx| %>
+        <div class="card-glass p-12 text-center" data-controller="reveal" data-reveal-delay="<%= idx * 200 %>">
           <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-8" style="background:rgba(252,223,181,0.10)">
             <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <% if i == 1 %>
@@ -115,8 +154,9 @@
 <%# ══════════════════════════════════════ 5. SOLUTION ══════════════════════════════════════ %>
 <section id="solution" class="bg-dark overflow-hidden">
   <div class="grid lg:grid-cols-2 items-center">
-    <div class="relative" style="padding:40px 0" data-controller="reveal">
-      <div class="overflow-hidden" style="border-radius:0 9px 9px 0;height:550px">
+    <%# Photo — slide from left with parallax %>
+    <div class="relative" style="padding:40px 0" data-controller="reveal" data-reveal-direction="left">
+      <div class="overflow-hidden" style="border-radius:0 9px 9px 0;height:550px" data-controller="parallax" data-parallax-speed-value="0.08">
         <% if c_image("solution_image") %>
           <%= image_tag c_image("solution_image"), class: "w-full h-full object-cover", alt: "Amandine" %>
         <% else %>
@@ -124,7 +164,8 @@
         <% end %>
       </div>
     </div>
-    <div class="px-6 lg:px-16 xl:px-24 py-20" data-controller="reveal">
+    <%# Texte — slide from right %>
+    <div class="px-6 lg:px-16 xl:px-24 py-20" data-controller="reveal" data-reveal-direction="right">
       <p class="font-body uppercase mb-6" style="font-size:11px;letter-spacing:4px;color:rgba(252,223,181,0.50)"><%= c("solution_subtitle") %></p>
       <h2 class="mb-5">
         <span class="title-badge font-display" style="font-size:clamp(36px,4.5vw,56px);font-weight:400;line-height:1.15;padding:12px 32px">
@@ -161,7 +202,7 @@
   </svg>
 
   <div class="relative max-w-[1200px] mx-auto px-6" style="z-index:1">
-    <div class="text-center mb-20" data-controller="reveal">
+    <div class="text-center mb-20" data-controller="reveal" data-reveal-direction="scale">
       <p class="font-accent text-accent mb-5" style="font-size:34px;letter-spacing:0.05em">
         <span class="sparkle-wrap">
           <%= c("offers_tagline") %>
@@ -182,7 +223,7 @@
         '<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>'
       ] %>
       <% [1, 2, 3].each_with_index do |i, idx| %>
-        <div class="card-offer p-12 flex flex-col" data-controller="reveal">
+        <div class="card-offer p-12 flex flex-col" data-controller="reveal" data-reveal-delay="<%= idx * 200 %>">
           <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-8" style="background:rgba(252,223,181,0.10)">
             <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><%= raw offer_icons[idx] %></svg>
           </div>
@@ -199,7 +240,23 @@
 
 <div class="section-line max-w-[1200px] mx-auto"></div>
 
-<%# ══════════════════════════════════════ 7. INSTAGRAM ══════════════════════════════════════ %>
+<%# ══════════════════════════════════════ 7. LOGOS CONFIANCE ══════════════════════════════════════ %>
+<section class="bg-dark overflow-hidden" style="padding:80px 0">
+  <div class="text-center mb-12" data-controller="reveal" data-reveal-direction="scale">
+    <p class="font-body uppercase" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.30)">Ils me font confiance</p>
+  </div>
+  <div class="logos-track">
+    <% 2.times do %>
+      <% ["Boutique Élise", "Agence Bloom", "Studio Cléo", "Maison Nora", "Café Léonie", "Atelier Jade"].each do |name| %>
+        <span class="font-body whitespace-nowrap mx-12" style="font-size:18px;font-weight:500;letter-spacing:2px;color:rgba(246,241,232,0.18);text-transform:uppercase"><%= name %></span>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<div class="section-line max-w-[1200px] mx-auto"></div>
+
+<%# ══════════════════════════════════════ 8. INSTAGRAM ══════════════════════════════════════ %>
 <section id="feed" class="bg-dark" style="padding:120px 0">
   <div class="max-w-[1000px] mx-auto px-6">
     <div class="text-center mb-16" data-controller="reveal">
@@ -215,10 +272,11 @@
     </div>
 
     <% if @posts.any? %>
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-3" data-controller="reveal">
-        <% @posts.each do |post| %>
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+        <% @posts.each_with_index do |post, idx| %>
           <a href="<%= post.instagram_url %>" target="_blank" rel="noopener noreferrer"
-             class="group relative aspect-square overflow-hidden" style="border-radius:12px">
+             class="group relative aspect-square overflow-hidden" style="border-radius:12px"
+             data-controller="reveal" data-reveal-direction="scale" data-reveal-delay="<%= idx * 100 %>">
             <% if post.photo.attached? %>
               <%= image_tag post.photo.variant(resize_to_fill: [400, 400]), class: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105", alt: post.caption&.truncate(80) %>
             <% else %>
@@ -252,7 +310,7 @@
 
 <div class="section-line max-w-[1200px] mx-auto"></div>
 
-<%# ══════════════════════════════════════ 8. TÉMOIGNAGES ══════════════════════════════════ %>
+<%# ══════════════════════════════════════ 9. TÉMOIGNAGES ══════════════════════════════════ %>
 <section id="temoignages" class="bg-dark relative overflow-hidden" style="padding:130px 0">
   <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.05;z-index:0" viewBox="0 0 800 400" fill="#f6f1e8">
     <path d="M700,60 L701.5,64 L705.5,65.5 L701.5,67 L700,71 L698.5,67 L694.5,65.5 L698.5,64Z"/>
@@ -260,7 +318,7 @@
     <path d="M400,350 L401,353 L404,354 L401,355 L400,358 L399,355 L396,354 L399,353Z"/>
   </svg>
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="text-center mb-20" data-controller="reveal">
+    <div class="text-center mb-20" data-controller="reveal" data-reveal-direction="scale">
       <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Témoignages</p>
       <h2>
         <span class="title-badge font-display" style="font-size:clamp(34px,4.5vw,52px);font-weight:400;line-height:1.15;padding:12px 32px">
@@ -270,8 +328,8 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-10">
-      <% [1, 2, 3].each do |i| %>
-        <div class="card-glass p-12 relative overflow-hidden" data-controller="reveal">
+      <% [1, 2, 3].each_with_index do |i, idx| %>
+        <div class="card-glass p-12 relative overflow-hidden" data-controller="reveal" data-reveal-delay="<%= idx * 200 %>">
           <span class="absolute top-6 left-7 pointer-events-none font-display" style="font-size:100px;color:rgba(252,223,181,0.15);line-height:0.5">&ldquo;</span>
           <div class="relative" style="z-index:1;padding-top:40px">
             <p class="font-body text-light italic leading-relaxed mb-8" style="font-size:15px;line-height:2;opacity:0.80">
@@ -289,9 +347,9 @@
 
 <div class="section-line max-w-[1200px] mx-auto"></div>
 
-<%# ══════════════════════════════════════ 9. NEWSLETTER ══════════════════════════════════ %>
+<%# ══════════════════════════════════════ 10. NEWSLETTER ══════════════════════════════════ %>
 <section id="newsletter" class="bg-dark" style="padding:130px 0">
-  <div class="max-w-[600px] mx-auto px-6 text-center" data-controller="reveal">
+  <div class="max-w-[600px] mx-auto px-6 text-center" data-controller="reveal" data-reveal-direction="scale">
     <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Newsletter</p>
     <h2 class="mb-5">
       <span class="title-badge font-display" style="font-size:clamp(32px,4.5vw,48px);font-weight:400;line-height:1.15;padding:12px 32px">
@@ -320,11 +378,11 @@
   </div>
 </section>
 
-<%# ══════════════════════════════════════ 10. FOOTER ══════════════════════════════════════ %>
+<%# ══════════════════════════════════════ 11. FOOTER ══════════════════════════════════════ %>
 <footer class="bg-dark" style="padding:80px 0 50px;border-top:1px solid rgba(246,241,232,0.08)">
   <div class="max-w-[1200px] mx-auto px-6">
     <div class="grid md:grid-cols-3 gap-16 mb-16">
-      <div>
+      <div data-controller="reveal" data-reveal-direction="left">
         <h3 class="font-body text-light mb-3" style="font-size:15px;font-weight:500;letter-spacing:2px;text-transform:uppercase">
           Amandine Atelier Digital
         </h3>
@@ -339,7 +397,7 @@
         </p>
       </div>
 
-      <div>
+      <div data-controller="reveal" data-reveal-delay="150">
         <h4 class="font-body text-light uppercase mb-6" style="font-size:11px;font-weight:400;letter-spacing:3px">Liens</h4>
         <ul class="space-y-3">
           <li><a href="#hero" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.45)">Accueil</a></li>
@@ -349,7 +407,7 @@
         </ul>
       </div>
 
-      <div>
+      <div data-controller="reveal" data-reveal-delay="300">
         <h4 class="font-body text-light uppercase mb-6" style="font-size:11px;font-weight:400;letter-spacing:3px">Réseaux</h4>
         <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center gap-2 hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.45)">
@@ -365,3 +423,10 @@
     </div>
   </div>
 </footer>
+
+<%# ══════════════════════════════════════ BACK TO TOP ══════════════════════════════════════ %>
+<button class="back-to-top" data-controller="back-to-top" data-action="click->back-to-top#scrollToTop">
+  <svg class="w-5 h-5" style="color:rgba(246,241,232,0.60)" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+  </svg>
+</button>

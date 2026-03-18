@@ -61,6 +61,20 @@ contents = [
   { key: "instagram_handle", value: "@amandine_atelier_insta", content_type: "text", section: "instagram", position: 1 },
   { key: "instagram_url", value: "https://instagram.com/amandine_atelier_insta", content_type: "text", section: "instagram", position: 2 },
 
+  # ── Chiffres clés ──
+  { key: "counter1_number", value: "50", content_type: "text", section: "counters", position: 1 },
+  { key: "counter1_suffix", value: "+", content_type: "text", section: "counters", position: 2 },
+  { key: "counter1_label", value: "Entreprises accompagnées", content_type: "text", section: "counters", position: 3 },
+  { key: "counter2_number", value: "3", content_type: "text", section: "counters", position: 4 },
+  { key: "counter2_suffix", value: "h", content_type: "text", section: "counters", position: 5 },
+  { key: "counter2_label", value: "Gagnées par semaine", content_type: "text", section: "counters", position: 6 },
+  { key: "counter3_number", value: "95", content_type: "text", section: "counters", position: 7 },
+  { key: "counter3_suffix", value: "%", content_type: "text", section: "counters", position: 8 },
+  { key: "counter3_label", value: "De satisfaction client", content_type: "text", section: "counters", position: 9 },
+  { key: "counter4_number", value: "200", content_type: "text", section: "counters", position: 10 },
+  { key: "counter4_suffix", value: "+", content_type: "text", section: "counters", position: 11 },
+  { key: "counter4_label", value: "Contenus créés ensemble", content_type: "text", section: "counters", position: 12 },
+
   # ── Footer ──
   { key: "footer_tagline", value: "Stratégie & sérénité", content_type: "text", section: "footer", position: 1 },
   { key: "footer_description", value: "Formation et organisation pour ta communication digitale.", content_type: "text", section: "footer", position: 2 }

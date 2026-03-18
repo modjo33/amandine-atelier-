@@ -8,6 +8,7 @@ module Admin::SiteContentsHelper
     "testimonials" => { label: "Témoignages", icon: "💬", description: "Les avis clients" },
     "newsletter" => { label: "Newsletter", icon: "📧", description: "Section inscription newsletter" },
     "instagram" => { label: "Instagram", icon: "📸", description: "Lien et handle Instagram" },
+    "counters" => { label: "Chiffres clés", icon: "🔢", description: "Les compteurs animés (stats)" },
     "footer" => { label: "Footer", icon: "📋", description: "Pied de page" }
   }.freeze
 
@@ -56,6 +57,18 @@ module Admin::SiteContentsHelper
     "newsletter_text" => "Texte descriptif",
     "instagram_handle" => "Nom du compte (@…)",
     "instagram_url" => "Lien Instagram",
+    "counter1_number" => "Compteur 1 — Chiffre",
+    "counter1_suffix" => "Compteur 1 — Suffixe (+, %, h…)",
+    "counter1_label" => "Compteur 1 — Label",
+    "counter2_number" => "Compteur 2 — Chiffre",
+    "counter2_suffix" => "Compteur 2 — Suffixe",
+    "counter2_label" => "Compteur 2 — Label",
+    "counter3_number" => "Compteur 3 — Chiffre",
+    "counter3_suffix" => "Compteur 3 — Suffixe",
+    "counter3_label" => "Compteur 3 — Label",
+    "counter4_number" => "Compteur 4 — Chiffre",
+    "counter4_suffix" => "Compteur 4 — Suffixe",
+    "counter4_label" => "Compteur 4 — Label",
     "footer_tagline" => "Accroche cursive",
     "footer_description" => "Description"
   }.freeze
