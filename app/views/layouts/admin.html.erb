@@ -26,6 +26,9 @@
           <%= admin_sidebar_link "Contenu du site", admin_site_contents_path, "edit" %>
           <%= admin_sidebar_link "Posts Instagram", admin_posts_path, "image" %>
           <%= admin_sidebar_link "Abonnés", admin_subscribers_path, "users" %>
+          <%= admin_sidebar_link "Témoignages", admin_testimonials_path, "chat" %>
+          <%= admin_sidebar_link "Blog", admin_articles_path, "article" %>
+          <%= admin_sidebar_link "Messages", admin_contacts_path, "mail" %>
         </nav>
 
         <div class="p-4" style="border-top:1px solid rgba(246,241,232,0.08)">
@@ -45,6 +48,9 @@
             <a href="<%= admin_site_contents_path %>" class="admin-mobile-btn">✏️</a>
             <a href="<%= admin_posts_path %>" class="admin-mobile-btn">📸</a>
             <a href="<%= admin_subscribers_path %>" class="admin-mobile-btn">👥</a>
+            <a href="<%= admin_testimonials_path %>" class="admin-mobile-btn">💬</a>
+            <a href="<%= admin_articles_path %>" class="admin-mobile-btn">📝</a>
+            <a href="<%= admin_contacts_path %>" class="admin-mobile-btn">📩</a>
           </div>
         </header>
 

@@ -1,0 +1,74 @@
+<%= content_for :head do %>
+  <meta name="description" content="Blog Amandine Atelier Digital - Conseils en stratégie digitale, réseaux sociaux et organisation.">
+  <title>Blog — Amandine Atelier Digital</title>
+<% end %>
+
+<nav data-controller="navbar" class="fixed top-0 inset-x-0 z-40" style="height:70px;border-bottom:1px solid rgba(246,241,232,0.08);transition:background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease">
+  <div class="max-w-[1200px] mx-auto px-6 lg:px-10 flex items-center justify-between h-full">
+    <a href="/" class="font-body text-light" style="font-size:15px;font-weight:500;letter-spacing:2px;text-transform:uppercase">Amandine Atelier Digital</a>
+    <div class="hidden md:flex items-center gap-14">
+      <a href="/" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Accueil</a>
+      <a href="/blog" class="font-body uppercase text-accent" style="font-size:11px;font-weight:400;letter-spacing:3px">Blog</a>
+      <a href="/#newsletter" class="btn-primary font-body uppercase" style="font-size:11px;letter-spacing:3px;padding:10px 28px">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="bg-dark" style="padding-top:130px;padding-bottom:100px">
+  <div class="max-w-[900px] mx-auto px-6">
+    <div class="text-center mb-16" data-controller="reveal" data-reveal-direction="scale">
+      <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Blog</p>
+      <h1>
+        <span class="title-badge font-body" style="font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.25">
+          Conseils & Ressources
+        </span>
+      </h1>
+      <p class="font-body mt-6" style="font-size:16px;color:rgba(246,241,232,0.55);line-height:1.8">
+        Stratégie digitale, réseaux sociaux, organisation — tout pour booster ta communication.
+      </p>
+    </div>
+
+    <% if @categories.any? %>
+      <div class="flex flex-wrap justify-center gap-3 mb-14">
+        <%= link_to "Tous", blog_path, class: "font-body px-4 py-2 rounded-full transition-all", style: "font-size:13px;#{params[:category].blank? ? 'background:rgba(252,223,181,0.20);color:#fcdfb5;border:1px solid rgba(252,223,181,0.30)' : 'background:rgba(246,241,232,0.06);color:rgba(246,241,232,0.50);border:1px solid rgba(246,241,232,0.10)'}" %>
+        <% @categories.each do |cat| %>
+          <%= link_to cat, blog_path(category: cat), class: "font-body px-4 py-2 rounded-full transition-all", style: "font-size:13px;#{params[:category] == cat ? 'background:rgba(252,223,181,0.20);color:#fcdfb5;border:1px solid rgba(252,223,181,0.30)' : 'background:rgba(246,241,232,0.06);color:rgba(246,241,232,0.50);border:1px solid rgba(246,241,232,0.10)'}" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @articles.any? %>
+      <div class="space-y-10">
+        <% @articles.each_with_index do |article, idx| %>
+          <%= link_to article_path(slug: article.slug), class: "block group", data: { controller: "reveal", reveal_delay: (idx * 100).to_s } do %>
+            <div class="card-glass overflow-hidden" style="border-radius:16px">
+              <% if article.cover_image.attached? %>
+                <div class="overflow-hidden" style="height:280px">
+                  <%= image_tag article.cover_image.variant(resize_to_fill: [900, 400]), class: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" %>
+                </div>
+              <% end %>
+              <div class="p-8">
+                <div class="flex items-center gap-4 mb-4">
+                  <% if article.category.present? %>
+                    <span class="font-body px-3 py-1 rounded-full" style="font-size:11px;background:rgba(252,223,181,0.12);color:#fcdfb5;letter-spacing:0.5px"><%= article.category %></span>
+                  <% end %>
+                  <span class="font-body" style="font-size:12px;color:rgba(246,241,232,0.35)"><%= article.published_at&.strftime("%d %b %Y") %></span>
+                  <span class="font-body" style="font-size:12px;color:rgba(246,241,232,0.35)"><%= article.reading_time %> min</span>
+                </div>
+                <h2 class="font-display text-light group-hover:text-accent transition-colors mb-3" style="font-size:24px;font-weight:400"><%= article.title %></h2>
+                <% if article.excerpt.present? %>
+                  <p class="font-body" style="font-size:15px;color:rgba(246,241,232,0.55);line-height:1.8"><%= article.excerpt %></p>
+                <% end %>
+                <span class="inline-flex items-center font-body text-accent mt-4" style="font-size:14px;letter-spacing:0.5px">Lire l'article &rarr;</span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center py-20">
+        <p class="font-body" style="font-size:16px;color:rgba(246,241,232,0.35)">Les articles arrivent bientôt...</p>
+      </div>
+    <% end %>
+  </div>
+</section>

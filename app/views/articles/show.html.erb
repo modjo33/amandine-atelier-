@@ -1,0 +1,91 @@
+<%= content_for :head do %>
+  <title><%= @article.title %> — Amandine Atelier Digital</title>
+  <meta name="description" content="<%= @article.meta_description.presence || @article.excerpt&.truncate(160) %>">
+  <meta property="og:title" content="<%= @article.title %>">
+  <meta property="og:description" content="<%= @article.meta_description.presence || @article.excerpt&.truncate(160) %>">
+  <meta property="og:type" content="article">
+  <% if @article.cover_image.attached? %>
+    <meta property="og:image" content="<%= url_for(@article.cover_image) %>">
+  <% end %>
+  <link rel="canonical" href="<%= article_url(slug: @article.slug) %>">
+<% end %>
+
+<nav data-controller="navbar" class="fixed top-0 inset-x-0 z-40" style="height:70px;border-bottom:1px solid rgba(246,241,232,0.08);transition:background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease">
+  <div class="max-w-[1200px] mx-auto px-6 lg:px-10 flex items-center justify-between h-full">
+    <a href="/" class="font-body text-light" style="font-size:15px;font-weight:500;letter-spacing:2px;text-transform:uppercase">Amandine Atelier Digital</a>
+    <div class="hidden md:flex items-center gap-14">
+      <a href="/" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Accueil</a>
+      <a href="/blog" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Blog</a>
+      <a href="/#newsletter" class="btn-primary font-body uppercase" style="font-size:11px;letter-spacing:3px;padding:10px 28px">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<article class="bg-dark" style="padding-top:130px;padding-bottom:100px">
+  <div class="max-w-[750px] mx-auto px-6">
+    <%# Back link %>
+    <div class="mb-10" data-controller="reveal" data-reveal-direction="left">
+      <%= link_to blog_path, class: "inline-flex items-center gap-2 font-body hover:text-accent transition-colors", style: "font-size:13px;color:rgba(246,241,232,0.40)" do %>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+        Retour au blog
+      <% end %>
+    </div>
+
+    <%# Header %>
+    <header class="mb-12" data-controller="reveal">
+      <div class="flex items-center gap-4 mb-6">
+        <% if @article.category.present? %>
+          <span class="font-body px-3 py-1 rounded-full" style="font-size:11px;background:rgba(252,223,181,0.12);color:#fcdfb5;letter-spacing:0.5px"><%= @article.category %></span>
+        <% end %>
+        <span class="font-body" style="font-size:13px;color:rgba(246,241,232,0.35)"><%= @article.published_at&.strftime("%d %B %Y") %></span>
+        <span class="font-body" style="font-size:13px;color:rgba(246,241,232,0.35)"><%= @article.reading_time %> min de lecture</span>
+      </div>
+      <h1 class="font-display text-light mb-6" style="font-size:clamp(28px,4vw,44px);font-weight:400;line-height:1.2"><%= @article.title %></h1>
+      <% if @article.excerpt.present? %>
+        <p class="font-body" style="font-size:18px;color:rgba(246,241,232,0.55);line-height:1.8"><%= @article.excerpt %></p>
+      <% end %>
+    </header>
+
+    <% if @article.cover_image.attached? %>
+      <div class="mb-14 overflow-hidden" style="border-radius:16px" data-controller="reveal" data-reveal-direction="scale">
+        <%= image_tag @article.cover_image, class: "w-full", style: "max-height:450px;object-fit:cover" %>
+      </div>
+    <% end %>
+
+    <%# Content %>
+    <div class="article-content font-body" style="font-size:17px;color:rgba(246,241,232,0.80);line-height:2" data-controller="reveal">
+      <%= simple_format(@article.content) %>
+    </div>
+
+    <%# Share %>
+    <div class="mt-16 pt-8" style="border-top:1px solid rgba(246,241,232,0.08)">
+      <p class="font-body mb-4" style="font-size:13px;color:rgba(246,241,232,0.35);letter-spacing:1px;text-transform:uppercase">Partager</p>
+      <div class="flex items-center gap-4">
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<%= ERB::Util.url_encode(article_url(slug: @article.slug)) %>" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity" style="color:#fcdfb5">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <% if @related.any? %>
+      <div class="mt-20">
+        <h3 class="font-display text-light mb-8" style="font-size:24px;font-weight:400">Articles similaires</h3>
+        <div class="grid sm:grid-cols-3 gap-6">
+          <% @related.each do |article| %>
+            <%= link_to article_path(slug: article.slug), class: "group card-glass overflow-hidden", style: "border-radius:14px" do %>
+              <% if article.cover_image.attached? %>
+                <div class="overflow-hidden" style="height:140px">
+                  <%= image_tag article.cover_image.variant(resize_to_fill: [400, 200]), class: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" %>
+                </div>
+              <% end %>
+              <div class="p-5">
+                <p class="font-body text-light group-hover:text-accent transition-colors" style="font-size:15px;font-weight:500;line-height:1.4"><%= article.title %></p>
+                <p class="font-body mt-2" style="font-size:12px;color:rgba(246,241,232,0.35)"><%= article.reading_time %> min</p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</article>

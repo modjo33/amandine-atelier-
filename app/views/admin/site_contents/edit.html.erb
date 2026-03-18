@@ -61,6 +61,9 @@
 
   <div class="flex items-center gap-4 pt-4">
     <%= f.submit "Enregistrer", class: "btn-primary font-body cursor-pointer", style: "padding:14px 40px;font-size:15px;letter-spacing:0.5px" %>
+    <%= link_to root_path, target: "_blank", class: "btn-secondary font-body", style: "padding:14px 28px;font-size:14px" do %>
+      👁️ Aperçu du site
+    <% end %>
     <%= link_to "Annuler", admin_site_contents_path, class: "font-body hover:text-accent transition-colors", style: "font-size:14px;color:rgba(246,241,232,0.40)" %>
   </div>
 <% end %>

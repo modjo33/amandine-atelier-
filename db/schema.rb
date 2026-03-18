@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_18_095147) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_18_164304) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -51,6 +51,47 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_18_095147) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.string "category"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.text "excerpt"
+    t.string "meta_description"
+    t.integer "position"
+    t.boolean "published", default: false
+    t.datetime "published_at"
+    t.string "slug"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_articles_on_category"
+    t.index ["published"], name: "index_articles_on_published"
+    t.index ["published_at"], name: "index_articles_on_published_at"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
+    t.text "message"
+    t.boolean "newsletter_opt_in", default: false
+    t.string "phone"
+    t.string "unsubscribe_token"
+    t.datetime "updated_at", null: false
+    t.index ["unsubscribe_token"], name: "index_contacts_on_unsubscribe_token", unique: true
+  end
+
+  create_table "page_views", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "ip_address"
+    t.string "path"
+    t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.index ["created_at"], name: "index_page_views_on_created_at"
+    t.index ["path"], name: "index_page_views_on_path"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.boolean "active"
     t.text "caption"
@@ -81,6 +122,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_18_095147) do
     t.string "email"
     t.string "first_name"
     t.string "source"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "testimonials", force: :cascade do |t|
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.integer "position"
+    t.text "quote"
+    t.string "role"
     t.datetime "updated_at", null: false
   end
 

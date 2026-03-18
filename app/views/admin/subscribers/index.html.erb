@@ -1,6 +1,13 @@
-<div class="mb-10">
-  <h1 class="font-display text-light" style="font-size:clamp(28px,3vw,38px);font-weight:400">Abonnés newsletter</h1>
-  <p class="font-body mt-2" style="font-size:14px;color:rgba(246,241,232,0.45)"><%= @subscribers.count %> inscrit<%= "s" if @subscribers.count > 1 %></p>
+<div class="mb-10 flex items-center justify-between flex-wrap gap-4">
+  <div>
+    <h1 class="font-display text-light" style="font-size:clamp(28px,3vw,38px);font-weight:400">Abonnés newsletter</h1>
+    <p class="font-body mt-2" style="font-size:14px;color:rgba(246,241,232,0.45)"><%= @subscribers.count %> inscrit<%= "s" if @subscribers.count > 1 %></p>
+  </div>
+  <% if @subscribers.any? %>
+    <%= link_to export_csv_admin_subscribers_path, class: "btn-primary font-body", style: "padding:12px 28px;font-size:14px" do %>
+      📥 Exporter CSV
+    <% end %>
+  <% end %>
 </div>
 
 <% if @subscribers.any? %>

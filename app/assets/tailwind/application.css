@@ -45,13 +45,19 @@
 }
 
 @layer components {
-  /* Title badge */
+  /* Title badge — subtle underline highlight */
   .title-badge {
-    display: inline-block;
-    background-color: #f6f1e8;
-    color: #4A3F38;
-    border-radius: 4px;
-    padding: 8px 24px;
+    display: inline;
+    background: none;
+    color: #f6f1e8;
+    border-radius: 0;
+    padding: 0;
+    background-image: linear-gradient(to right, rgba(252,223,181,0.18), rgba(252,223,181,0.06));
+    background-position: 0 88%;
+    background-size: 100% 28%;
+    background-repeat: no-repeat;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   /* Primary button */
@@ -480,5 +486,29 @@
   }
   .admin-input-file::file-selector-button:hover {
     background: rgba(252, 223, 181, 0.20);
+  }
+
+  /* Small action buttons (edit/delete) */
+  .admin-btn-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(246, 241, 232, 0.06);
+    border: 1px solid rgba(246, 241, 232, 0.10);
+    color: rgba(246, 241, 232, 0.50);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .admin-btn-sm:hover {
+    background: rgba(246, 241, 232, 0.10);
+    color: #f6f1e8;
+  }
+  .admin-btn-danger:hover {
+    background: rgba(252, 165, 165, 0.15);
+    border-color: rgba(252, 165, 165, 0.25);
+    color: #fca5a5;
   }
 }

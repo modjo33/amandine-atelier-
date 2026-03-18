@@ -1,0 +1,47 @@
+<div class="mb-10">
+  <div class="flex items-center gap-3 mb-2">
+    <%= link_to admin_contacts_path, class: "inline-flex items-center gap-1 font-body hover:text-accent transition-colors", style: "font-size:13px;color:rgba(246,241,232,0.40)" do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+      Retour
+    <% end %>
+  </div>
+  <h1 class="font-display text-light" style="font-size:clamp(26px,3vw,34px);font-weight:400">Message de <%= @contact.first_name %></h1>
+</div>
+
+<div class="card-glass" style="border-radius:14px;padding:28px 32px">
+  <div class="grid sm:grid-cols-2 gap-6 mb-8" style="border-bottom:1px solid rgba(246,241,232,0.08);padding-bottom:24px">
+    <div>
+      <p class="font-body mb-1" style="font-size:11px;color:rgba(246,241,232,0.35);text-transform:uppercase;letter-spacing:1px">Prénom</p>
+      <p class="font-body text-light" style="font-size:15px"><%= @contact.first_name %></p>
+    </div>
+    <div>
+      <p class="font-body mb-1" style="font-size:11px;color:rgba(246,241,232,0.35);text-transform:uppercase;letter-spacing:1px">Nom</p>
+      <p class="font-body text-light" style="font-size:15px"><%= @contact.last_name.presence || "—" %></p>
+    </div>
+    <div>
+      <p class="font-body mb-1" style="font-size:11px;color:rgba(246,241,232,0.35);text-transform:uppercase;letter-spacing:1px">Email</p>
+      <p class="font-body" style="font-size:15px"><a href="mailto:<%= @contact.email %>" class="text-accent hover:opacity-70 transition-opacity"><%= @contact.email %></a></p>
+    </div>
+    <div>
+      <p class="font-body mb-1" style="font-size:11px;color:rgba(246,241,232,0.35);text-transform:uppercase;letter-spacing:1px">Téléphone</p>
+      <p class="font-body text-light" style="font-size:15px"><%= @contact.phone.presence || "—" %></p>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <p class="font-body mb-2" style="font-size:11px;color:rgba(246,241,232,0.35);text-transform:uppercase;letter-spacing:1px">Message</p>
+    <p class="font-body" style="font-size:15px;color:rgba(246,241,232,0.70);line-height:1.8"><%= simple_format(@contact.message) if @contact.message.present? %></p>
+    <% if @contact.message.blank? %>
+      <p class="font-body" style="font-size:15px;color:rgba(246,241,232,0.35)">Aucun message.</p>
+    <% end %>
+  </div>
+
+  <div class="flex items-center gap-4" style="border-top:1px solid rgba(246,241,232,0.08);padding-top:20px">
+    <% if @contact.newsletter_opt_in? %>
+      <span class="font-body px-3 py-1 rounded-full" style="font-size:12px;background:rgba(134,239,172,0.12);color:#86efac">Inscrit(e) à la newsletter</span>
+    <% else %>
+      <span class="font-body px-3 py-1 rounded-full" style="font-size:12px;background:rgba(246,241,232,0.06);color:rgba(246,241,232,0.40)">Pas de newsletter</span>
+    <% end %>
+    <span class="font-body" style="font-size:12px;color:rgba(246,241,232,0.30)">Reçu le <%= @contact.created_at.strftime("%d/%m/%Y à %H:%M") %></span>
+  </div>
+</div>

@@ -35,11 +35,11 @@ contents = [
   # ── Offres ──
   { key: "offers_tagline", value: "Ce que je propose", content_type: "text", section: "offers", position: 1 },
   { key: "offers_title", value: "Trois piliers pour ta com'", content_type: "text", section: "offers", position: 2 },
-  { key: "offer1_title", value: "Stratégie", content_type: "text", section: "offers", position: 3 },
+  { key: "offer1_title", value: "Audit-Stratégie", content_type: "text", section: "offers", position: 3 },
   { key: "offer1_text", value: "Je construis ta stratégie digitale sur-mesure pour attirer les bonnes personnes.", content_type: "text", section: "offers", position: 4 },
-  { key: "offer2_title", value: "Formation", content_type: "text", section: "offers", position: 5 },
+  { key: "offer2_title", value: "Atelier Digital", content_type: "text", section: "offers", position: 5 },
   { key: "offer2_text", value: "Je forme ton équipe à créer du contenu qui convertit, sans y passer sa vie.", content_type: "text", section: "offers", position: 6 },
-  { key: "offer3_title", value: "Organisation", content_type: "text", section: "offers", position: 7 },
+  { key: "offer3_title", value: "Community Management", content_type: "text", section: "offers", position: 7 },
   { key: "offer3_text", value: "Je structure ta création de contenu pour gagner en efficacité et en visibilité.", content_type: "text", section: "offers", position: 8 },
 
   # ── Témoignages ──
@@ -58,8 +58,9 @@ contents = [
   { key: "newsletter_text", value: "Stratégie, contenu, organisation — directement dans ta boîte mail, chaque semaine.", content_type: "text", section: "newsletter", position: 2 },
 
   # ── Instagram ──
-  { key: "instagram_handle", value: "@amandine_atelier_insta", content_type: "text", section: "instagram", position: 1 },
-  { key: "instagram_url", value: "https://instagram.com/amandine_atelier_insta", content_type: "text", section: "instagram", position: 2 },
+  { key: "instagram_handle", value: "@amandine_atelier_digital", content_type: "text", section: "instagram", position: 1 },
+  { key: "instagram_url", value: "https://www.instagram.com/amandine_atelier_digital", content_type: "text", section: "instagram", position: 2 },
+  { key: "instagram_embed_id", value: "", content_type: "text", section: "instagram", position: 3 },
 
   # ── Chiffres clés ──
   { key: "counter1_number", value: "50", content_type: "text", section: "counters", position: 1 },
@@ -71,9 +72,6 @@ contents = [
   { key: "counter3_number", value: "95", content_type: "text", section: "counters", position: 7 },
   { key: "counter3_suffix", value: "%", content_type: "text", section: "counters", position: 8 },
   { key: "counter3_label", value: "De satisfaction client", content_type: "text", section: "counters", position: 9 },
-  { key: "counter4_number", value: "200", content_type: "text", section: "counters", position: 10 },
-  { key: "counter4_suffix", value: "+", content_type: "text", section: "counters", position: 11 },
-  { key: "counter4_label", value: "Contenus créés ensemble", content_type: "text", section: "counters", position: 12 },
 
   # ── Footer ──
   { key: "footer_tagline", value: "Stratégie & sérénité", content_type: "text", section: "footer", position: 1 },
@@ -90,3 +88,20 @@ contents.each do |attrs|
 end
 
 puts "✓ #{SiteContent.count} contenus créés/vérifiés"
+
+# ── Testimonials ──
+testimonials = [
+  { quote: "En 3 mois, ma visibilité a explosé. Amandine a su capter l'essence de ma marque et la traduire en stratégie concrète.", name: "Marie L.", role: "Créatrice de bijoux", position: 1 },
+  { quote: "Je me sentais perdue avec les réseaux sociaux. Aujourd'hui j'ai un planning clair et des résultats mesurables.", name: "Sophie D.", role: "Fondatrice PME", position: 2 },
+  { quote: "Grâce à l'organisation mise en place, on publie régulièrement sans stress. Les leads arrivent tout seuls.", name: "Camille R.", role: "Responsable communication", position: 3 }
+]
+
+testimonials.each do |attrs|
+  Testimonial.find_or_create_by!(name: attrs[:name]) do |t|
+    t.quote = attrs[:quote]
+    t.role = attrs[:role]
+    t.position = attrs[:position]
+  end
+end
+
+puts "✓ #{Testimonial.count} témoignages créés/vérifiés"

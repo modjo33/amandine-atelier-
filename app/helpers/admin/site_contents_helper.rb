@@ -57,6 +57,7 @@ module Admin::SiteContentsHelper
     "newsletter_text" => "Texte descriptif",
     "instagram_handle" => "Nom du compte (@…)",
     "instagram_url" => "Lien Instagram",
+    "instagram_embed_id" => "ID widget Elfsight (ex: xxxxxxxx-xxxx-xxxx-xxxx)",
     "counter1_number" => "Compteur 1 — Chiffre",
     "counter1_suffix" => "Compteur 1 — Suffixe (+, %, h…)",
     "counter1_label" => "Compteur 1 — Label",
@@ -66,9 +67,6 @@ module Admin::SiteContentsHelper
     "counter3_number" => "Compteur 3 — Chiffre",
     "counter3_suffix" => "Compteur 3 — Suffixe",
     "counter3_label" => "Compteur 3 — Label",
-    "counter4_number" => "Compteur 4 — Chiffre",
-    "counter4_suffix" => "Compteur 4 — Suffixe",
-    "counter4_label" => "Compteur 4 — Label",
     "footer_tagline" => "Accroche cursive",
     "footer_description" => "Description"
   }.freeze

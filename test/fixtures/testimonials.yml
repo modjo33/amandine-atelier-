@@ -1,0 +1,20 @@
+one:
+  quote: "Super expérience, merci Amandine !"
+  name: "Marie L."
+  role: "Créatrice de bijoux"
+  position: 1
+  active: true
+
+two:
+  quote: "Une approche claire et efficace."
+  name: "Sophie D."
+  role: "Fondatrice PME"
+  position: 2
+  active: true
+
+three:
+  quote: "Les résultats sont au rendez-vous."
+  name: "Camille R."
+  role: "Responsable communication"
+  position: 3
+  active: false
