@@ -1,5 +1,5 @@
 <%= content_for :head do %>
-  <meta name="description" content="Amandine Atelier Digital - Strat&eacute;gie, formation et organisation pour ta communication digitale.">
+  <meta name="description" content="Amandine Atelier Digital - Stratégie, formation et organisation pour ta communication digitale.">
 <% end %>
 
 <%# ══════════════════════════════════════ 1. NAVBAR ══════════════════════════════════════ %>
@@ -8,7 +8,7 @@
     <a href="/" class="font-body text-light" style="font-size:15px;font-weight:500;letter-spacing:2px;text-transform:uppercase">Amandine Atelier Digital</a>
     <div class="hidden md:flex items-center gap-14">
       <a href="#hero" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Accueil</a>
-      <a href="#solution" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">&Agrave; propos</a>
+      <a href="#solution" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">À propos</a>
       <a href="#offres" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Offres</a>
       <a href="#feed" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Instagram</a>
       <a href="#newsletter" class="btn-primary font-body uppercase" style="font-size:11px;letter-spacing:3px;padding:10px 28px">Contact</a>
@@ -16,9 +16,22 @@
   </div>
 </nav>
 
-<%# ══════════════════════════════════════ 2. HERO — texte gauche / photo droite ══════════════════════════════════════ %>
-<section id="hero" class="bg-dark overflow-hidden relative" style="padding-top:70px">
-  <%# Subtle stars %>
+<%# ══════════════════════════════════════ BANDEAU (marquee) — fixe sous navbar ══════════════════════════════════════ %>
+<div class="fixed inset-x-0 z-30 bg-dark overflow-hidden" style="top:70px;padding:10px 0;border-bottom:1px solid rgba(246,241,232,0.08)">
+  <div class="marquee-track">
+    <% 4.times do %>
+      <span class="font-body text-light flex items-center gap-8 whitespace-nowrap" style="font-size:13px;letter-spacing:2px;padding:0 32px;font-weight:300;opacity:0.80">
+        &#127774; <%= c("marquee_prefix") %>
+        <span class="font-accent text-accent sparkle-wrap" style="font-size:22px;letter-spacing:0.05em"><%= c("marquee_highlight") %><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span></span>
+        <%= c("marquee_suffix") %>
+        <span style="color:rgba(246,241,232,0.20)">&mdash;</span>
+      </span>
+    <% end %>
+  </div>
+</div>
+
+<%# ══════════════════════════════════════ 2. HERO ══════════════════════════════════════ %>
+<section id="hero" class="bg-dark overflow-hidden relative" style="padding-top:110px">
   <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.05;z-index:0" viewBox="0 0 800 600" fill="#f6f1e8">
     <path d="M150,120 L151.5,124 L155.5,125.5 L151.5,127 L150,131 L148.5,127 L144.5,125.5 L148.5,124Z"/>
     <path d="M380,80 L381,83 L384,84 L381,85 L380,88 L379,85 L376,84 L379,83Z"/>
@@ -26,53 +39,39 @@
     <path d="M450,500 L451.5,504 L455.5,505.5 L451.5,507 L450,511 L448.5,507 L444.5,505.5 L448.5,504Z"/>
   </svg>
   <div class="grid lg:grid-cols-2 items-center relative" style="min-height:calc(100vh - 70px);z-index:1">
-    <%# Texte %>
     <div class="px-6 lg:px-16 xl:px-24 py-20" data-controller="reveal">
       <p class="font-accent text-accent mb-8" style="font-size:32px;letter-spacing:0.05em">
         <span class="sparkle-wrap">
-          Strat&eacute;gie &#9679; Formation &#9679; Organisation
+          <%= c("hero_tagline") %>
           <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
         </span>
       </p>
       <h1 class="mb-8">
         <span class="title-badge font-display" style="font-size:clamp(40px,4.5vw,64px);font-weight:400;line-height:1.1;padding:12px 32px">
-          Tu g&egrave;res la com'&hellip;<br>mais c'est pas ton job&nbsp;?
+          <%= c("hero_title") %>
         </span>
       </h1>
       <p class="font-body leading-relaxed mb-12 max-w-lg" style="font-size:17px;color:rgba(246,241,232,0.75);line-height:2">
-        Je t'aide &agrave; structurer ta communication digitale
-        pour qu'elle devienne un vrai levier business,
-        sans y passer ta vie.
+        <%= c("hero_description") %>
       </p>
       <div class="flex flex-col sm:flex-row gap-5">
         <a href="#solution" class="btn-primary font-body" style="padding:18px 44px;font-size:15px;letter-spacing:0.5px">
-          D&eacute;couvrir la m&eacute;thode
+          <%= c("hero_cta_primary") %>
         </a>
-        <a href="https://instagram.com/amandine_atelier_insta" target="_blank" rel="noopener noreferrer" class="btn-secondary font-body" style="padding:18px 44px;font-size:15px;letter-spacing:0.5px">
-          Voir mon Instagram
+        <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer" class="btn-secondary font-body" style="padding:18px 44px;font-size:15px;letter-spacing:0.5px">
+          <%= c("hero_cta_secondary") %>
         </a>
       </div>
     </div>
-    <%# Photo — colle à droite %>
     <div class="relative" style="padding:40px 0">
       <div class="overflow-hidden" style="border-radius:9px 0 0 9px;height:550px">
-        <%= image_tag "hero.png", class: "w-full h-full object-cover", alt: "Amandine Atelier Digital" %>
+        <% if c_image("hero_image") %>
+          <%= image_tag c_image("hero_image"), class: "w-full h-full object-cover", alt: "Amandine Atelier Digital" %>
+        <% else %>
+          <%= image_tag "hero.png", class: "w-full h-full object-cover", alt: "Amandine Atelier Digital" %>
+        <% end %>
       </div>
     </div>
-  </div>
-</section>
-
-<%# ══════════════════════════════════════ 3. BANDEAU (marquee) ══════════════════════════════════════ %>
-<section class="bg-dark overflow-hidden" style="padding:24px 0;border-top:1px solid rgba(246,241,232,0.08);border-bottom:1px solid rgba(246,241,232,0.08)">
-  <div class="marquee-track">
-    <% 4.times do %>
-      <span class="font-body text-light flex items-center gap-8 whitespace-nowrap" style="font-size:15px;letter-spacing:2px;padding:0 32px;font-weight:300;opacity:0.80">
-        &#127774; Les Fran&ccedil;ais passent
-        <span class="font-accent text-accent sparkle-wrap" style="font-size:30px;letter-spacing:0.05em">3 &agrave; 5h/jour<span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span></span>
-        sur les r&eacute;seaux &mdash; Ton entreprise est-elle visible&nbsp;?
-        <span style="color:rgba(246,241,232,0.20)">&mdash;</span>
-      </span>
-    <% end %>
   </div>
 </section>
 
@@ -82,94 +81,77 @@
     <div class="text-center mb-20" data-controller="reveal">
       <h2>
         <span class="title-badge font-display" style="font-size:clamp(36px,5vw,58px);font-weight:400;line-height:1.15;padding:12px 32px">
-          Tu passes des heures sur les r&eacute;seaux<br class="hidden sm:block"> sans r&eacute;sultats&nbsp;?
+          <%= c("problem_title") %>
         </span>
       </h2>
     </div>
 
     <div class="grid md:grid-cols-3 gap-10">
-      <div class="card-glass p-12 text-center" data-controller="reveal">
-        <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-8" style="background:rgba(252,223,181,0.10)">
-          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
+      <% [1, 2, 3].each do |i| %>
+        <div class="card-glass p-12 text-center" data-controller="reveal">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-8" style="background:rgba(252,223,181,0.10)">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <% if i == 1 %>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <% elsif i == 2 %>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.468 5.99 5.99 0 00-1.925 3.547 5.975 5.975 0 01-2.133-1.001A3.75 3.75 0 0012 18z"/>
+              <% else %>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <% end %>
+            </svg>
+          </div>
+          <h3 class="font-body text-light font-medium mb-4" style="font-size:18px;letter-spacing:0.5px"><%= c("problem_card#{i}_title") %></h3>
+          <p class="font-body leading-relaxed" style="font-size:15px;color:rgba(246,241,232,0.60);line-height:1.9"><%= c("problem_card#{i}_text") %></p>
         </div>
-        <h3 class="font-body text-light font-medium mb-4" style="font-size:18px;letter-spacing:0.5px">Temps perdu</h3>
-        <p class="font-body leading-relaxed" style="font-size:15px;color:rgba(246,241,232,0.60);line-height:1.9">Des heures &agrave; publier du contenu sans strat&eacute;gie claire ni retour concret.</p>
-      </div>
-
-      <div class="card-glass p-12 text-center" data-controller="reveal">
-        <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-8" style="background:rgba(252,223,181,0.10)">
-          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.468 5.99 5.99 0 00-1.925 3.547 5.975 5.975 0 01-2.133-1.001A3.75 3.75 0 0012 18z"/>
-          </svg>
-        </div>
-        <h3 class="font-body text-light font-medium mb-4" style="font-size:18px;letter-spacing:0.5px">&Eacute;nergie gaspill&eacute;e</h3>
-        <p class="font-body leading-relaxed" style="font-size:15px;color:rgba(246,241,232,0.60);line-height:1.9">Ton &eacute;quipe s'&eacute;puise sur des t&acirc;ches qui ne font pas partie de son m&eacute;tier.</p>
-      </div>
-
-      <div class="card-glass p-12 text-center" data-controller="reveal">
-        <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-8" style="background:rgba(252,223,181,0.10)">
-          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
-        </div>
-        <h3 class="font-body text-light font-medium mb-4" style="font-size:18px;letter-spacing:0.5px">Peu de visibilit&eacute;</h3>
-        <p class="font-body leading-relaxed" style="font-size:15px;color:rgba(246,241,232,0.60);line-height:1.9">Aucun prospect chaud, peu d'engagement et une pr&eacute;sence qui ne d&eacute;colle pas.</p>
-      </div>
+      <% end %>
     </div>
   </div>
 </section>
 
-<%# Divider %>
 <div class="section-line max-w-[1200px] mx-auto"></div>
 
-<%# ══════════════════════════════════════ 5. SOLUTION — photo gauche / texte droite ══════════════════════════════════════ %>
+<%# ══════════════════════════════════════ 5. SOLUTION ══════════════════════════════════════ %>
 <section id="solution" class="bg-dark overflow-hidden">
   <div class="grid lg:grid-cols-2 items-center">
-    <%# Photo — colle à gauche %>
     <div class="relative" style="padding:40px 0" data-controller="reveal">
       <div class="overflow-hidden" style="border-radius:0 9px 9px 0;height:550px">
-        <%= image_tag "portrait.jpg", class: "w-full h-full object-cover", alt: "Amandine" %>
+        <% if c_image("solution_image") %>
+          <%= image_tag c_image("solution_image"), class: "w-full h-full object-cover", alt: "Amandine" %>
+        <% else %>
+          <%= image_tag "portrait.jpg", class: "w-full h-full object-cover", alt: "Amandine" %>
+        <% end %>
       </div>
     </div>
-    <%# Texte %>
     <div class="px-6 lg:px-16 xl:px-24 py-20" data-controller="reveal">
-      <p class="font-body uppercase mb-6" style="font-size:11px;letter-spacing:4px;color:rgba(252,223,181,0.50)">Mon r&ocirc;le</p>
+      <p class="font-body uppercase mb-6" style="font-size:11px;letter-spacing:4px;color:rgba(252,223,181,0.50)"><%= c("solution_subtitle") %></p>
       <h2 class="mb-5">
         <span class="title-badge font-display" style="font-size:clamp(36px,4.5vw,56px);font-weight:400;line-height:1.15;padding:12px 32px">
-          Te rendre autonome.
+          <%= c("solution_title") %>
         </span>
       </h2>
       <p class="font-accent text-accent mb-10" style="font-size:34px;letter-spacing:0.05em">
         <span class="sparkle-wrap">
-          sans que ce soit ton m&eacute;tier premier.
+          <%= c("solution_tagline") %>
           <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
         </span>
       </p>
       <div class="font-body space-y-5" style="font-size:16px;color:rgba(246,241,232,0.75);line-height:2">
-        <p>Je ne g&egrave;re pas tes r&eacute;seaux &agrave; ta place.</p>
-        <p>
-          Je forme ton &eacute;quipe, je construis ta strat&eacute;gie,
-          je t'organise pour attirer les bonnes personnes
-          et g&eacute;n&eacute;rer des prospects chauds pour ton service commercial.
-        </p>
+        <p><%= c("solution_text1") %></p>
+        <p><%= c("solution_text2") %></p>
       </div>
       <a href="#offres" class="btn-primary font-body mt-12 inline-flex" style="padding:18px 44px;font-size:15px;letter-spacing:0.5px">
-        Voir les offres
+        <%= c("solution_cta") %>
       </a>
     </div>
   </div>
 </section>
 
-<%# Divider %>
 <div class="section-line max-w-[1200px] mx-auto"></div>
 
 <%# ══════════════════════════════════════ 6. OFFRES ══════════════════════════════════════ %>
 <section id="offres" class="bg-dark relative overflow-hidden" style="padding:130px 0">
-  <%# Subtle stars — background %>
   <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.06;z-index:0" viewBox="0 0 800 600" fill="#f6f1e8">
     <path d="M680,80 L682,86 L688,88 L682,90 L680,96 L678,90 L672,88 L678,86Z"/>
     <path d="M120,150 L121.5,154 L125.5,155.5 L121.5,157 L120,161 L118.5,157 L114.5,155.5 L118.5,154Z"/>
@@ -182,74 +164,52 @@
     <div class="text-center mb-20" data-controller="reveal">
       <p class="font-accent text-accent mb-5" style="font-size:34px;letter-spacing:0.05em">
         <span class="sparkle-wrap">
-          Ce que je propose
+          <%= c("offers_tagline") %>
           <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
         </span>
       </p>
       <h2>
         <span class="title-badge font-display" style="font-size:clamp(36px,5vw,58px);font-weight:400;line-height:1.15;padding:12px 32px">
-          Trois piliers pour ta com'
+          <%= c("offers_title") %>
         </span>
       </h2>
     </div>
 
     <div class="grid md:grid-cols-3 gap-10">
-      <div class="card-offer p-12 flex flex-col" data-controller="reveal">
-        <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-8" style="background:rgba(252,223,181,0.10)">
-          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/>
-          </svg>
+      <% offer_icons = [
+        '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/>',
+        '<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342"/>',
+        '<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>'
+      ] %>
+      <% [1, 2, 3].each_with_index do |i, idx| %>
+        <div class="card-offer p-12 flex flex-col" data-controller="reveal">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-8" style="background:rgba(252,223,181,0.10)">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><%= raw offer_icons[idx] %></svg>
+          </div>
+          <h3 class="font-body text-light font-medium mb-4" style="font-size:20px;letter-spacing:0.5px"><%= c("offer#{i}_title") %></h3>
+          <p class="font-body leading-relaxed mb-10 flex-1" style="font-size:15px;color:rgba(246,241,232,0.65);line-height:1.9">
+            <%= c("offer#{i}_text") %>
+          </p>
+          <a href="#newsletter" class="inline-flex items-center font-body text-accent hover:opacity-70 transition-opacity" style="font-size:14px;letter-spacing:1px">En savoir plus &rarr;</a>
         </div>
-        <h3 class="font-body text-light font-medium mb-4" style="font-size:20px;letter-spacing:0.5px">Strat&eacute;gie</h3>
-        <p class="font-body leading-relaxed mb-10 flex-1" style="font-size:15px;color:rgba(246,241,232,0.65);line-height:1.9">
-          Je construis ta strat&eacute;gie digitale sur-mesure pour attirer les bonnes personnes.
-        </p>
-        <a href="#newsletter" class="inline-flex items-center font-body text-accent hover:opacity-70 transition-opacity" style="font-size:14px;letter-spacing:1px">En savoir plus &rarr;</a>
-      </div>
-
-      <div class="card-offer p-12 flex flex-col" data-controller="reveal">
-        <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-8" style="background:rgba(252,223,181,0.10)">
-          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342"/>
-          </svg>
-        </div>
-        <h3 class="font-body text-light font-medium mb-4" style="font-size:20px;letter-spacing:0.5px">Formation</h3>
-        <p class="font-body leading-relaxed mb-10 flex-1" style="font-size:15px;color:rgba(246,241,232,0.65);line-height:1.9">
-          Je forme ton &eacute;quipe &agrave; cr&eacute;er du contenu qui convertit, sans y passer sa vie.
-        </p>
-        <a href="#newsletter" class="inline-flex items-center font-body text-accent hover:opacity-70 transition-opacity" style="font-size:14px;letter-spacing:1px">En savoir plus &rarr;</a>
-      </div>
-
-      <div class="card-offer p-12 flex flex-col" data-controller="reveal">
-        <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-8" style="background:rgba(252,223,181,0.10)">
-          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-          </svg>
-        </div>
-        <h3 class="font-body text-light font-medium mb-4" style="font-size:20px;letter-spacing:0.5px">Organisation</h3>
-        <p class="font-body leading-relaxed mb-10 flex-1" style="font-size:15px;color:rgba(246,241,232,0.65);line-height:1.9">
-          Je structure ta cr&eacute;ation de contenu pour gagner en efficacit&eacute; et en visibilit&eacute;.
-        </p>
-        <a href="#newsletter" class="inline-flex items-center font-body text-accent hover:opacity-70 transition-opacity" style="font-size:14px;letter-spacing:1px">En savoir plus &rarr;</a>
-      </div>
+      <% end %>
     </div>
   </div>
 </section>
 
-<%# Divider %>
 <div class="section-line max-w-[1200px] mx-auto"></div>
 
 <%# ══════════════════════════════════════ 7. INSTAGRAM ══════════════════════════════════════ %>
 <section id="feed" class="bg-dark" style="padding:120px 0">
   <div class="max-w-[1000px] mx-auto px-6">
     <div class="text-center mb-16" data-controller="reveal">
-      <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">R&eacute;seaux sociaux</p>
+      <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Réseaux sociaux</p>
       <h3 class="font-display text-light mb-4" style="font-size:clamp(32px,4vw,48px);font-weight:400">
         Retrouve-moi sur Instagram
       </h3>
-      <a href="https://instagram.com/amandine_atelier_insta" target="_blank" rel="noopener noreferrer"
+      <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer"
          class="font-accent text-accent hover:opacity-60 transition-opacity sparkle-wrap" style="font-size:34px;letter-spacing:0.05em">
-        @amandine_atelier_insta
+        <%= c("instagram_handle") %>
         <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
       </a>
     </div>
@@ -276,12 +236,12 @@
       </div>
     <% else %>
       <div class="text-center py-20">
-        <p class="font-body" style="font-size:15px;color:rgba(246,241,232,0.30)">Les publications arrivent bient&ocirc;t...</p>
+        <p class="font-body" style="font-size:15px;color:rgba(246,241,232,0.30)">Les publications arrivent bientôt...</p>
       </div>
     <% end %>
 
     <div class="text-center mt-14" data-controller="reveal">
-      <a href="https://instagram.com/amandine_atelier_insta" target="_blank" rel="noopener noreferrer"
+      <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer"
          class="btn-primary font-body gap-3" style="padding:16px 36px;font-size:14px;letter-spacing:0.5px">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         Suivre sur Instagram
@@ -290,12 +250,10 @@
   </div>
 </section>
 
-<%# Divider %>
 <div class="section-line max-w-[1200px] mx-auto"></div>
 
 <%# ══════════════════════════════════════ 8. TÉMOIGNAGES ══════════════════════════════════ %>
 <section id="temoignages" class="bg-dark relative overflow-hidden" style="padding:130px 0">
-  <%# Subtle stars %>
   <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.05;z-index:0" viewBox="0 0 800 400" fill="#f6f1e8">
     <path d="M700,60 L701.5,64 L705.5,65.5 L701.5,67 L700,71 L698.5,67 L694.5,65.5 L698.5,64Z"/>
     <path d="M50,300 L51,303 L54,304 L51,305 L50,308 L49,305 L46,304 L49,303Z"/>
@@ -303,7 +261,7 @@
   </svg>
   <div class="max-w-[1200px] mx-auto px-6">
     <div class="text-center mb-20" data-controller="reveal">
-      <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">T&eacute;moignages</p>
+      <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Témoignages</p>
       <h2>
         <span class="title-badge font-display" style="font-size:clamp(34px,4.5vw,52px);font-weight:400;line-height:1.15;padding:12px 32px">
           Ce qu'elles en disent
@@ -312,46 +270,23 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-10">
-      <div class="card-glass p-12 relative overflow-hidden" data-controller="reveal">
-        <span class="absolute top-6 left-7 pointer-events-none font-display" style="font-size:100px;color:rgba(252,223,181,0.15);line-height:0.5">&ldquo;</span>
-        <div class="relative" style="z-index:1;padding-top:40px">
-          <p class="font-body text-light italic leading-relaxed mb-8" style="font-size:15px;line-height:2;opacity:0.80">
-            "Amandine a transform&eacute; notre approche des r&eacute;seaux. En 3 mois, notre &eacute;quipe est devenue compl&egrave;tement autonome."
-          </p>
-          <div style="width:40px;height:1px;background:rgba(252,223,181,0.30);margin-bottom:16px"></div>
-          <p class="font-body text-accent" style="font-size:14px;font-weight:500">Marie L.</p>
-          <p class="font-body" style="font-size:12px;color:rgba(246,241,232,0.40);letter-spacing:1px">Directrice marketing</p>
+      <% [1, 2, 3].each do |i| %>
+        <div class="card-glass p-12 relative overflow-hidden" data-controller="reveal">
+          <span class="absolute top-6 left-7 pointer-events-none font-display" style="font-size:100px;color:rgba(252,223,181,0.15);line-height:0.5">&ldquo;</span>
+          <div class="relative" style="z-index:1;padding-top:40px">
+            <p class="font-body text-light italic leading-relaxed mb-8" style="font-size:15px;line-height:2;opacity:0.80">
+              "<%= c("testimonial#{i}_quote") %>"
+            </p>
+            <div style="width:40px;height:1px;background:rgba(252,223,181,0.30);margin-bottom:16px"></div>
+            <p class="font-body text-accent" style="font-size:14px;font-weight:500"><%= c("testimonial#{i}_name") %></p>
+            <p class="font-body" style="font-size:12px;color:rgba(246,241,232,0.40);letter-spacing:1px"><%= c("testimonial#{i}_role") %></p>
+          </div>
         </div>
-      </div>
-
-      <div class="card-glass p-12 relative overflow-hidden" data-controller="reveal">
-        <span class="absolute top-6 left-7 pointer-events-none font-display" style="font-size:100px;color:rgba(252,223,181,0.15);line-height:0.5">&ldquo;</span>
-        <div class="relative" style="z-index:1;padding-top:40px">
-          <p class="font-body text-light italic leading-relaxed mb-8" style="font-size:15px;line-height:2;opacity:0.80">
-            "La formation &eacute;tait ultra concr&egrave;te. On a enfin une strat&eacute;gie claire et des r&eacute;sultats mesurables."
-          </p>
-          <div style="width:40px;height:1px;background:rgba(252,223,181,0.30);margin-bottom:16px"></div>
-          <p class="font-body text-accent" style="font-size:14px;font-weight:500">Sophie D.</p>
-          <p class="font-body" style="font-size:12px;color:rgba(246,241,232,0.40);letter-spacing:1px">Fondatrice PME</p>
-        </div>
-      </div>
-
-      <div class="card-glass p-12 relative overflow-hidden" data-controller="reveal">
-        <span class="absolute top-6 left-7 pointer-events-none font-display" style="font-size:100px;color:rgba(252,223,181,0.15);line-height:0.5">&ldquo;</span>
-        <div class="relative" style="z-index:1;padding-top:40px">
-          <p class="font-body text-light italic leading-relaxed mb-8" style="font-size:15px;line-height:2;opacity:0.80">
-            "Gr&acirc;ce &agrave; l'organisation mise en place, on publie r&eacute;guli&egrave;rement sans stress. Les leads arrivent tout seuls."
-          </p>
-          <div style="width:40px;height:1px;background:rgba(252,223,181,0.30);margin-bottom:16px"></div>
-          <p class="font-body text-accent" style="font-size:14px;font-weight:500">Camille R.</p>
-          <p class="font-body" style="font-size:12px;color:rgba(246,241,232,0.40);letter-spacing:1px">Responsable communication</p>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </section>
 
-<%# Divider %>
 <div class="section-line max-w-[1200px] mx-auto"></div>
 
 <%# ══════════════════════════════════════ 9. NEWSLETTER ══════════════════════════════════ %>
@@ -360,16 +295,16 @@
     <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Newsletter</p>
     <h2 class="mb-5">
       <span class="title-badge font-display" style="font-size:clamp(32px,4.5vw,48px);font-weight:400;line-height:1.15;padding:12px 32px">
-        Re&ccedil;ois des conseils gratuits
+        <%= c("newsletter_title") %>
       </span>
     </h2>
     <p class="font-body mb-14" style="font-size:15px;color:rgba(246,241,232,0.55);line-height:2">
-      Strat&eacute;gie, contenu, organisation &mdash; directement dans ta bo&icirc;te mail, chaque semaine.
+      <%= c("newsletter_text") %>
     </p>
     <%= form_with url: subscribers_path, method: :post, class: "space-y-6 max-w-md mx-auto" do |f| %>
       <%= f.hidden_field :source, value: "web" %>
       <div>
-        <%= f.text_field :first_name, placeholder: "Ton pr\u00e9nom", required: true,
+        <%= f.text_field :first_name, placeholder: "Ton prénom", required: true,
             class: "w-full font-body text-light bg-transparent focus:outline-none transition-colors text-center",
             style: "font-size:16px;padding:14px 0;border:none;border-bottom:1px solid rgba(246,241,232,0.25)" %>
       </div>
@@ -395,12 +330,12 @@
         </h3>
         <p class="font-accent text-accent mb-4" style="font-size:24px;letter-spacing:0.05em">
           <span class="sparkle-wrap">
-            Strat&eacute;gie &amp; s&eacute;r&eacute;nit&eacute;
+            <%= c("footer_tagline") %>
             <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
           </span>
         </p>
         <p class="font-body leading-relaxed" style="font-size:14px;color:rgba(246,241,232,0.45);line-height:2">
-          Formation et organisation<br>pour ta communication digitale.
+          <%= c("footer_description") %>
         </p>
       </div>
 
@@ -408,25 +343,25 @@
         <h4 class="font-body text-light uppercase mb-6" style="font-size:11px;font-weight:400;letter-spacing:3px">Liens</h4>
         <ul class="space-y-3">
           <li><a href="#hero" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.45)">Accueil</a></li>
-          <li><a href="#solution" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.45)">&Agrave; propos</a></li>
+          <li><a href="#solution" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.45)">À propos</a></li>
           <li><a href="#offres" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.45)">Offres</a></li>
           <li><a href="#feed" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.45)">Instagram</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="font-body text-light uppercase mb-6" style="font-size:11px;font-weight:400;letter-spacing:3px">R&eacute;seaux</h4>
-        <a href="https://instagram.com/amandine_atelier_insta" target="_blank" rel="noopener noreferrer"
+        <h4 class="font-body text-light uppercase mb-6" style="font-size:11px;font-weight:400;letter-spacing:3px">Réseaux</h4>
+        <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center gap-2 hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.45)">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          @amandine_atelier_insta
+          <%= c("instagram_handle") %>
         </a>
-        <p class="mt-6"><a href="#" class="font-body hover:opacity-60 transition-opacity" style="font-size:12px;color:rgba(246,241,232,0.25)">Mentions l&eacute;gales</a></p>
+        <p class="mt-6"><a href="#" class="font-body hover:opacity-60 transition-opacity" style="font-size:12px;color:rgba(246,241,232,0.25)">Mentions légales</a></p>
       </div>
     </div>
 
     <div style="border-top:1px solid rgba(246,241,232,0.06);padding-top:24px" class="text-center">
-      <p class="font-body" style="font-size:12px;color:rgba(246,241,232,0.25);letter-spacing:1px">&copy; <%= Date.current.year %> Amandine Atelier Digital. Tous droits r&eacute;serv&eacute;s.</p>
+      <p class="font-body" style="font-size:12px;color:rgba(246,241,232,0.25);letter-spacing:1px">&copy; <%= Date.current.year %> Amandine Atelier Digital. Tous droits réservés.</p>
     </div>
   </div>
 </footer>

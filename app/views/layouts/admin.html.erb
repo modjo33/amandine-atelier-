@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Admin — Amandine Atelier Digital</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-dark font-body text-light min-h-screen">
+    <div class="flex min-h-screen">
+
+      <%# ── Sidebar ── %>
+      <aside class="hidden lg:flex flex-col w-64 shrink-0" style="background:rgba(246,241,232,0.03);border-right:1px solid rgba(246,241,232,0.08)">
+        <div class="p-6" style="border-bottom:1px solid rgba(246,241,232,0.08)">
+          <a href="/" class="font-body text-light block" style="font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase">
+            Amandine Atelier
+          </a>
+          <p class="font-accent text-accent mt-1" style="font-size:18px">Admin</p>
+        </div>
+
+        <nav class="flex-1 p-4 space-y-1">
+          <%= admin_sidebar_link "Dashboard", admin_dashboard_path, "home" %>
+          <%= admin_sidebar_link "Contenu du site", admin_site_contents_path, "edit" %>
+          <%= admin_sidebar_link "Posts Instagram", admin_posts_path, "image" %>
+          <%= admin_sidebar_link "Abonnés", admin_subscribers_path, "users" %>
+        </nav>
+
+        <div class="p-4" style="border-top:1px solid rgba(246,241,232,0.08)">
+          <%= link_to "← Voir le site", root_path, class: "admin-sidebar-link", style: "font-size:13px;color:rgba(246,241,232,0.45)" %>
+          <% if admin_signed_in? %>
+            <%= link_to "Déconnexion", destroy_admin_session_path, data: { turbo_method: :delete }, class: "admin-sidebar-link mt-2 block", style: "font-size:13px;color:rgba(246,241,232,0.35)" %>
+          <% end %>
+        </div>
+      </aside>
+
+      <%# ── Mobile header ── %>
+      <div class="flex-1 flex flex-col min-w-0">
+        <header class="lg:hidden flex items-center justify-between px-4 py-3" style="border-bottom:1px solid rgba(246,241,232,0.08);background:rgba(246,241,232,0.03)">
+          <a href="/" class="font-body text-light" style="font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase">Admin</a>
+          <div class="flex items-center gap-3">
+            <a href="<%= admin_dashboard_path %>" class="admin-mobile-btn">🏠</a>
+            <a href="<%= admin_site_contents_path %>" class="admin-mobile-btn">✏️</a>
+            <a href="<%= admin_posts_path %>" class="admin-mobile-btn">📸</a>
+            <a href="<%= admin_subscribers_path %>" class="admin-mobile-btn">👥</a>
+          </div>
+        </header>
+
+        <%# ── Flash messages ── %>
+        <% if notice.present? %>
+          <div class="mx-6 mt-4 px-5 py-3 rounded-xl" style="background:rgba(134,239,172,0.10);border:1px solid rgba(134,239,172,0.20);color:#86efac;font-size:14px">
+            <%= notice %>
+          </div>
+        <% end %>
+        <% if alert.present? %>
+          <div class="mx-6 mt-4 px-5 py-3 rounded-xl" style="background:rgba(252,165,165,0.10);border:1px solid rgba(252,165,165,0.20);color:#fca5a5;font-size:14px">
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <%# ── Main content ── %>
+        <main class="flex-1 p-6 lg:p-10">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

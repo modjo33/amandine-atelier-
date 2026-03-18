@@ -1,50 +1,48 @@
-<div class="max-w-5xl mx-auto px-6 py-12">
-  <div class="flex items-center justify-between mb-8">
-    <h1 class="font-body text-3xl text-dark font-semibold">Subscribers</h1>
-    <p class="font-body text-dark/50 text-sm"><%= @subscribers.count %> inscrit(e)s</p>
-  </div>
-
-  <% if @subscribers.any? %>
-    <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-      <table class="w-full">
-        <thead>
-          <tr class="border-b border-dark/5">
-            <th class="px-5 py-3 text-left font-body font-medium text-dark/50 text-xs uppercase tracking-wider">Pr&eacute;nom</th>
-            <th class="px-5 py-3 text-left font-body font-medium text-dark/50 text-xs uppercase tracking-wider">Email</th>
-            <th class="px-5 py-3 text-center font-body font-medium text-dark/50 text-xs uppercase tracking-wider">Source</th>
-            <th class="px-5 py-3 text-right font-body font-medium text-dark/50 text-xs uppercase tracking-wider">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @subscribers.each do |subscriber| %>
-            <tr class="border-b border-dark/5 last:border-0 hover:bg-accent/20 transition-colors">
-              <td class="px-5 py-3">
-                <span class="font-body text-dark text-sm font-medium"><%= subscriber.first_name %></span>
-              </td>
-              <td class="px-5 py-3">
-                <span class="font-body text-dark/70 text-sm"><%= subscriber.email %></span>
-              </td>
-              <td class="px-5 py-3 text-center">
-                <% case subscriber.source %>
-                <% when "instagram" %>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium bg-dark/10 text-dark">Instagram</span>
-                <% when "web" %>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium bg-muted/15 text-muted">Web</span>
-                <% else %>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium bg-dark/5 text-dark/50">Direct</span>
-                <% end %>
-              </td>
-              <td class="px-5 py-3 text-right">
-                <span class="font-body text-dark/50 text-sm"><%= subscriber.created_at.strftime("%d/%m/%Y %Hh%M") %></span>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% else %>
-    <div class="text-center py-16 bg-white rounded-2xl">
-      <p class="font-body text-dark/40">Aucun inscrit pour le moment.</p>
-    </div>
-  <% end %>
+<div class="mb-10">
+  <h1 class="font-display text-light" style="font-size:clamp(28px,3vw,38px);font-weight:400">Abonnés newsletter</h1>
+  <p class="font-body mt-2" style="font-size:14px;color:rgba(246,241,232,0.45)"><%= @subscribers.count %> inscrit<%= "s" if @subscribers.count > 1 %></p>
 </div>
+
+<% if @subscribers.any? %>
+  <div class="overflow-x-auto rounded-2xl" style="background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.08)">
+    <table class="w-full">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(246,241,232,0.08)">
+          <th class="px-5 py-3 text-left font-body font-medium text-xs uppercase tracking-wider" style="color:rgba(246,241,232,0.35)">Prénom</th>
+          <th class="px-5 py-3 text-left font-body font-medium text-xs uppercase tracking-wider" style="color:rgba(246,241,232,0.35)">Email</th>
+          <th class="px-5 py-3 text-center font-body font-medium text-xs uppercase tracking-wider" style="color:rgba(246,241,232,0.35)">Source</th>
+          <th class="px-5 py-3 text-right font-body font-medium text-xs uppercase tracking-wider" style="color:rgba(246,241,232,0.35)">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @subscribers.each do |subscriber| %>
+          <tr class="transition-colors" style="border-bottom:1px solid rgba(246,241,232,0.05)" onmouseenter="this.style.background='rgba(246,241,232,0.04)'" onmouseleave="this.style.background='transparent'">
+            <td class="px-5 py-3">
+              <span class="font-body text-light text-sm font-medium"><%= subscriber.first_name %></span>
+            </td>
+            <td class="px-5 py-3">
+              <span class="font-body text-sm" style="color:rgba(246,241,232,0.60)"><%= subscriber.email %></span>
+            </td>
+            <td class="px-5 py-3 text-center">
+              <% case subscriber.source %>
+              <% when "instagram" %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium" style="background:rgba(252,223,181,0.12);color:#fcdfb5">Instagram</span>
+              <% when "web" %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium" style="background:rgba(146,148,113,0.15);color:#929471">Web</span>
+              <% else %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium" style="background:rgba(246,241,232,0.08);color:rgba(246,241,232,0.40)">Direct</span>
+              <% end %>
+            </td>
+            <td class="px-5 py-3 text-right">
+              <span class="font-body text-sm" style="color:rgba(246,241,232,0.40)"><%= subscriber.created_at.strftime("%d/%m/%Y %Hh%M") %></span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="text-center py-16 rounded-2xl" style="background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.08)">
+    <p class="font-body" style="color:rgba(246,241,232,0.35)">Aucun inscrit pour le moment.</p>
+  </div>
+<% end %>

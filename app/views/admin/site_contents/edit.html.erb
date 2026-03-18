@@ -1,0 +1,66 @@
+<% info = section_info(@section) %>
+
+<div class="mb-10">
+  <div class="flex items-center gap-3 mb-2">
+    <%= link_to admin_site_contents_path, class: "inline-flex items-center gap-1 font-body hover:text-accent transition-colors", style: "font-size:13px;color:rgba(246,241,232,0.40)" do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+      Retour
+    <% end %>
+  </div>
+  <div class="flex items-center gap-4">
+    <span style="font-size:32px"><%= info[:icon] %></span>
+    <div>
+      <h1 class="font-display text-light" style="font-size:clamp(26px,3vw,34px);font-weight:400"><%= info[:label] %></h1>
+      <p class="font-body mt-1" style="font-size:14px;color:rgba(246,241,232,0.45)"><%= info[:description] %></p>
+    </div>
+  </div>
+</div>
+
+<%= form_with url: update_admin_site_contents_path(section: @section), method: :patch, local: true, multipart: true, class: "space-y-6" do |f| %>
+  <% @contents.each do |content| %>
+    <div class="admin-field-card">
+      <label class="admin-field-label">
+        <%= content_label(content.key) %>
+      </label>
+
+      <% if content.image? %>
+        <%# Image field %>
+        <% if content.image.attached? %>
+          <div class="mb-4 relative inline-block">
+            <% if content.image.variable? %>
+              <%= image_tag content.image.variant(resize_to_limit: [300, 200]), class: "rounded-lg", style: "max-height:150px" %>
+            <% else %>
+              <%= image_tag content.image, class: "rounded-lg", style: "max-height:150px" %>
+            <% end %>
+            <%= link_to "✕ Supprimer", destroy_image_admin_site_contents_path(key: content.key),
+                  data: { turbo_method: :delete, turbo_confirm: "Supprimer cette image ?" },
+                  class: "absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center text-xs",
+                  style: "background:rgba(252,165,165,0.20);color:#fca5a5;border:1px solid rgba(252,165,165,0.30)" %>
+          </div>
+        <% end %>
+        <div class="admin-file-input">
+          <%= f.file_field "contents[#{content.key}][image]", accept: "image/*",
+              class: "admin-input-file" %>
+          <p class="font-body mt-2" style="font-size:12px;color:rgba(246,241,232,0.30)">JPG, PNG ou WebP recommandé</p>
+        </div>
+      <% else %>
+        <%# Text field — use textarea for long content, input for short %>
+        <% if content.value.to_s.length > 80 %>
+          <%= f.text_area "contents[#{content.key}][value]", value: content.value,
+              rows: 4,
+              class: "admin-input-textarea",
+              placeholder: "Saisir le texte…" %>
+        <% else %>
+          <%= f.text_field "contents[#{content.key}][value]", value: content.value,
+              class: "admin-input-text",
+              placeholder: "Saisir le texte…" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="flex items-center gap-4 pt-4">
+    <%= f.submit "Enregistrer", class: "btn-primary font-body cursor-pointer", style: "padding:14px 40px;font-size:15px;letter-spacing:0.5px" %>
+    <%= link_to "Annuler", admin_site_contents_path, class: "font-body hover:text-accent transition-colors", style: "font-size:14px;color:rgba(246,241,232,0.40)" %>
+  </div>
+<% end %>

@@ -1,74 +1,102 @@
 <div data-controller="newsletter-popup"
-     data-newsletter-popup-delay-value="3000"
+     data-newsletter-popup-delay-value="10000"
      data-action="keydown.esc@document->newsletter-popup#closeOnEscape"
-     class="hidden fixed inset-0 z-50">
+     style="display:none"
+     class="fixed inset-0 z-50">
 
   <%# Backdrop %>
   <div data-newsletter-popup-target="overlay"
        data-action="click->newsletter-popup#closeOnBackground"
-       class="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+       class="absolute inset-0 backdrop-blur-sm"
+       style="background:rgba(0,0,0,0.40);opacity:0;transition:opacity 0.5s ease">
+  </div>
 
-    <%# Modal %>
-    <div class="relative bg-light rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
+  <%# Panel — slide depuis la droite %>
+  <div data-newsletter-popup-target="panel"
+       class="absolute top-0 right-0 h-full flex items-center"
+       style="width:100%;max-width:420px;padding:24px;transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.32,0.72,0,1)">
+
+    <div class="relative w-full rounded-3xl shadow-2xl overflow-hidden" style="background:#4A3F38;border:1px solid rgba(246,241,232,0.12)">
+
+      <%# Decorative top accent %>
+      <div style="height:4px;background:linear-gradient(90deg, #fcdfb5, rgba(252,223,181,0.3))"></div>
 
       <%# Close button %>
       <button data-action="newsletter-popup#close" type="button"
-              class="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-dark/10 transition-colors text-dark/40 hover:text-dark">
+              class="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full"
+              style="background:rgba(246,241,232,0.06);color:rgba(246,241,232,0.40);transition:background 0.2s">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
 
       <%# Form view %>
-      <div data-newsletter-popup-target="formWrapper" class="p-8 text-center">
-        <p class="text-4xl mb-4">&#127873;</p>
-        <h3 class="font-body text-2xl text-dark font-semibold mb-2">Un cadeau pour toi</h3>
-        <p class="font-body text-dark/70 text-sm leading-relaxed mb-6">
-          Re&ccedil;ois ma vid&eacute;o gratuite&nbsp;: attire les bonnes personnes
-          sur les r&eacute;seaux sans y passer ta vie
+      <div data-newsletter-popup-target="formWrapper" class="p-8 pt-10 text-center">
+        <div class="mb-5">
+          <span class="font-accent" style="font-size:42px;letter-spacing:0.05em;color:#fcdfb5">
+            Un cadeau
+          </span>
+        </div>
+
+        <h3 class="font-display mb-3" style="font-size:24px;font-weight:400;line-height:1.3;color:#f6f1e8">
+          <span class="title-badge" style="padding:8px 20px;font-size:22px">
+            Reçois ma vidéo gratuite
+          </span>
+        </h3>
+        <p class="font-body mb-8" style="font-size:14px;color:rgba(246,241,232,0.55);line-height:1.8">
+          Attire les bonnes personnes sur les réseaux<br>sans y passer ta vie.
         </p>
 
         <p data-newsletter-popup-target="errorMessage"
-           class="hidden text-dark text-sm font-body text-center mb-4 bg-dark/10 rounded-lg px-4 py-2"></p>
+           style="display:none;background:rgba(252,165,165,0.10);color:#fca5a5;border:1px solid rgba(252,165,165,0.20);font-size:13px;padding:8px 16px;border-radius:8px;margin-bottom:16px"></p>
 
         <form data-newsletter-popup-target="formElement"
               action="<%= subscribers_path %>"
               method="post"
               data-action="submit->newsletter-popup#submit"
-              class="space-y-3">
+              style="display:flex;flex-direction:column;gap:16px">
+
           <input data-newsletter-popup-target="firstName"
                  type="text" name="subscriber[first_name]" required
-                 placeholder="Ton pr&eacute;nom"
-                 class="w-full px-4 py-3 rounded-lg border border-dark/12 bg-accent/20 font-body text-dark placeholder-dark/35 focus:outline-none focus:ring-2 focus:ring-dark/20 transition-colors">
+                 placeholder="Ton prénom"
+                 class="font-body"
+                 style="width:100%;background:transparent;color:#f6f1e8;font-size:15px;padding:12px 0;border:none;border-bottom:1px solid rgba(246,241,232,0.20);text-align:center;outline:none">
+
           <input data-newsletter-popup-target="email"
                  type="email" name="subscriber[email]" required
                  placeholder="Ton adresse email"
-                 class="w-full px-4 py-3 rounded-lg border border-dark/12 bg-accent/20 font-body text-dark placeholder-dark/35 focus:outline-none focus:ring-2 focus:ring-dark/20 transition-colors">
-          <button data-newsletter-popup-target="submitBtn" type="submit"
-                  class="w-full px-6 py-3 bg-dark text-accent font-body font-medium rounded-lg hover:bg-dark-hover transition-colors duration-300 cursor-pointer">
-            Je re&ccedil;ois ma vid&eacute;o &rarr;
-          </button>
+                 class="font-body"
+                 style="width:100%;background:transparent;color:#f6f1e8;font-size:15px;padding:12px 0;border:none;border-bottom:1px solid rgba(246,241,232,0.20);text-align:center;outline:none">
+
+          <div style="padding-top:8px">
+            <button data-newsletter-popup-target="submitBtn" type="submit"
+                    class="btn-primary font-body"
+                    style="width:100%;padding:16px 32px;font-size:15px;letter-spacing:0.5px;cursor:pointer">
+              Je reçois ma vidéo →
+            </button>
+          </div>
         </form>
 
         <button data-action="newsletter-popup#close" type="button"
-                class="mt-3 font-body text-dark/40 text-xs hover:text-dark/60 transition-colors">
-          Non merci
+                class="font-body"
+                style="margin-top:16px;font-size:12px;color:rgba(246,241,232,0.30);background:none;border:none;cursor:pointer">
+          Non merci, pas maintenant
         </button>
       </div>
 
       <%# Success view %>
-      <div data-newsletter-popup-target="success" class="hidden p-8 text-center">
-        <div class="w-16 h-16 bg-muted/15 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg class="w-8 h-8 text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <div data-newsletter-popup-target="success" style="display:none" class="p-8 text-center">
+        <div style="width:64px;height:64px;border-radius:50%;background:rgba(134,239,172,0.10);display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+          <svg style="width:32px;height:32px;color:#86efac" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
           </svg>
         </div>
-        <h4 class="font-body text-2xl text-dark font-semibold mb-2">C'est dans ta bo&icirc;te mail !</h4>
-        <p class="font-body text-dark/60 text-sm mb-4">
-          V&eacute;rifie tes spams si tu ne la vois pas.
+        <h4 class="font-display" style="font-size:24px;font-weight:400;color:#f6f1e8;margin-bottom:12px">C'est envoyé !</h4>
+        <p class="font-body" style="font-size:14px;color:rgba(246,241,232,0.50);line-height:1.8;margin-bottom:24px">
+          Vérifie ta boîte mail (et tes spams).
         </p>
         <button data-action="newsletter-popup#close" type="button"
-                class="px-6 py-2 text-dark font-body font-medium text-sm hover:text-dark/70 transition-colors">
+                class="font-body" style="color:#fcdfb5;font-size:14px;background:none;border:none;cursor:pointer">
           Fermer
         </button>
       </div>

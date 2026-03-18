@@ -1,0 +1,60 @@
+<div class="mb-10">
+  <h1 class="font-display text-light" style="font-size:clamp(28px,3vw,38px);font-weight:400">Dashboard</h1>
+  <p class="font-body mt-2" style="font-size:14px;color:rgba(246,241,232,0.45)">Bienvenue dans ton espace d'administration.</p>
+</div>
+
+<%# ── Stats cards ── %>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+  <div class="admin-stat-card">
+    <p class="admin-stat-number"><%= @contents_count %></p>
+    <p class="admin-stat-label">Contenus</p>
+  </div>
+  <div class="admin-stat-card">
+    <p class="admin-stat-number"><%= @sections_count %></p>
+    <p class="admin-stat-label">Sections</p>
+  </div>
+  <div class="admin-stat-card">
+    <p class="admin-stat-number"><%= @active_posts_count %>/<%= @posts_count %></p>
+    <p class="admin-stat-label">Posts actifs</p>
+  </div>
+  <div class="admin-stat-card">
+    <p class="admin-stat-number"><%= @subscribers_count %></p>
+    <p class="admin-stat-label">Abonnés</p>
+  </div>
+</div>
+
+<%# ── Quick actions ── %>
+<div class="mb-10">
+  <h2 class="font-body text-light mb-6" style="font-size:18px;font-weight:500">Accès rapide</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <%= link_to admin_site_contents_path, class: "admin-quick-card group" do %>
+      <div class="flex items-center gap-4">
+        <div class="admin-quick-icon">✏️</div>
+        <div>
+          <p class="font-body text-light" style="font-size:15px;font-weight:500">Modifier le contenu</p>
+          <p class="font-body" style="font-size:13px;color:rgba(246,241,232,0.40)">Textes et images du site</p>
+        </div>
+      </div>
+    <% end %>
+
+    <%= link_to admin_posts_path, class: "admin-quick-card group" do %>
+      <div class="flex items-center gap-4">
+        <div class="admin-quick-icon">📸</div>
+        <div>
+          <p class="font-body text-light" style="font-size:15px;font-weight:500">Posts Instagram</p>
+          <p class="font-body" style="font-size:13px;color:rgba(246,241,232,0.40)">Gérer le feed affiché</p>
+        </div>
+      </div>
+    <% end %>
+
+    <%= link_to admin_subscribers_path, class: "admin-quick-card group" do %>
+      <div class="flex items-center gap-4">
+        <div class="admin-quick-icon">👥</div>
+        <div>
+          <p class="font-body text-light" style="font-size:15px;font-weight:500">Abonnés newsletter</p>
+          <p class="font-body" style="font-size:13px;color:rgba(246,241,232,0.40)">Voir la liste</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

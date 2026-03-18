@@ -1,6 +1,7 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_post, only: %i[edit update destroy]
+  layout "admin"
 
   def index
     @posts = Post.order(position: :asc, created_at: :desc)

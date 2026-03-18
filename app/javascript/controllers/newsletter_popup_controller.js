@@ -1,9 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["overlay", "formWrapper", "success", "firstName", "email", "submitBtn", "errorMessage", "formElement"]
+  static targets = ["overlay", "panel", "formWrapper", "success", "firstName", "email", "submitBtn", "errorMessage", "formElement"]
 
-  static values = { delay: { type: Number, default: 3000 } }
+  static values = { delay: { type: Number, default: 10000 } }
 
   connect() {
     if (localStorage.getItem("popup_seen")) return
@@ -16,18 +16,19 @@ export default class extends Controller {
   }
 
   open() {
-    this.element.classList.remove("hidden")
+    console.log("[popup] opening")
+    this.element.style.display = "block"
     requestAnimationFrame(() => {
-      this.overlayTarget.classList.remove("opacity-0")
-      this.overlayTarget.classList.add("opacity-100")
+      this.overlayTarget.style.opacity = "1"
+      this.panelTarget.style.transform = "translateX(0)"
     })
   }
 
   close() {
     localStorage.setItem("popup_seen", "true")
-    this.overlayTarget.classList.remove("opacity-100")
-    this.overlayTarget.classList.add("opacity-0")
-    setTimeout(() => this.element.classList.add("hidden"), 300)
+    this.overlayTarget.style.opacity = "0"
+    this.panelTarget.style.transform = "translateX(100%)"
+    setTimeout(() => { this.element.style.display = "none" }, 500)
   }
 
   closeOnBackground(event) {
@@ -43,7 +44,7 @@ export default class extends Controller {
 
     this.submitBtnTarget.disabled = true
     this.submitBtnTarget.textContent = "Envoi..."
-    this.errorMessageTarget.classList.add("hidden")
+    this.errorMessageTarget.style.display = "none"
 
     const csrfToken = document.querySelector("meta[name='csrf-token']")?.content
 
@@ -67,18 +68,18 @@ export default class extends Controller {
       const data = await response.json()
 
       if (response.ok) {
-        this.formWrapperTarget.classList.add("hidden")
-        this.successTarget.classList.remove("hidden")
+        this.formWrapperTarget.style.display = "none"
+        this.successTarget.style.display = "block"
         localStorage.setItem("popup_seen", "true")
       } else {
         this.errorMessageTarget.textContent = data.errors.join(", ")
-        this.errorMessageTarget.classList.remove("hidden")
+        this.errorMessageTarget.style.display = "block"
         this.submitBtnTarget.disabled = false
         this.submitBtnTarget.textContent = "Je reçois ma vidéo →"
       }
     } catch {
       this.errorMessageTarget.textContent = "Une erreur est survenue. Réessayez."
-      this.errorMessageTarget.classList.remove("hidden")
+      this.errorMessageTarget.style.display = "block"
       this.submitBtnTarget.disabled = false
       this.submitBtnTarget.textContent = "Je reçois ma vidéo →"
     }
