@@ -1,19 +1,13 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  image: MyString
-  caption: MyText
-  instagram_url: MyString
-  post_type: MyString
-  published_at: 2026-03-04 08:04:25
+  caption: Premier post de test
+  instagram_url: https://instagram.com/p/test1
+  post_type: image
   position: 1
-  active: false
+  active: true
 
 two:
-  image: MyString
-  caption: MyText
-  instagram_url: MyString
-  post_type: MyString
-  published_at: 2026-03-04 08:04:25
-  position: 1
+  caption: Deuxième post de test
+  instagram_url: https://instagram.com/p/test2
+  post_type: image
+  position: 2
   active: false

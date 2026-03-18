@@ -1,15 +1,13 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  key: MyString
-  value: MyText
-  content_type: MyString
-  section: MyString
+  key: hero_title
+  value: "Tu gères la com'… mais c'est pas ton job ?"
+  content_type: text
+  section: hero
   position: 1
 
 two:
-  key: MyString
-  value: MyText
-  content_type: MyString
-  section: MyString
-  position: 1
+  key: hero_description
+  value: "Je t'aide à structurer ta communication digitale."
+  content_type: text
+  section: hero
+  position: 2

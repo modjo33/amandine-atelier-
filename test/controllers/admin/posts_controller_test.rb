@@ -1,33 +1,32 @@
 require "test_helper"
 
 class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
+  setup do
+    sign_in admins(:one)
+    @post = posts(:one)
+  end
+
   test "should get index" do
-    get admin_posts_index_url
+    get admin_posts_url
     assert_response :success
   end
 
   test "should get new" do
-    get admin_posts_new_url
-    assert_response :success
-  end
-
-  test "should get create" do
-    get admin_posts_create_url
+    get new_admin_post_url
     assert_response :success
   end
 
   test "should get edit" do
-    get admin_posts_edit_url
+    get edit_admin_post_url(@post)
     assert_response :success
   end
 
-  test "should get update" do
-    get admin_posts_update_url
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get admin_posts_destroy_url
-    assert_response :success
+  test "should destroy post" do
+    assert_difference("Post.count", -1) do
+      delete admin_post_url(@post)
+    end
+    assert_redirected_to admin_posts_url
   end
 end
