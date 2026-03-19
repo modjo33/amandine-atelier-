@@ -70,6 +70,6 @@ end
 
 gem "devise", "~> 5.0"
 
-gem "pagy", "~> 43.3"
+gem "pagy", "~> 43.4"
 
 gem "dotenv-rails", "~> 3.2"
