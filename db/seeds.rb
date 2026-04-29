@@ -32,15 +32,37 @@ contents = [
   { key: "solution_cta", value: "Voir les offres", content_type: "text", section: "solution", position: 6 },
   { key: "solution_image", value: "", content_type: "image", section: "solution", position: 7 },
 
-  # ── Offres ──
+  # ── Offres (4 offres avec subtitle + prix) ──
   { key: "offers_tagline", value: "Ce que je propose", content_type: "text", section: "offers", position: 1 },
-  { key: "offers_title", value: "Trois piliers pour ta com'", content_type: "text", section: "offers", position: 2 },
-  { key: "offer1_title", value: "Audit-Stratégie", content_type: "text", section: "offers", position: 3 },
-  { key: "offer1_text", value: "Je construis ta stratégie digitale sur-mesure pour attirer les bonnes personnes.", content_type: "text", section: "offers", position: 4 },
-  { key: "offer2_title", value: "Atelier Digital", content_type: "text", section: "offers", position: 5 },
-  { key: "offer2_text", value: "Je forme ton équipe à créer du contenu qui convertit, sans y passer sa vie.", content_type: "text", section: "offers", position: 6 },
-  { key: "offer3_title", value: "Community Management", content_type: "text", section: "offers", position: 7 },
-  { key: "offer3_text", value: "Je structure ta création de contenu pour gagner en efficacité et en visibilité.", content_type: "text", section: "offers", position: 8 },
+  { key: "offers_title", value: "Mes offres", content_type: "text", section: "offers", position: 2 },
+
+  # Offre 1 — Gestion déléguée
+  { key: "offer1_title",    value: "Temps Partagé", content_type: "text", section: "offers", position: 3 },
+  { key: "offer1_subtitle", value: "Gestion déléguée", content_type: "text", section: "offers", position: 4 },
+  { key: "offer1_price",    value: "950 € / mois", content_type: "text", section: "offers", position: 5 },
+  { key: "offer1_for_who",  value: "Entreprises qui veulent déléguer leur com' réseaux complète", content_type: "text", section: "offers", position: 6 },
+  { key: "offer1_text",     value: "Je gère vos réseaux sociaux à votre place, avec une présence régulière et fidèle à l'image de votre entreprise.", content_type: "text", section: "offers", position: 7 },
+
+  # Offre 2 — Accompagnement ponctuel
+  { key: "offer2_title",    value: "Coup de Pouce", content_type: "text", section: "offers", position: 8 },
+  { key: "offer2_subtitle", value: "Accompagnement ponctuel", content_type: "text", section: "offers", position: 9 },
+  { key: "offer2_price",    value: "140 € / 2 h", content_type: "text", section: "offers", position: 10 },
+  { key: "offer2_for_who",  value: "Pros qui veulent se lancer sans savoir par où commencer", content_type: "text", section: "offers", position: 11 },
+  { key: "offer2_text",     value: "On démarre votre compte ensemble : paramétrage, premier post, conseils concrets pour vous lancer.", content_type: "text", section: "offers", position: 12 },
+
+  # Offre 3 — Accompagnement stratégique
+  { key: "offer3_title",    value: "Cap Réseaux", content_type: "text", section: "offers", position: 13 },
+  { key: "offer3_subtitle", value: "Accompagnement stratégique", content_type: "text", section: "offers", position: 14 },
+  { key: "offer3_price",    value: "200 € / demi-journée", content_type: "text", section: "offers", position: 15 },
+  { key: "offer3_for_who",  value: "Entreprises présentes mais sans stratégie définie", content_type: "text", section: "offers", position: 16 },
+  { key: "offer3_text",     value: "Mini-audit + stratégie claire pour repartir avec une direction et des priorités d'action.", content_type: "text", section: "offers", position: 17 },
+
+  # Offre 4 — Sur-mesure
+  { key: "offer4_title",    value: "Autonomie Réseaux", content_type: "text", section: "offers", position: 18 },
+  { key: "offer4_subtitle", value: "Accompagnement sur-mesure", content_type: "text", section: "offers", position: 19 },
+  { key: "offer4_price",    value: "1 200 € / 3 mois", content_type: "text", section: "offers", position: 20 },
+  { key: "offer4_for_who",  value: "Équipes internes qui veulent gagner en autonomie sur 3 mois", content_type: "text", section: "offers", position: 21 },
+  { key: "offer4_text",     value: "2 h / semaine pour rendre votre équipe complètement autonome sur la stratégie et la création de contenu.", content_type: "text", section: "offers", position: 22 },
 
   # ── Témoignages ──
   { key: "testimonial1_quote", value: "Amandine a transformé notre approche des réseaux. En 3 mois, notre équipe est devenue complètement autonome.", content_type: "text", section: "testimonials", position: 1 },

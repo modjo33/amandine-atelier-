@@ -125,6 +125,45 @@
     background: rgba(246, 241, 232, 0.10);
   }
 
+  /* Padding vertical responsive — remplace les padding:130px 0 fixes inline.
+     Mobile : 60px (suffisant pour respirer sans gaspiller l'écran).
+     Tablet : 100px.
+     Desktop : 130px (valeur historique du design). */
+  .section-py {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  @media (min-width: 768px) {
+    .section-py {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-py {
+      padding-top: 130px;
+      padding-bottom: 130px;
+    }
+  }
+
+  /* Variante plus compacte pour les sections secondaires (compteurs, feed insta). */
+  .section-py-sm {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  @media (min-width: 768px) {
+    .section-py-sm {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-py-sm {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+
   /* Marquee animation for bandeau */
   .marquee-track {
     display: flex;
