@@ -2,8 +2,8 @@
 service: amandine_atelier
 
 # Name of the container image (use your-user/app-name on external registries).
-# ⚠️ REMPLACE TON_DOCKERHUB_USER par ton username Docker Hub
-image: TON_DOCKERHUB_USER/amandine_atelier
+# ⚠️ REMPLACE amandinemonte par ton username Docker Hub
+image: amandinemonte/amandine_atelier
 
 # Deploy to these servers.
 servers:
@@ -19,8 +19,8 @@ proxy:
 # Where you keep your container images.
 registry:
   server: registry-1.docker.io
-  # ⚠️ REMPLACE TON_DOCKERHUB_USER par ton username Docker Hub
-  username: TON_DOCKERHUB_USER
+  # ⚠️ REMPLACE amandinemonte par ton username Docker Hub
+  username: amandinemonte
   password:
     - KAMAL_REGISTRY_PASSWORD
 
