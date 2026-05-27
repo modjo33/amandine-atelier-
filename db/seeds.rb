@@ -64,6 +64,12 @@ contents = [
   { key: "offer4_for_who",  value: "Équipes internes qui veulent gagner en autonomie sur 3 mois", content_type: "text", section: "offers", position: 21 },
   { key: "offer4_text",     value: "2 h / semaine pour rendre votre équipe complètement autonome sur la stratégie et la création de contenu.", content_type: "text", section: "offers", position: 22 },
 
+  # ── Badges "Recommandée" optionnels (vide = pas de badge ; ex: "Recommandée", "Best-seller") ──
+  { key: "offer1_recommended", value: "", content_type: "text", section: "offers", position: 23 },
+  { key: "offer2_recommended", value: "", content_type: "text", section: "offers", position: 24 },
+  { key: "offer3_recommended", value: "Recommandée", content_type: "text", section: "offers", position: 25 },
+  { key: "offer4_recommended", value: "", content_type: "text", section: "offers", position: 26 },
+
   # ── Témoignages ──
   { key: "testimonial1_quote", value: "Amandine a transformé notre approche des réseaux. En 3 mois, notre équipe est devenue complètement autonome.", content_type: "text", section: "testimonials", position: 1 },
   { key: "testimonial1_name", value: "Marie L.", content_type: "text", section: "testimonials", position: 2 },

@@ -21,6 +21,7 @@
 
   <body class="bg-dark font-body text-light">
     <%= yield %>
+    <%= render "shared/contact_modal" unless @hide_contact_modal %>
     <%= render "shared/newsletter_popup" unless @hide_popup %>
   </body>
 </html>

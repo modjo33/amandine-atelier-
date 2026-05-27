@@ -10,16 +10,7 @@
   <link rel="canonical" href="<%= article_url(slug: @article.slug) %>">
 <% end %>
 
-<nav data-controller="navbar" class="fixed top-0 inset-x-0 z-40" style="height:70px;border-bottom:1px solid rgba(246,241,232,0.08);transition:background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease">
-  <div class="max-w-[1200px] mx-auto px-6 lg:px-10 flex items-center justify-between h-full">
-    <a href="/" class="font-body text-light" style="font-size:15px;font-weight:500;letter-spacing:2px;text-transform:uppercase">Amandine Atelier Digital</a>
-    <div class="hidden md:flex items-center gap-14">
-      <a href="/" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Accueil</a>
-      <a href="/blog" class="font-body uppercase hover:text-accent transition-colors duration-300" style="font-size:11px;font-weight:400;letter-spacing:3px;color:rgba(246,241,232,0.55)">Blog</a>
-      <a href="/#newsletter" class="btn-primary font-body uppercase" style="font-size:11px;letter-spacing:3px;padding:10px 28px">Contact</a>
-    </div>
-  </div>
-</nav>
+<%= render "shared/navbar", active: "blog" %>
 
 <article class="bg-dark" style="padding-top:130px;padding-bottom:100px">
   <div class="max-w-[750px] mx-auto px-6">
@@ -89,3 +80,5 @@
     <% end %>
   </div>
 </article>
+
+<%= render "shared/footer" %>

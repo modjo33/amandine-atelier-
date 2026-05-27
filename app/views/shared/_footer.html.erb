@@ -1,0 +1,50 @@
+<footer class="bg-dark" style="padding:80px 0 50px;border-top:1px solid rgba(246,241,232,0.08)">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-16 mb-16">
+      <div data-controller="reveal" data-reveal-direction="left">
+        <h3 class="font-body text-light mb-3" style="font-size:15px;font-weight:500;letter-spacing:2px;text-transform:uppercase">
+          Amandine Atelier Digital
+        </h3>
+        <p class="font-accent text-accent mb-4" style="font-size:24px;letter-spacing:0.05em">
+          <span class="sparkle-wrap">
+            <%= c("footer_tagline") %>
+            <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
+          </span>
+        </p>
+        <p class="font-body leading-relaxed" style="font-size:14px;color:rgba(246,241,232,0.55);line-height:2">
+          <%= c("footer_description") %>
+        </p>
+      </div>
+
+      <div data-controller="reveal" data-reveal-delay="150">
+        <h4 class="font-body text-light uppercase mb-6" style="font-size:11px;font-weight:400;letter-spacing:3px">Liens</h4>
+        <ul class="space-y-3">
+          <li><a href="/#hero" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.65)">Accueil</a></li>
+          <li><a href="/#solution" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.65)">À propos</a></li>
+          <li><a href="/#offres" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.65)">Offres</a></li>
+          <li><a href="/blog" class="font-body hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.65)">Blog</a></li>
+        </ul>
+      </div>
+
+      <div data-controller="reveal" data-reveal-delay="300">
+        <h4 class="font-body text-light uppercase mb-6" style="font-size:11px;font-weight:400;letter-spacing:3px">Réseaux</h4>
+        <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 hover:text-accent transition-colors duration-300" style="font-size:14px;color:rgba(246,241,232,0.65)">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <%= c("instagram_handle") %>
+        </a>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(246,241,232,0.06);padding-top:24px" class="text-center">
+      <p class="font-body" style="font-size:12px;color:rgba(246,241,232,0.40);letter-spacing:1px">&copy; <%= Date.current.year %> Amandine Atelier Digital. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<%# Back to top — disponible sur toutes les pages utilisant ce footer %>
+<button class="back-to-top" data-controller="back-to-top" data-action="click->back-to-top#scrollToTop">
+  <svg class="w-5 h-5" style="color:rgba(246,241,232,0.60)" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+  </svg>
+</button>

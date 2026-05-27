@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 
   def instagram_landing
     @hide_popup = true
+    @hide_contact_modal = true
     track_page_view
   end
 
