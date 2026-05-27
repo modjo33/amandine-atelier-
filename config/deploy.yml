@@ -54,8 +54,9 @@ volumes:
 asset_path: /rails/public/assets
 
 # Configure the image builder.
-# Remote: on build sur le VPS (qui a Docker + buildx) pour éviter d'installer
-# buildx en local sur WSL. Build natif amd64 = pas d'émulation = + rapide.
+# provenance/sbom false : désactive les attestations buildx qui requièrent
+# des permissions Docker Hub élargies et causaient des push deniés.
 builder:
   arch: amd64
-  remote: ssh://ubuntu@162.19.220.33
+  provenance: false
+  sbom: false
