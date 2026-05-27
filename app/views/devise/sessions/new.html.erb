@@ -1,0 +1,132 @@
+<% @hide_popup = true %>
+<% @hide_contact_modal = true %>
+
+<div class="min-h-screen flex items-center justify-center px-6 py-12 relative overflow-hidden" style="background: radial-gradient(ellipse at top, rgba(252,223,181,0.05), transparent 60%), #4A3F38">
+
+  <%# Sparkles décoratifs en fond %>
+  <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.06;z-index:0" viewBox="0 0 800 600" fill="#f6f1e8">
+    <path d="M150,120 L151.5,124 L155.5,125.5 L151.5,127 L150,131 L148.5,127 L144.5,125.5 L148.5,124Z"/>
+    <path d="M680,80 L682,86 L688,88 L682,90 L680,96 L678,90 L672,88 L678,86Z"/>
+    <path d="M120,500 L121.5,504 L125.5,505.5 L121.5,507 L120,511 L118.5,507 L114.5,505.5 L118.5,504Z"/>
+    <path d="M650,520 L651,523 L654,524 L651,525 L650,528 L649,525 L646,524 L649,523Z"/>
+  </svg>
+
+  <div class="w-full max-w-md relative" style="z-index:1">
+
+    <%# Header %>
+    <div class="text-center mb-10">
+      <a href="/" class="inline-block font-body text-light hover:text-accent transition-colors duration-300 mb-6" style="font-size:13px;font-weight:500;letter-spacing:3px;text-transform:uppercase">
+        Amandine Atelier Digital
+      </a>
+      <p class="font-accent text-accent mb-3 sparkle-wrap" style="font-size:32px;letter-spacing:0.05em">
+        Espace Admin
+        <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
+      </p>
+      <h1 class="font-body text-light" style="font-size:22px;font-weight:400;letter-spacing:0.5px;line-height:1.4">
+        <span class="title-badge">Connecte-toi pour gérer ton site</span>
+      </h1>
+    </div>
+
+    <%# Card login %>
+    <div class="card-glass p-8 md:p-10" style="border-radius:20px">
+
+      <%# Flash alert (erreurs de connexion) %>
+      <% if alert.present? %>
+        <div class="mb-6 px-5 py-4" style="background:rgba(252,165,165,0.08);border:1px solid rgba(252,165,165,0.25);border-radius:10px;color:#fca5a5;font-size:14px;line-height:1.5">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <%# Notice (succès, ex après changement de mdp) %>
+      <% if notice.present? %>
+        <div class="mb-6 px-5 py-4" style="background:rgba(252,223,181,0.10);border:1px solid rgba(252,223,181,0.30);border-radius:10px;color:#fcdfb5;font-size:14px;line-height:1.5">
+          <%= notice %>
+        </div>
+      <% end %>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-5" }) do |f| %>
+
+        <%# Email %>
+        <div>
+          <label class="font-body block mb-2" style="font-size:12px;letter-spacing:2px;color:rgba(252,223,181,0.70);text-transform:uppercase">
+            Email
+          </label>
+          <%= f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              placeholder: "admin@amandineatelierdigital.fr",
+              class: "w-full font-body focus:outline-none transition-colors",
+              style: "font-size:15px;padding:14px 16px;border:1px solid rgba(246,241,232,0.20);border-radius:10px;background:rgba(246,241,232,0.05);color:#f6f1e8" %>
+        </div>
+
+        <%# Password avec bouton oeil show/hide %>
+        <div>
+          <label class="font-body block mb-2" style="font-size:12px;letter-spacing:2px;color:rgba(252,223,181,0.70);text-transform:uppercase">
+            Mot de passe
+          </label>
+          <div class="relative" data-controller="password-toggle">
+            <%= f.password_field :password,
+                autocomplete: "current-password",
+                placeholder: "••••••••••",
+                data: { password_toggle_target: "input" },
+                class: "w-full font-body focus:outline-none transition-colors",
+                style: "font-size:15px;padding:14px 48px 14px 16px;border:1px solid rgba(246,241,232,0.20);border-radius:10px;background:rgba(246,241,232,0.05);color:#f6f1e8" %>
+            <button type="button"
+                    data-action="click->password-toggle#toggle"
+                    aria-label="Afficher / masquer le mot de passe"
+                    class="absolute top-1/2 right-3 -translate-y-1/2 p-1 cursor-pointer hover:opacity-100 transition-opacity"
+                    style="background:transparent;border:none;color:rgba(246,241,232,0.55);opacity:0.7">
+              <%# Oeil ouvert (par défaut visible : password est masqué) %>
+              <svg data-password-toggle-target="eyeOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <%# Oeil barré (visible quand password est révélé) %>
+              <svg data-password-toggle-target="eyeClosed" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <%# Remember me %>
+        <% if devise_mapping.rememberable? %>
+          <div class="flex items-center gap-3 pt-1">
+            <%= f.check_box :remember_me, class: "w-4 h-4 rounded shrink-0", style: "accent-color:#fcdfb5" %>
+            <label for="<%= "#{resource_name}_remember_me" %>" class="font-body" style="font-size:13px;color:rgba(246,241,232,0.65)">
+              Rester connecté·e
+            </label>
+          </div>
+        <% end %>
+
+        <%# Submit %>
+        <div class="pt-4">
+          <%= f.submit "Se connecter →",
+              class: "btn-primary font-body w-full cursor-pointer",
+              style: "padding:16px 32px;font-size:14px;letter-spacing:2px;text-transform:uppercase;border:none;font-weight:500" %>
+        </div>
+      <% end %>
+
+      <%# Mot de passe oublié %>
+      <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <div class="text-center mt-6 pt-6" style="border-top:1px solid rgba(246,241,232,0.08)">
+          <%= link_to "Mot de passe oublié ?", new_password_path(resource_name),
+              class: "font-body hover:text-accent transition-colors duration-300",
+              style: "font-size:13px;color:rgba(246,241,232,0.50);letter-spacing:0.5px" %>
+        </div>
+      <% end %>
+
+    </div>
+
+    <%# Lien retour site %>
+    <div class="text-center mt-8">
+      <a href="/" class="inline-flex items-center gap-2 font-body hover:text-accent transition-colors duration-300" style="font-size:13px;color:rgba(246,241,232,0.40);letter-spacing:0.5px">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+        </svg>
+        Retour au site
+      </a>
+    </div>
+
+  </div>
+</div>
