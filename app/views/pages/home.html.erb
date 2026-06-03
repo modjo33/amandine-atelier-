@@ -1,8 +1,8 @@
 <%= content_for :head do %>
   <meta name="description" content="Amandine Atelier Digital - Stratégie, formation et organisation pour ta communication digitale.">
-  <% if c("instagram_embed_id").present? %>
+  <% if elfsight_app_id.present? %>
     <%# Widget Elfsight (Instagram Feed) — chargé seulement si un embed_id est configuré en CMS %>
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <script src="https://elfsightcdn.com/platform.js" async></script>
   <% end %>
 <% end %>
 
@@ -341,7 +341,7 @@
       </a>
     </div>
 
-    <% embed_id = c("instagram_embed_id") %>
+    <% embed_id = elfsight_app_id %>
     <% if embed_id.present? %>
       <%# Elfsight Instagram Feed Widget %>
       <div data-controller="reveal" data-reveal-direction="scale">

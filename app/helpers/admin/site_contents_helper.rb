@@ -95,7 +95,7 @@ module Admin::SiteContentsHelper
     "newsletter_text" => "Texte descriptif",
     "instagram_handle" => "Nom du compte (@…)",
     "instagram_url" => "Lien Instagram",
-    "instagram_embed_id" => "ID widget Elfsight (ex: xxxxxxxx-xxxx-xxxx-xxxx)",
+    "instagram_embed_id" => "Widget Elfsight — colle ici le code d'intégration complet OU juste l'ID (l'UUID est détecté automatiquement)",
     "counter1_number" => "Compteur 1 — Chiffre",
     "counter1_suffix" => "Compteur 1 — Suffixe (+, %, h…)",
     "counter1_label" => "Compteur 1 — Label",
