@@ -1,5 +1,9 @@
 <%= content_for :head do %>
   <meta name="description" content="Amandine Atelier Digital - Stratégie, formation et organisation pour ta communication digitale.">
+  <% if c("instagram_embed_id").present? %>
+    <%# Widget Elfsight (Instagram Feed) — chargé seulement si un embed_id est configuré en CMS %>
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+  <% end %>
 <% end %>
 
 <%= render "shared/navbar", active: "accueil" %>
