@@ -1,6 +1,6 @@
 <%= form_with model: [:admin, testimonial], class: "space-y-6" do |f| %>
   <% if testimonial.errors.any? %>
-    <div class="px-5 py-3 rounded-xl mb-4" style="background:rgba(252,165,165,0.10);border:1px solid rgba(252,165,165,0.20);color:#fca5a5;font-size:14px">
+    <div class="px-5 py-3 rounded-xl mb-4" style="background:rgba(252,165,165,0.15);border:1px solid rgba(220,38,38,0.3);color:#c0392b;font-size:14px">
       <% testimonial.errors.full_messages.each do |msg| %>
         <p><%= msg %></p>
       <% end %>
@@ -31,14 +31,14 @@
     <div class="admin-field-card">
       <label class="admin-field-label">Visible sur le site</label>
       <div class="flex items-center gap-3 mt-2">
-        <%= f.check_box :active, class: "w-5 h-5 rounded", style: "accent-color:#fcdfb5" %>
-        <span class="font-body" style="font-size:14px;color:rgba(246,241,232,0.60)">Afficher ce témoignage</span>
+        <%= f.check_box :active, class: "w-5 h-5 rounded", style: "accent-color:#d95c84" %>
+        <span class="font-body" style="font-size:14px;color:var(--color-ink-soft)">Afficher ce témoignage</span>
       </div>
     </div>
   </div>
 
   <div class="flex items-center gap-4 pt-4">
     <%= f.submit "Enregistrer", class: "btn-primary font-body cursor-pointer", style: "padding:14px 40px;font-size:15px;letter-spacing:0.5px" %>
-    <%= link_to "Annuler", admin_testimonials_path, class: "font-body hover:text-accent transition-colors", style: "font-size:14px;color:rgba(246,241,232,0.40)" %>
+    <%= link_to "Annuler", admin_testimonials_path, class: "font-body hover:text-accent transition-colors", style: "font-size:14px;color:var(--color-taupe)" %>
   </div>
 <% end %>

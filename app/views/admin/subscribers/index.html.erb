@@ -1,7 +1,7 @@
 <div class="mb-10 flex items-center justify-between flex-wrap gap-4">
   <div>
-    <h1 class="font-display text-light" style="font-size:clamp(28px,3vw,38px);font-weight:400">Abonnés newsletter</h1>
-    <p class="font-body mt-2" style="font-size:14px;color:rgba(246,241,232,0.45)"><%= @subscribers.count %> inscrit<%= "s" if @subscribers.count > 1 %></p>
+    <h1 class="font-display text-ink" style="font-size:clamp(28px,3vw,38px);font-weight:400">Abonnés newsletter</h1>
+    <p class="font-body mt-2" style="font-size:14px;color:var(--color-taupe)"><%= @subscribers.count %> inscrit<%= "s" if @subscribers.count > 1 %></p>
   </div>
   <% if @subscribers.any? %>
     <%= link_to export_csv_admin_subscribers_path, class: "btn-primary font-body", style: "padding:12px 28px;font-size:14px" do %>
@@ -11,37 +11,49 @@
 </div>
 
 <% if @subscribers.any? %>
-  <div class="overflow-x-auto rounded-2xl" style="background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.08)">
+  <div class="overflow-x-auto rounded-2xl" style="background:#ffffff;border:1px solid rgba(150,129,107,0.15)">
     <table class="w-full">
       <thead>
-        <tr style="border-bottom:1px solid rgba(246,241,232,0.08)">
-          <th class="px-5 py-3 text-left font-body font-medium text-xs uppercase tracking-wider" style="color:rgba(246,241,232,0.35)">Prénom</th>
-          <th class="px-5 py-3 text-left font-body font-medium text-xs uppercase tracking-wider" style="color:rgba(246,241,232,0.35)">Email</th>
-          <th class="px-5 py-3 text-center font-body font-medium text-xs uppercase tracking-wider" style="color:rgba(246,241,232,0.35)">Source</th>
-          <th class="px-5 py-3 text-right font-body font-medium text-xs uppercase tracking-wider" style="color:rgba(246,241,232,0.35)">Date</th>
+        <tr style="border-bottom:1px solid rgba(150,129,107,0.15)">
+          <th class="px-5 py-3 text-left font-body font-medium text-xs uppercase tracking-wider" style="color:var(--color-taupe)">Prénom</th>
+          <th class="px-5 py-3 text-left font-body font-medium text-xs uppercase tracking-wider" style="color:var(--color-taupe)">Email</th>
+          <th class="px-5 py-3 text-center font-body font-medium text-xs uppercase tracking-wider" style="color:var(--color-taupe)">Source</th>
+          <th class="px-5 py-3 text-right font-body font-medium text-xs uppercase tracking-wider" style="color:var(--color-taupe)">Date</th>
+          <th class="px-5 py-3 text-right font-body font-medium text-xs uppercase tracking-wider" style="color:var(--color-taupe)"></th>
         </tr>
       </thead>
       <tbody>
         <% @subscribers.each do |subscriber| %>
-          <tr class="transition-colors" style="border-bottom:1px solid rgba(246,241,232,0.05)" onmouseenter="this.style.background='rgba(246,241,232,0.04)'" onmouseleave="this.style.background='transparent'">
+          <tr class="transition-colors" style="border-bottom:1px solid rgba(150,129,107,0.15)" onmouseenter="this.style.background='var(--color-blush-soft)'" onmouseleave="this.style.background='transparent'">
             <td class="px-5 py-3">
-              <span class="font-body text-light text-sm font-medium"><%= subscriber.first_name %></span>
+              <span class="font-body text-ink text-sm font-medium"><%= subscriber.first_name %></span>
             </td>
             <td class="px-5 py-3">
-              <span class="font-body text-sm" style="color:rgba(246,241,232,0.60)"><%= subscriber.email %></span>
+              <span class="font-body text-sm" style="color:var(--color-ink-soft)"><%= subscriber.email %></span>
             </td>
             <td class="px-5 py-3 text-center">
               <% case subscriber.source %>
               <% when "instagram" %>
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium" style="background:rgba(252,223,181,0.12);color:#fcdfb5">Instagram</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium" style="background:var(--color-blush);color:var(--color-primary)">Instagram</span>
               <% when "web" %>
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium" style="background:rgba(146,148,113,0.15);color:#929471">Web</span>
               <% else %>
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium" style="background:rgba(246,241,232,0.08);color:rgba(246,241,232,0.40)">Direct</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-body font-medium" style="background:rgba(150,129,107,0.12);color:var(--color-taupe)">Direct</span>
               <% end %>
             </td>
             <td class="px-5 py-3 text-right">
-              <span class="font-body text-sm" style="color:rgba(246,241,232,0.40)"><%= subscriber.created_at.strftime("%d/%m/%Y %Hh%M") %></span>
+              <span class="font-body text-sm" style="color:var(--color-taupe)"><%= subscriber.created_at.strftime("%d/%m/%Y %Hh%M") %></span>
+            </td>
+            <td class="px-5 py-3 text-right">
+              <%= button_to admin_subscriber_path(subscriber),
+                    method: :delete,
+                    class: "admin-btn-sm admin-btn-danger",
+                    form: { data: { turbo_confirm: "Supprimer #{subscriber.first_name} (#{subscriber.email}) ? Cette action est définitive." } },
+                    title: "Supprimer cet abonné" do %>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+                </svg>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -49,7 +61,7 @@
     </table>
   </div>
 <% else %>
-  <div class="text-center py-16 rounded-2xl" style="background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.08)">
-    <p class="font-body" style="color:rgba(246,241,232,0.35)">Aucun inscrit pour le moment.</p>
+  <div class="text-center py-16 rounded-2xl" style="background:#ffffff;border:1px solid rgba(150,129,107,0.15)">
+    <p class="font-body" style="color:var(--color-taupe)">Aucun inscrit pour le moment.</p>
   </div>
 <% end %>

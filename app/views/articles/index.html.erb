@@ -5,25 +5,17 @@
 
 <%= render "shared/navbar", active: "blog" %>
 
-<section class="bg-dark" style="padding-top:130px;padding-bottom:100px">
+<section style="background:var(--color-paper);padding-top:130px;padding-bottom:100px">
   <div class="max-w-[900px] mx-auto px-6">
     <div class="text-center mb-16" data-controller="reveal" data-reveal-direction="scale">
-      <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Blog</p>
-      <h1>
-        <span class="title-badge font-body" style="font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.25">
-          Conseils & Ressources
-        </span>
-      </h1>
-      <p class="font-body mt-6" style="font-size:16px;color:rgba(246,241,232,0.55);line-height:1.8">
-        Stratégie digitale, réseaux sociaux, organisation — tout pour booster ta communication.
-      </p>
+      <p class="eyebrow eyebrow-c">Blog</p>
     </div>
 
     <% if @categories.any? %>
       <div class="flex flex-wrap justify-center gap-3 mb-14">
-        <%= link_to "Tous", blog_path, class: "font-body px-4 py-2 rounded-full transition-all", style: "font-size:13px;#{params[:category].blank? ? 'background:rgba(252,223,181,0.20);color:#fcdfb5;border:1px solid rgba(252,223,181,0.30)' : 'background:rgba(246,241,232,0.06);color:rgba(246,241,232,0.50);border:1px solid rgba(246,241,232,0.10)'}" %>
+        <%= link_to "Tous", blog_path, class: "font-accent px-4 py-2 rounded-full transition-all", style: "font-size:13px;font-weight:600;#{params[:category].blank? ? 'background:var(--color-primary);color:#fff;border:1px solid var(--color-primary)' : 'background:#fff;color:var(--color-ink-soft);border:1px solid rgba(150,129,107,0.20)'}" %>
         <% @categories.each do |cat| %>
-          <%= link_to cat, blog_path(category: cat), class: "font-body px-4 py-2 rounded-full transition-all", style: "font-size:13px;#{params[:category] == cat ? 'background:rgba(252,223,181,0.20);color:#fcdfb5;border:1px solid rgba(252,223,181,0.30)' : 'background:rgba(246,241,232,0.06);color:rgba(246,241,232,0.50);border:1px solid rgba(246,241,232,0.10)'}" %>
+          <%= link_to cat, blog_path(category: cat), class: "font-accent px-4 py-2 rounded-full transition-all", style: "font-size:13px;font-weight:600;#{params[:category] == cat ? 'background:var(--color-primary);color:#fff;border:1px solid var(--color-primary)' : 'background:#fff;color:var(--color-ink-soft);border:1px solid rgba(150,129,107,0.20)'}" %>
         <% end %>
       </div>
     <% end %>
@@ -41,16 +33,16 @@
               <div class="p-8">
                 <div class="flex items-center gap-4 mb-4">
                   <% if article.category.present? %>
-                    <span class="font-body px-3 py-1 rounded-full" style="font-size:11px;background:rgba(252,223,181,0.12);color:#fcdfb5;letter-spacing:0.5px"><%= article.category %></span>
+                    <span class="font-accent px-3 py-1 rounded-full" style="font-size:11px;font-weight:600;background:var(--color-blush);color:var(--color-rose);letter-spacing:0.5px"><%= article.category %></span>
                   <% end %>
-                  <span class="font-body" style="font-size:12px;color:rgba(246,241,232,0.35)"><%= article.published_at&.strftime("%d %b %Y") %></span>
-                  <span class="font-body" style="font-size:12px;color:rgba(246,241,232,0.35)"><%= article.reading_time %> min</span>
+                  <span class="font-body" style="font-size:12px;color:var(--color-taupe)"><%= article.published_at&.strftime("%d %b %Y") %></span>
+                  <span class="font-body" style="font-size:12px;color:var(--color-taupe)"><%= article.reading_time %> min</span>
                 </div>
-                <h2 class="font-display text-light group-hover:text-accent transition-colors mb-3" style="font-size:24px;font-weight:400"><%= article.title %></h2>
+                <h2 class="font-display transition-colors mb-3" style="font-size:24px;font-weight:700;color:var(--color-ink)" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-ink)'"><%= article.title %></h2>
                 <% if article.excerpt.present? %>
-                  <p class="font-body" style="font-size:15px;color:rgba(246,241,232,0.55);line-height:1.8"><%= article.excerpt %></p>
+                  <p class="font-body" style="font-size:15px;color:var(--color-ink-soft);line-height:1.8"><%= article.excerpt %></p>
                 <% end %>
-                <span class="inline-flex items-center font-body text-accent mt-4" style="font-size:14px;letter-spacing:0.5px">Lire l'article &rarr;</span>
+                <span class="inline-flex items-center font-accent mt-4" style="font-size:14px;letter-spacing:0.5px;font-weight:600;color:var(--color-primary)">Lire l'article &rarr;</span>
               </div>
             </div>
           <% end %>
@@ -58,7 +50,7 @@
       </div>
     <% else %>
       <div class="text-center py-20">
-        <p class="font-body" style="font-size:16px;color:rgba(246,241,232,0.35)">Les articles arrivent bientôt...</p>
+        <p class="font-body" style="font-size:16px;color:var(--color-taupe)">Les articles arrivent bientôt...</p>
       </div>
     <% end %>
   </div>

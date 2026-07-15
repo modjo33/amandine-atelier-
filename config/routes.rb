@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     namespace :admin do
       get "/", to: "dashboard#index", as: :dashboard
       resources :posts
-      resources :subscribers, only: [ :index ] do
+      resources :subscribers, only: [ :index, :destroy ] do
         collection do
           get :export_csv
         end

@@ -6,6 +6,12 @@ class Admin::SubscribersController < ApplicationController
     @subscribers = Subscriber.order(created_at: :desc)
   end
 
+  def destroy
+    @subscriber = Subscriber.find(params[:id])
+    @subscriber.destroy
+    redirect_to admin_subscribers_path, notice: "Abonné supprimé."
+  end
+
   def export_csv
     subscribers = Subscriber.order(created_at: :desc)
     csv_data = CSV.generate(headers: true) do |csv|

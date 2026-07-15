@@ -21,12 +21,12 @@ export default class extends Controller {
     if (scrolled !== this.scrolled) {
       this.scrolled = scrolled
       if (scrolled) {
-        this.element.style.background = "rgba(74,63,56,0.98)"
+        this.element.style.background = "rgba(255,255,255,0.96)"
         this.element.style.backdropFilter = "blur(12px)"
-        this.element.style.boxShadow = "0 4px 30px rgba(0,0,0,0.15)"
+        this.element.style.boxShadow = "0 4px 30px rgba(172,97,103,0.08)"
       } else {
-        this.element.style.background = "transparent"
-        this.element.style.backdropFilter = "none"
+        this.element.style.background = "rgba(255,255,255,0.85)"
+        this.element.style.backdropFilter = "blur(6px)"
         this.element.style.boxShadow = "none"
       }
     }

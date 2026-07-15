@@ -1,349 +1,295 @@
 <%= content_for :head do %>
-  <meta name="description" content="Amandine Atelier Digital - Stratégie, formation et organisation pour ta communication digitale.">
+  <meta name="description" content="Amandine Atelier Digital — Social Media Manager. Accompagnement, autonomie et stratégie réseaux sociaux pour révéler votre authenticité avec une communication digitale humaine et sur mesure.">
   <% if elfsight_app_id.present? %>
-    <%# Widget Elfsight (Instagram Feed) — chargé seulement si un embed_id est configuré en CMS %>
     <script src="https://elfsightcdn.com/platform.js" async></script>
   <% end %>
 <% end %>
 
 <%= render "shared/navbar", active: "accueil" %>
 
-<%# ══════════════════════════════════════ BANDEAU (marquee) — fixe sous navbar ══════════════════════════════════════ %>
-<div class="fixed inset-x-0 z-30 bg-dark overflow-hidden" style="top:70px;padding:10px 0;border-bottom:1px solid rgba(246,241,232,0.08)">
+<%# ═══════════════════════════════ BANDEAU DÉFILANT (marquee) — fixe sous la navbar ═══════════════════════════════ %>
+<div class="fixed inset-x-0 z-30 overflow-hidden" style="top:70px;padding:10px 0;background:var(--color-rose)">
   <div class="marquee-track">
     <% 2.times do %>
-      <span class="font-body text-light flex items-center gap-8 whitespace-nowrap" style="font-size:13px;letter-spacing:2px;padding:0 32px;font-weight:300;opacity:0.80">
+      <span class="font-accent flex items-center gap-7 whitespace-nowrap" style="font-size:12.5px;letter-spacing:1.5px;padding:0 26px;color:rgba(255,255,255,0.80)">
         <%= c("marquee_prefix") %>
-        <span class="font-accent text-accent sparkle-wrap" style="font-size:22px;letter-spacing:0.05em"><%= c("marquee_highlight") %><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span></span>
+        <span class="font-display" style="font-size:14px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:#ffffff"><%= c("marquee_highlight") %></span>
         <%= c("marquee_suffix") %>
-        <span style="color:rgba(246,241,232,0.20)">&mdash;</span>
+        <span style="color:rgba(255,255,255,0.35)">—</span>
       </span>
     <% end %>
   </div>
 </div>
 
-<%# ══════════════════════════════════════ 2. HERO ══════════════════════════════════════ %>
-<section id="hero" class="bg-dark overflow-hidden relative" style="padding-top:115px">
-  <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.05;z-index:0" viewBox="0 0 800 600" fill="#f6f1e8">
-    <path d="M150,120 L151.5,124 L155.5,125.5 L151.5,127 L150,131 L148.5,127 L144.5,125.5 L148.5,124Z"/>
-    <path d="M380,80 L381,83 L384,84 L381,85 L380,88 L379,85 L376,84 L379,83Z"/>
-    <path d="M90,400 L91,403 L94,404 L91,405 L90,408 L89,405 L86,404 L89,403Z"/>
-    <path d="M450,500 L451.5,504 L455.5,505.5 L451.5,507 L450,511 L448.5,507 L444.5,505.5 L448.5,504Z"/>
-  </svg>
-  <div class="grid lg:grid-cols-2 items-center relative" style="min-height:calc(100vh - 115px);z-index:1">
-    <%# Texte — slide from left %>
-    <div class="px-6 lg:px-16 xl:px-24 py-20" data-controller="reveal" data-reveal-direction="left">
-      <p class="font-accent text-accent mb-8" style="font-size:32px;letter-spacing:0.05em">
-        <span class="sparkle-wrap">
-          <%= c("hero_tagline") %>
-          <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
-        </span>
-      </p>
-      <h1 class="mb-8">
-        <span class="title-badge font-body" style="font-size:clamp(38px,4.5vw,60px);font-weight:400;line-height:1.25">
-          <%= c("hero_title") %>
-        </span>
+<%# ═══════════════════════════════ HERO ═══════════════════════════════ %>
+<section id="hero" class="overflow-hidden relative" style="background:var(--color-paper);padding-top:112px">
+  <div class="grid lg:grid-cols-12 items-center" style="min-height:calc(100vh - 112px)">
+    <%# Texte %>
+    <div class="lg:col-span-7 px-6 lg:pl-16 xl:pl-24 lg:pr-12 py-16 lg:py-0" data-controller="reveal" data-reveal-direction="left">
+      <p class="eyebrow mb-8"><%= c("hero_tagline") %></p>
+      <h1 class="mb-8" style="font-family:var(--font-display);font-weight:700;font-size:clamp(38px,5vw,68px);line-height:1.04;letter-spacing:-0.02em;color:var(--color-ink)">
+        <% title = c("hero_title") %>
+        <%= raw ERB::Util.h(title).sub("authenticité", "<span style=\"color:var(--color-primary)\">authenticité</span>") %>
       </h1>
-      <p class="font-body leading-relaxed mb-12 max-w-lg" style="font-size:17px;color:rgba(246,241,232,0.75);line-height:2">
+      <p class="font-body mb-12 max-w-xl" style="font-size:17px;color:var(--color-ink-soft);line-height:1.85">
         <%= c("hero_description") %>
       </p>
-      <div class="flex flex-col sm:flex-row gap-5">
-        <a href="#solution" class="btn-primary font-body" style="padding:18px 44px;font-size:15px;letter-spacing:0.5px">
-          <%= c("hero_cta_primary") %>
-        </a>
-        <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer" class="btn-secondary font-body" style="padding:18px 44px;font-size:15px;letter-spacing:0.5px">
-          <%= c("hero_cta_secondary") %>
-        </a>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#offres" class="btn-primary btn-lg font-accent"><%= c("hero_cta_primary") %></a>
+        <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-lg font-accent"><%= c("hero_cta_secondary") %></a>
       </div>
     </div>
-    <%# Photo — slide from right with parallax %>
-    <div class="relative px-6 lg:px-0 py-10 lg:py-0 flex justify-center lg:justify-end" data-controller="reveal" data-reveal-direction="right">
-      <div class="overflow-hidden w-full max-w-md lg:max-w-none h-[360px] md:h-[480px] lg:h-[560px] rounded-2xl lg:rounded-l-2xl lg:rounded-r-none" data-controller="parallax" data-parallax-speed-value="0.08">
-        <% if c_image("hero_image") %>
-          <%= image_tag c_image("hero_image"), class: "w-full h-full object-cover", style: "object-position:center top", alt: "Amandine Atelier Digital" %>
-        <% else %>
-          <%= image_tag "hero.png", class: "w-full h-full object-cover", style: "object-position:center top", alt: "Amandine Atelier Digital" %>
-        <% end %>
+    <%# Photo avec bloc décalé %>
+    <div class="lg:col-span-5 px-6 lg:pr-16 xl:pr-24 pb-16 lg:py-0 flex justify-center lg:justify-end" data-controller="reveal" data-reveal-direction="right">
+      <div class="photo-offset w-full max-w-md lg:max-w-none" data-controller="parallax" data-parallax-speed-value="0.06">
+        <div class="overflow-hidden h-[380px] md:h-[520px] lg:h-[600px]" style="border-radius:26px">
+          <% if c_image("hero_image") %>
+            <%= image_tag c_image("hero_image"), class: "w-full h-full object-cover", style: "object-position:center top", alt: "Amandine Atelier Digital" %>
+          <% else %>
+            <%= image_tag "hero.png", class: "w-full h-full object-cover", style: "object-position:center top", alt: "Amandine Atelier Digital" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<%# ══════════════════════════════════════ 3. CHIFFRES CLÉS (compteurs animés) ══════════════════════════════════════ %>
-<section class="bg-dark section-py-sm" style="border-top:1px solid rgba(246,241,232,0.08);border-bottom:1px solid rgba(246,241,232,0.08)">
-  <div class="max-w-[1000px] mx-auto px-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<%# ═══════════════════════════════ BANDE STATS (sombre ou photo floutée) ═══════════════════════════════ %>
+<section class="stat-band relative overflow-hidden <%= 'has-photo' if c_image('counters_image') %>">
+  <% if c_image("counters_image") %>
+    <%# Photo de fond floutée + voile sombre transparent (garde la lisibilité des chiffres) %>
+    <div class="absolute inset-0" style="z-index:0">
+      <%= image_tag c_image("counters_image"), class: "w-full h-full object-cover", style: "filter:blur(9px);transform:scale(1.12)", alt: "" %>
+      <div class="absolute inset-0" style="background:rgba(242,217,230,0.45)"></div>
+    </div>
+  <% end %>
+  <div class="relative max-w-[1100px] mx-auto px-6 py-14 md:py-20" style="z-index:1">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x" style="border-color:rgba(172,97,103,0.22)">
       <% [1, 2, 3].each_with_index do |i, idx| %>
-        <div class="counter-card" data-controller="reveal" data-reveal-direction="up" data-reveal-delay="<%= idx * 150 %>">
-          <p class="counter-number">
+        <div class="text-center px-4 <%= 'pt-10 sm:pt-0' if idx > 0 %>" data-controller="reveal" data-reveal-direction="up" data-reveal-delay="<%= idx * 150 %>">
+          <p class="stat-num">
             <span data-controller="counter"
                   data-counter-target-value="<%= c("counter#{i}_number") %>"
                   data-counter-suffix-value="<%= c("counter#{i}_suffix") %>"
-                  data-counter-duration-value="2500">0</span>
+                  data-counter-duration-value="2200">0</span>
           </p>
-          <p class="counter-label font-body"><%= c("counter#{i}_label") %></p>
+          <p class="stat-label"><%= c("counter#{i}_label") %></p>
         </div>
       <% end %>
     </div>
   </div>
 </section>
 
-<%# ══════════════════════════════════════ 4. PROBLÈME ══════════════════════════════════════ %>
-<section id="probleme" class="bg-dark section-py">
+<%# ═══════════════════════════════ PROBLÈME ═══════════════════════════════ %>
+<section id="probleme" class="section-py" style="background:var(--color-paper)">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="text-center mb-20" data-controller="reveal" data-reveal-direction="scale">
-      <h2>
-        <span class="title-badge font-body" style="font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.25">
-          <%= c("problem_title") %>
-        </span>
-      </h2>
+    <div class="max-w-3xl mb-16 lg:mb-20" data-controller="reveal" data-reveal-direction="up">
+      <p class="eyebrow mb-6">Pour qui ?</p>
+      <h2 class="h-lg" style="font-size:clamp(28px,3.8vw,46px)"><%= c("problem_title") %></h2>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-10">
+    <div class="grid md:grid-cols-3 gap-8">
       <% [1, 2, 3].each_with_index do |i, idx| %>
-        <div class="card-glass p-12 text-center" data-controller="reveal" data-reveal-delay="<%= idx * 200 %>">
-          <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-8" style="background:rgba(252,223,181,0.10)">
-            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <% if i == 1 %>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              <% elsif i == 2 %>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.468 5.99 5.99 0 00-1.925 3.547 5.975 5.975 0 01-2.133-1.001A3.75 3.75 0 0012 18z"/>
-              <% else %>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              <% end %>
-            </svg>
-          </div>
-          <h3 class="font-body text-light font-medium mb-4" style="font-size:18px;letter-spacing:0.5px"><%= c("problem_card#{i}_title") %></h3>
-          <p class="font-body leading-relaxed" style="font-size:15px;color:rgba(246,241,232,0.60);line-height:1.9"><%= c("problem_card#{i}_text") %></p>
+        <div class="card-glass p-10" data-controller="reveal" data-reveal-direction="up" data-reveal-delay="<%= idx * 150 %>">
+          <p class="index-num mb-6"><%= format('%02d', idx + 1) %></p>
+          <h3 class="font-display mb-4" style="font-size:22px;font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;color:var(--color-ink)"><%= c("problem_card#{i}_title") %></h3>
+          <p class="font-body" style="font-size:15px;color:var(--color-ink-soft);line-height:1.8"><%= c("problem_card#{i}_text") %></p>
         </div>
       <% end %>
     </div>
   </div>
 </section>
 
-<div class="section-line max-w-[1200px] mx-auto"></div>
-
-<%# ══════════════════════════════════════ 5. SOLUTION ══════════════════════════════════════ %>
-<section id="solution" class="bg-dark overflow-hidden">
-  <div class="grid lg:grid-cols-2 items-center">
-    <%# Photo — slide from left with parallax %>
-    <div class="relative px-6 lg:px-0 py-10 lg:py-0 flex justify-center lg:justify-start" data-controller="reveal" data-reveal-direction="left">
-      <div class="overflow-hidden w-full max-w-md lg:max-w-none h-[360px] md:h-[480px] lg:h-[560px] rounded-2xl lg:rounded-r-2xl lg:rounded-l-none" data-controller="parallax" data-parallax-speed-value="0.08">
-        <% if c_image("solution_image") %>
-          <%= image_tag c_image("solution_image"), class: "w-full h-full object-cover", style: "object-position:center top", alt: "Amandine" %>
-        <% else %>
-          <%= image_tag "portrait.jpg", class: "w-full h-full object-cover", style: "object-position:center top", alt: "Amandine" %>
-        <% end %>
+<%# ═══════════════════════════════ SOLUTION / À PROPOS ═══════════════════════════════ %>
+<section id="solution" class="overflow-hidden section-py" style="background:var(--color-cream)">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+      <%# Photo %>
+      <div class="order-2 lg:order-1 flex justify-center lg:justify-start" data-controller="reveal" data-reveal-direction="left">
+        <div class="photo-offset w-full max-w-md" data-controller="parallax" data-parallax-speed-value="0.06">
+          <div class="overflow-hidden h-[420px] md:h-[520px]" style="border-radius:26px">
+            <% if c_image("solution_image") %>
+              <%= image_tag c_image("solution_image"), class: "w-full h-full object-cover", style: "object-position:center top", alt: "Amandine" %>
+            <% else %>
+              <%= image_tag "portrait.jpg", class: "w-full h-full object-cover", style: "object-position:center top", alt: "Amandine" %>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-    <%# Texte — slide from right %>
-    <div class="px-6 lg:px-16 xl:px-24 py-20" data-controller="reveal" data-reveal-direction="right">
-      <p class="font-body uppercase mb-6" style="font-size:11px;letter-spacing:4px;color:rgba(252,223,181,0.50)"><%= c("solution_subtitle") %></p>
-      <h2 class="mb-5">
-        <span class="title-badge font-body" style="font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.25">
-          <%= c("solution_title") %>
-        </span>
-      </h2>
-      <p class="font-accent text-accent mb-10" style="font-size:34px;letter-spacing:0.05em">
-        <span class="sparkle-wrap">
+      <%# Texte %>
+      <div class="order-1 lg:order-2" data-controller="reveal" data-reveal-direction="right">
+        <p class="eyebrow mb-6"><%= c("solution_subtitle") %></p>
+        <h2 class="h-lg mb-6" style="font-size:clamp(28px,3.8vw,46px)"><%= c("solution_title") %></h2>
+        <p class="font-display mb-8" style="font-size:clamp(20px,2.2vw,26px);font-weight:600;color:var(--color-primary);line-height:1.35">
           <%= c("solution_tagline") %>
-          <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
-        </span>
-      </p>
-      <div class="font-body space-y-5" style="font-size:16px;color:rgba(246,241,232,0.75);line-height:2">
-        <p><%= c("solution_text1") %></p>
-        <p><%= c("solution_text2") %></p>
+        </p>
+        <div class="font-body space-y-5 mb-10" style="font-size:16px;color:var(--color-ink-soft);line-height:1.9">
+          <p><%= c("solution_text1") %></p>
+          <p><%= c("solution_text2") %></p>
+        </div>
+        <a href="#offres" class="btn-primary btn-lg font-accent inline-flex"><%= c("solution_cta").presence || "Voir les offres" %></a>
       </div>
-      <a href="#offres" class="btn-primary font-body mt-12 inline-flex" style="padding:18px 44px;font-size:15px;letter-spacing:0.5px">
-        <%= c("solution_cta").presence || "Voir les offres" %>
-      </a>
     </div>
   </div>
 </section>
 
-<div class="section-line max-w-[1200px] mx-auto"></div>
-
-<%# ══════════════════════════════════════ 6. OFFRES ══════════════════════════════════════ %>
-<section id="offres" class="bg-dark relative overflow-hidden section-py">
-  <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.06;z-index:0" viewBox="0 0 800 600" fill="#f6f1e8">
-    <path d="M680,80 L682,86 L688,88 L682,90 L680,96 L678,90 L672,88 L678,86Z"/>
-    <path d="M120,150 L121.5,154 L125.5,155.5 L121.5,157 L120,161 L118.5,157 L114.5,155.5 L118.5,154Z"/>
-    <path d="M750,420 L751,423 L754,424 L751,425 L750,428 L749,425 L746,424 L749,423Z"/>
-    <path d="M60,480 L61.5,484 L65.5,485.5 L61.5,487 L60,491 L58.5,487 L54.5,485.5 L58.5,484Z"/>
-    <path d="M400,50 L401,53 L404,54 L401,55 L400,58 L399,55 L396,54 L399,53Z"/>
-  </svg>
-
-  <div class="relative max-w-[1200px] mx-auto px-6" style="z-index:1">
-    <div class="text-center mb-20" data-controller="reveal" data-reveal-direction="scale">
-      <p class="font-accent text-accent mb-5" style="font-size:34px;letter-spacing:0.05em">
-        <span class="sparkle-wrap">
-          <%= c("offers_tagline") %>
-          <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
-        </span>
-      </p>
-      <h2>
-        <span class="title-badge font-body" style="font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.25">
-          <%= c("offers_title") %>
-        </span>
-      </h2>
+<%# ═══════════════════════════════ OFFRES ═══════════════════════════════ %>
+<section id="offres" class="section-py" style="background:var(--color-paper)">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20" data-controller="reveal" data-reveal-direction="up">
+      <% if c("offers_tagline").present? %>
+        <p class="eyebrow eyebrow-c mb-6"><%= c("offers_tagline") %></p>
+      <% end %>
+      <h2 class="h-lg" style="font-size:clamp(28px,3.8vw,46px)"><%= c("offers_title") %></h2>
     </div>
 
     <%
-      # Icônes SVG par offre. Indexées par position d'affichage (idx).
-      # Offre 1 (Temps Partagé) supprimée — on affiche Coup de Pouce / Cap Réseaux / Autonomie Réseaux.
       offer_icons = [
-        # Offre 2 — Coup de Pouce : icône éclair / lancement
         '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>',
-        # Offre 3 — Cap Réseaux : icône boussole / direction stratégique
         '<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14.5 9.5l-2 5-5 2 2-5z"/>',
-        # Offre 4 — Autonomie Réseaux : icône formation / mortier diplôme
         '<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342"/>'
       ]
-      # Numéros CMS des offres affichées (correspondent aux keys offerN_xxx en DB)
       visible_offers = [2, 3, 4]
     %>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
       <% visible_offers.each_with_index do |i, idx| %>
         <% recommended = c("offer#{i}_recommended") %>
-        <% is_recommended = recommended.present? %>
-        <div class="card-offer p-8 lg:p-10 flex flex-col relative" data-controller="reveal offer-modal" data-reveal-delay="<%= idx * 150 %>" data-offer="offer<%= i %>" <%= raw 'style="border:2px solid rgba(252,223,181,0.45);box-shadow:0 0 40px rgba(252,223,181,0.08);overflow:visible"' if is_recommended %>>
-          <% if is_recommended %>
-            <div class="absolute" style="top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#fcdfb5,#f5cb8e);color:#4A3F38;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,0.20);z-index:2">
+        <% dark = recommended.present? %>
+        <%
+          ink_text   = dark ? "#ffffff" : "var(--color-ink)"
+          soft_text  = dark ? "rgba(246,241,232,0.72)" : "var(--color-ink-soft)"
+          taupe_text = dark ? "rgba(246,241,232,0.55)" : "var(--color-taupe)"
+          price_col  = dark ? "#f2b8cd" : "var(--color-primary)"
+          icon_bg    = dark ? "rgba(255,255,255,0.10)" : "var(--color-blush)"
+          divider    = dark ? "rgba(246,241,232,0.15)" : "rgba(150,129,107,0.15)"
+          card_cls   = dark ? "card-offer-dark" : "card-offer"
+          link_col   = dark ? "#f2b8cd" : "var(--color-primary)"
+        %>
+        <div class="<%= card_cls %> p-8 lg:p-10 flex flex-col relative <%= 'lg:-translate-y-4' if dark %>" data-controller="reveal offer-modal" data-reveal-direction="up" data-reveal-delay="<%= idx * 150 %>" data-offer="offer<%= i %>" style="overflow:visible">
+          <% if dark %>
+            <div class="absolute" style="top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#d95c84,#ac6167);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px rgba(217,92,132,0.4);z-index:2">
               <%= recommended %>
             </div>
           <% end %>
-          <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6" style="background:rgba(252,223,181,0.10)">
-            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><%= raw offer_icons[idx] %></svg>
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background:<%= icon_bg %>">
+            <svg class="w-6 h-6" style="color:<%= price_col %>" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><%= raw offer_icons[idx] %></svg>
           </div>
 
-          <%# Sous-titre type d'offre (uppercase petit) %>
-          <p class="font-body uppercase mb-2" style="font-size:11px;letter-spacing:2px;color:rgba(252,223,181,0.55)"><%= c("offer#{i}_subtitle") %></p>
-
-          <%# Nom court de l'offre %>
-          <h3 class="font-body text-light font-medium mb-3" style="font-size:22px;letter-spacing:0.3px"><%= c("offer#{i}_title") %></h3>
-
-          <%# Prix mis en évidence
-              letter-spacing négatif pour compenser la queue cursive de la police "Bryndan Write" :
-              les glyphes script ont un trait final qui crée une illusion d'espace avant le caractère suivant. %>
-          <p class="font-accent text-accent mb-1" style="font-size:24px;letter-spacing:-0.04em"><%= c("offer#{i}_price") %></p>
-
-          <%# Badge texte seul (sans encadrement) — juste sous le prix, 1 ligne, centré. %>
+          <p class="font-accent uppercase mb-2" style="font-size:11px;letter-spacing:2px;font-weight:600;color:<%= taupe_text %>"><%= c("offer#{i}_subtitle") %></p>
+          <h3 class="font-display mb-3" style="font-size:24px;font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;color:<%= ink_text %>"><%= c("offer#{i}_title") %></h3>
+          <p class="font-display <%= c("offer#{i}_badge").present? ? 'mb-2' : 'mb-5' %>" style="font-size:24px;font-weight:700;color:<%= price_col %>;line-height:1.15"><%= c("offer#{i}_price") %></p>
           <% if c("offer#{i}_badge").present? %>
-            <p class="font-body mb-5 text-center" style="font-size:12px;font-weight:500;color:rgba(252,223,181,0.85);letter-spacing:0.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><%= c("offer#{i}_badge") %></p>
+            <p class="font-accent mb-5 inline-flex items-center gap-1.5" style="font-size:11.5px;font-weight:600;color:<%= price_col %>;letter-spacing:0.3px">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.3 4.8 17l1-5.8L1.6 7.1l5.8-.8z"/></svg>
+              <%= c("offer#{i}_badge") %>
+            </p>
           <% end %>
 
-          <%# Spacer si pas de badge (pour conserver l'espacement vertical entre prix et "pour qui") %>
-          <% unless c("offer#{i}_badge").present? %>
-            <div class="mb-5"></div>
-          <% end %>
-
-          <%# Pour qui ? — version courte pour auto-qualification visible directement %>
           <% if c("offer#{i}_for_who").present? %>
-            <div class="mb-5 pb-5" style="border-bottom:1px solid rgba(246,241,232,0.10)">
-              <p class="font-body uppercase mb-1.5" style="font-size:10px;letter-spacing:2px;color:rgba(252,223,181,0.55)">Pour qui ?</p>
-              <p class="font-body" style="font-size:13px;color:rgba(246,241,232,0.75);line-height:1.6"><%= c("offer#{i}_for_who") %></p>
+            <div class="mb-5 pb-5" style="border-bottom:1px solid <%= divider %>">
+              <p class="font-accent uppercase mb-1.5" style="font-size:10px;letter-spacing:2px;font-weight:600;color:<%= taupe_text %>">Pour qui ?</p>
+              <p class="font-body" style="font-size:13px;color:<%= soft_text %>;line-height:1.6"><%= c("offer#{i}_for_who") %></p>
             </div>
           <% end %>
 
-          <%# Description / valeur ajoutée %>
-          <p class="font-body leading-relaxed mb-8 flex-1" style="font-size:14px;color:rgba(246,241,232,0.65);line-height:1.8">
-            <%= c("offer#{i}_text") %>
-          </p>
+          <p class="font-body mb-8 flex-1" style="font-size:14px;color:<%= soft_text %>;line-height:1.8"><%= c("offer#{i}_text") %></p>
 
-          <button type="button" data-action="offer-modal#open" class="inline-flex items-center font-body text-accent hover:opacity-70 transition-opacity cursor-pointer mt-auto" style="font-size:13px;letter-spacing:1px;background:none;border:none;padding:0;text-align:left">En savoir plus &rarr;</button>
+          <button type="button" data-action="offer-modal#open" class="inline-flex items-center font-accent hover:opacity-70 transition-opacity cursor-pointer mt-auto" style="font-size:13px;letter-spacing:1px;font-weight:600;color:<%= link_col %>;background:none;border:none;padding:0;text-align:left">En savoir plus &rarr;</button>
         </div>
       <% end %>
     </div>
   </div>
 </section>
 
-<%# ── Modals offres ──
-   1 modal par offre (4 au total), tout le contenu vient du CMS (/admin/site_contents).
-   Chaque modal : promesse / pour qui / ce que comprend l'offre (liste) / bénéfice client.
-   La liste "comprend" est saisie dans l'admin avec 1 item par ligne (textarea). %>
-
+<%# ── Modals offres ── %>
 <% visible_offers.each_with_index do |i, idx| %>
   <div id="modal-offer<%= i %>" style="display:none;position:fixed;inset:0;z-index:50;align-items:center;justify-content:center;padding:20px">
-    <div data-overlay style="position:absolute;inset:0;background:rgba(0,0,0,0.60);opacity:0;transition:opacity 0.3s ease"></div>
-    <div data-panel style="position:relative;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;background:#f6f1e8;border:1px solid rgba(252,223,181,0.50);border-radius:20px;padding:40px 32px;transform:translateY(30px);opacity:0;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease">
-      <button data-close style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(74,63,56,0.08);border:1px solid rgba(74,63,56,0.15);color:rgba(74,63,56,0.50);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">&times;</button>
+    <div data-overlay style="position:absolute;inset:0;background:rgba(172,97,103,0.45);opacity:0;transition:opacity 0.3s ease"></div>
+    <div data-panel style="position:relative;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;background:#ffffff;border:1px solid rgba(217,92,132,0.25);border-radius:20px;padding:40px 32px;transform:translateY(30px);opacity:0;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;box-shadow:0 30px 70px rgba(172,97,103,0.18)">
+      <button data-close style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:var(--color-blush);border:none;color:var(--color-rose);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">&times;</button>
 
-      <%# En-tête : icône + sous-titre + titre + prix %>
-      <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-5" style="background:rgba(74,63,56,0.08)">
-        <svg class="w-6 h-6" style="color:#4A3F38" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><%= raw offer_icons[idx] %></svg>
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:var(--color-blush)">
+        <svg class="w-6 h-6" style="color:var(--color-primary)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><%= raw offer_icons[idx] %></svg>
       </div>
-      <p class="font-body uppercase mb-2" style="font-size:11px;letter-spacing:2px;color:rgba(74,63,56,0.55)"><%= c("offer#{i}_subtitle") %></p>
-      <h3 class="font-display mb-3" style="font-size:28px;font-weight:400;color:#4A3F38;line-height:1.2"><%= c("offer#{i}_title") %></h3>
-      <div class="inline-block px-4 py-2 mb-6" style="background:rgba(252,223,181,0.40);border-radius:999px;border:1px solid rgba(252,223,181,0.60)">
-        <span class="font-body" style="font-size:15px;font-weight:600;color:#4A3F38"><%= c("offer#{i}_price") %></span>
+      <p class="font-accent uppercase mb-2" style="font-size:11px;letter-spacing:2px;font-weight:600;color:var(--color-taupe)"><%= c("offer#{i}_subtitle") %></p>
+      <h3 class="font-display mb-3" style="font-size:28px;font-weight:700;text-transform:uppercase;color:var(--color-ink);line-height:1.1"><%= c("offer#{i}_title") %></h3>
+      <div class="inline-block px-4 py-2 mb-6" style="background:var(--color-blush);border-radius:999px">
+        <span class="font-display" style="font-size:16px;font-weight:700;color:var(--color-rose)"><%= c("offer#{i}_price") %></span>
       </div>
 
-      <%# Promesse — italique encadrée %>
       <% promesse = c("offer#{i}_promesse") %>
       <% if promesse.present? %>
-        <p class="font-body mb-6" style="font-size:15px;color:rgba(74,63,56,0.85);line-height:1.7;font-style:italic">
-          « <%= promesse %> »
-        </p>
+        <p class="font-body mb-6" style="font-size:15px;color:var(--color-ink);line-height:1.7;font-style:italic">« <%= promesse %> »</p>
       <% end %>
 
-      <%# (Section "Pour qui ?" longue retirée des modals — le "Pour qui ?" court reste sur les cards) %>
-
-      <%# Ce que comprend l'offre — liste éditée 1 item par ligne dans l'admin %>
-      <% comprend_raw = c("offer#{i}_comprend") %>
-      <% comprend_items = comprend_raw.to_s.split(/\r?\n/).map(&:strip).reject(&:empty?) %>
+      <% comprend_items = c("offer#{i}_comprend").to_s.split(/\r?\n/).map(&:strip).reject(&:empty?) %>
       <% if comprend_items.any? %>
         <div class="mb-6">
-          <h4 class="font-body uppercase mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(74,63,56,0.55)">Ce que comprend l'offre</h4>
+          <h4 class="font-accent uppercase mb-3" style="font-size:11px;letter-spacing:2px;font-weight:600;color:var(--color-taupe)">Ce que comprend l'offre</h4>
           <ul class="space-y-2">
             <% comprend_items.each do |item| %>
               <li class="flex items-start gap-2.5">
-                <svg class="w-4 h-4 mt-0.5 shrink-0" style="color:rgba(252,180,90,0.85)" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                </svg>
-                <span class="font-body" style="font-size:14px;color:rgba(74,63,56,0.80);line-height:1.6"><%= item %></span>
+                <svg class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--color-primary)" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span class="font-body" style="font-size:14px;color:var(--color-ink);line-height:1.6"><%= item %></span>
               </li>
             <% end %>
           </ul>
         </div>
       <% end %>
 
-      <%# Bénéfice client — encadré or %>
       <% benefice = c("offer#{i}_benefice") %>
       <% if benefice.present? %>
-        <div class="px-5 py-4 mb-8" style="background:rgba(252,223,181,0.25);border-left:3px solid rgba(252,180,90,0.60);border-radius:6px">
-          <h4 class="font-body uppercase mb-1.5" style="font-size:10px;letter-spacing:2px;color:rgba(74,63,56,0.55)">Bénéfice client</h4>
-          <p class="font-body" style="font-size:14px;color:#4A3F38;line-height:1.6;font-weight:500"><%= benefice %></p>
+        <div class="px-5 py-4 mb-8" style="background:var(--color-blush-soft);border-left:3px solid var(--color-primary);border-radius:6px">
+          <h4 class="font-accent uppercase mb-1.5" style="font-size:10px;letter-spacing:2px;font-weight:600;color:var(--color-taupe)">Bénéfice client</h4>
+          <p class="font-body" style="font-size:14px;color:var(--color-ink);line-height:1.6;font-weight:500"><%= benefice %></p>
         </div>
       <% end %>
 
-      <button type="button" data-controller="contact-modal" data-action="click->contact-modal#open" class="font-body inline-flex items-center justify-center" style="padding:14px 36px;font-size:14px;background:#4A3F38;color:#f6f1e8;border:none;border-radius:50px;letter-spacing:0.5px;transition:opacity 0.3s;cursor:pointer" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Me contacter pour cette offre</button>
+      <button type="button" data-controller="contact-modal" data-action="click->contact-modal#open" class="btn-primary btn-lg font-accent inline-flex items-center justify-center">Me contacter pour cette offre</button>
     </div>
   </div>
 <% end %>
 
-<div class="section-line max-w-[1200px] mx-auto"></div>
+<%# ═══════════════════════════════ BANDE CTA (rose pleine ou photo floutée) ═══════════════════════════════ %>
+<section class="cta-band relative overflow-hidden">
+  <% if c_image("cta_image") %>
+    <%# Photo de fond floutée (remplace le dégradé) + voile rose pour la lisibilité %>
+    <div class="absolute inset-0" style="z-index:0">
+      <%= image_tag c_image("cta_image"), class: "w-full h-full object-cover", style: "filter:blur(9px);transform:scale(1.12)", alt: "" %>
+      <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(217,92,132,0.72), rgba(172,97,103,0.80))"></div>
+    </div>
+  <% end %>
+  <div class="relative max-w-[1000px] mx-auto px-6 py-20 lg:py-28 text-center" style="z-index:1" data-controller="reveal" data-reveal-direction="scale">
+    <% if c("cta_eyebrow").present? %>
+      <p class="eyebrow eyebrow-c eyebrow-light mb-6" style="color:rgba(255,255,255,0.85)"><%= c("cta_eyebrow") %></p>
+    <% end %>
+    <h2 class="font-display mb-8" style="font-size:clamp(30px,4.2vw,52px);font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;line-height:1.05;color:#ffffff">
+      <%= c("cta_title").presence || "Prête à donner une vraie voix à votre communication ?" %>
+    </h2>
+    <% if c("cta_description").present? %>
+      <p class="font-body mb-12 max-w-xl mx-auto" style="font-size:17px;color:rgba(255,255,255,0.9);line-height:1.8">
+        <%= c("cta_description") %>
+      </p>
+    <% end %>
+    <button type="button" data-controller="contact-modal" data-action="click->contact-modal#open" class="btn-invert btn-lg font-accent" style="cursor:pointer"><%= c("cta_button").presence || "Prendre contact" %></button>
+  </div>
+</section>
 
-<%# ══════════════════════════════════════ 8. INSTAGRAM ══════════════════════════════════════ %>
-<section id="feed" class="bg-dark section-py">
+<%# ═══════════════════════════════ INSTAGRAM ═══════════════════════════════ %>
+<section id="feed" class="section-py" style="background:var(--color-cream)">
   <div class="max-w-[1000px] mx-auto px-6">
     <div class="text-center mb-16" data-controller="reveal">
-      <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Réseaux sociaux</p>
-      <h3 class="font-display text-light mb-4" style="font-size:clamp(32px,4vw,48px);font-weight:400">
-        Retrouve-moi sur Instagram
-      </h3>
+      <p class="eyebrow eyebrow-c mb-5">Réseaux sociaux</p>
+      <h3 class="h-lg mb-4" style="font-size:clamp(28px,3.6vw,42px)">Retrouvez-moi sur Instagram</h3>
       <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer"
-         class="font-accent text-accent hover:opacity-60 transition-opacity sparkle-wrap" style="font-size:34px;letter-spacing:0.05em">
+         class="font-display hover:opacity-60 transition-opacity" style="font-size:22px;font-weight:700;color:var(--color-primary)">
         <%= c("instagram_handle") %>
-        <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
       </a>
     </div>
 
     <% embed_id = elfsight_app_id %>
     <% if embed_id.present? %>
-      <%# Elfsight Instagram Feed Widget %>
       <div data-controller="reveal" data-reveal-direction="scale">
         <div class="elfsight-app-<%= embed_id %>" data-elfsight-app-lazy></div>
       </div>
@@ -356,27 +302,24 @@
             <% if post.photo.attached? %>
               <%= image_tag post.photo.variant(resize_to_fill: [400, 400]), class: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105", alt: post.caption&.truncate(80) %>
             <% else %>
-              <div class="w-full h-full flex items-center justify-center" style="background:rgba(246,241,232,0.04)">
-                <svg class="w-10 h-10" style="color:rgba(246,241,232,0.12)" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/>
-                </svg>
+              <div class="w-full h-full flex items-center justify-center" style="background:var(--color-blush-soft)">
+                <svg class="w-10 h-10" style="color:rgba(217,92,132,0.25)" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
               </div>
             <% end %>
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5" style="background:linear-gradient(to top, rgba(74,63,56,0.95), transparent)">
-              <p class="font-body text-light leading-relaxed line-clamp-3" style="font-size:13px"><%= post.caption&.truncate(100) %></p>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5" style="background:linear-gradient(to top, rgba(172,97,103,0.92), transparent)">
+              <p class="font-body line-clamp-3" style="font-size:13px;color:#fff"><%= post.caption&.truncate(100) %></p>
             </div>
           </a>
         <% end %>
       </div>
     <% else %>
       <div class="text-center py-20">
-        <p class="font-body" style="font-size:15px;color:rgba(246,241,232,0.30)">Les publications arrivent bientôt...</p>
+        <p class="font-body" style="font-size:15px;color:var(--color-taupe)">Les publications arrivent bientôt...</p>
       </div>
     <% end %>
 
     <div class="text-center mt-14" data-controller="reveal">
-      <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer"
-         class="btn-primary font-body gap-3" style="padding:16px 36px;font-size:14px;letter-spacing:0.5px">
+      <a href="<%= c("instagram_url") %>" target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg font-accent gap-3">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         Suivre sur Instagram
       </a>
@@ -384,43 +327,29 @@
   </div>
 </section>
 
-<div class="section-line max-w-[1200px] mx-auto"></div>
-
-<%# ══════════════════════════════════════ 9. TÉMOIGNAGES ══════════════════════════════════ %>
-<section id="temoignages" class="bg-dark relative overflow-hidden section-py">
-  <svg class="absolute pointer-events-none" style="width:100%;height:100%;top:0;left:0;opacity:0.05;z-index:0" viewBox="0 0 800 400" fill="#f6f1e8">
-    <path d="M700,60 L701.5,64 L705.5,65.5 L701.5,67 L700,71 L698.5,67 L694.5,65.5 L698.5,64Z"/>
-    <path d="M50,300 L51,303 L54,304 L51,305 L50,308 L49,305 L46,304 L49,303Z"/>
-    <path d="M400,350 L401,353 L404,354 L401,355 L400,358 L399,355 L396,354 L399,353Z"/>
-  </svg>
+<%# ═══════════════════════════════ TÉMOIGNAGES ═══════════════════════════════ %>
+<% if @testimonials.any? %>
+<section id="temoignages" class="section-py" style="background:var(--color-paper)">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="text-center mb-20" data-controller="reveal" data-reveal-direction="scale">
-      <p class="font-body uppercase mb-5" style="font-size:11px;letter-spacing:4px;color:rgba(246,241,232,0.40)">Témoignages</p>
-      <h2>
-        <span class="title-badge font-body" style="font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.25">
-          Ce qu'elles en disent
-        </span>
-      </h2>
+    <div class="text-center mb-16 lg:mb-20" data-controller="reveal" data-reveal-direction="up">
+      <p class="eyebrow eyebrow-c">Témoignages</p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-10">
+    <% tcount = @testimonials.size %>
+    <% grid_cls = tcount == 1 ? "max-w-2xl mx-auto" : (tcount == 2 ? "grid md:grid-cols-2 gap-8 max-w-4xl mx-auto" : "grid md:grid-cols-3 gap-8") %>
+    <div class="<%= grid_cls %>">
       <% @testimonials.each_with_index do |testimonial, idx| %>
-        <div class="card-glass p-12 relative overflow-hidden" data-controller="reveal" data-reveal-delay="<%= idx * 200 %>">
-          <span class="absolute top-6 left-7 pointer-events-none font-display" style="font-size:100px;color:rgba(252,223,181,0.15);line-height:0.5">&ldquo;</span>
-          <div class="relative" style="z-index:1;padding-top:40px">
-            <p class="font-body text-light italic leading-relaxed mb-8" style="font-size:15px;line-height:2;opacity:0.80">
-              "<%= testimonial.quote %>"
-            </p>
-            <div style="width:40px;height:1px;background:rgba(252,223,181,0.30);margin-bottom:16px"></div>
-            <p class="font-body text-accent" style="font-size:14px;font-weight:500"><%= testimonial.name %></p>
-            <p class="font-body" style="font-size:12px;color:rgba(246,241,232,0.40);letter-spacing:1px"><%= testimonial.role %></p>
-          </div>
+        <div class="card-glass p-10 relative" data-controller="reveal" data-reveal-direction="up" data-reveal-delay="<%= idx * 150 %>">
+          <svg class="w-10 h-10 mb-6" style="color:var(--color-blush)" fill="currentColor" viewBox="0 0 24 24"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+          <p class="font-body mb-8" style="font-size:15px;line-height:1.85;color:var(--color-ink)"><%= testimonial.quote %></p>
+          <div style="width:36px;height:2px;background:var(--color-primary);margin-bottom:16px"></div>
+          <p class="font-display" style="font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;color:var(--color-ink)"><%= testimonial.name %></p>
+          <p class="font-body" style="font-size:12px;color:var(--color-taupe);letter-spacing:0.5px"><%= testimonial.role %></p>
         </div>
       <% end %>
     </div>
   </div>
 </section>
-
-<div class="section-line max-w-[1200px] mx-auto"></div>
+<% end %>
 
 <%= render "shared/footer" %>

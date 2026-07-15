@@ -8,7 +8,7 @@
   <div data-newsletter-popup-target="overlay"
        data-action="click->newsletter-popup#closeOnBackground"
        class="absolute inset-0 backdrop-blur-sm"
-       style="background:rgba(0,0,0,0.40);opacity:0;transition:opacity 0.5s ease">
+       style="background:rgba(172,97,103,0.35);opacity:0;transition:opacity 0.5s ease">
   </div>
 
   <%# Panel — slide depuis la droite %>
@@ -16,15 +16,15 @@
        class="absolute top-0 right-0 h-full flex items-center"
        style="width:100%;max-width:420px;padding:24px;transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.32,0.72,0,1)">
 
-    <div class="relative w-full rounded-3xl shadow-2xl overflow-hidden" style="background:#4A3F38;border:1px solid rgba(246,241,232,0.12)">
+    <div class="relative w-full rounded-3xl overflow-hidden" style="background:#ffffff;border:1px solid rgba(217,92,132,0.18);box-shadow:0 30px 70px rgba(172,97,103,0.20)">
 
       <%# Decorative top accent %>
-      <div style="height:4px;background:linear-gradient(90deg, #fcdfb5, rgba(252,223,181,0.3))"></div>
+      <div style="height:4px;background:linear-gradient(90deg, #d95c84, #f2d9e6)"></div>
 
       <%# Close button %>
       <button data-action="newsletter-popup#close" type="button"
               class="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full"
-              style="background:rgba(246,241,232,0.06);color:rgba(246,241,232,0.40);transition:background 0.2s">
+              style="background:var(--color-blush);color:var(--color-rose);transition:background 0.2s">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
@@ -33,22 +33,20 @@
       <%# Form view %>
       <div data-newsletter-popup-target="formWrapper" class="p-8 pt-10 text-center">
         <div class="mb-5">
-          <span class="font-accent" style="font-size:42px;letter-spacing:0.05em;color:#fcdfb5">
-            Un cadeau
+          <span class="font-accent uppercase" style="font-size:12px;letter-spacing:3px;font-weight:600;color:var(--color-taupe)">
+            Newsletter
           </span>
         </div>
 
-        <h3 class="font-display mb-3" style="font-size:24px;font-weight:400;line-height:1.3;color:#f6f1e8">
-          <span class="title-badge" style="padding:8px 20px;font-size:22px">
-            Reçois ma vidéo gratuite
-          </span>
+        <h3 class="font-display mb-4" style="font-size:26px;font-weight:700;line-height:1.2;color:var(--color-ink)">
+          👋 <span class="title-badge">Ne partez pas tout de suite !</span>
         </h3>
-        <p class="font-body mb-8" style="font-size:14px;color:rgba(246,241,232,0.55);line-height:1.8">
-          Attire les bonnes personnes sur les réseaux<br>sans y passer ta vie.
+        <p class="font-body mb-8" style="font-size:14px;color:var(--color-ink-soft);line-height:1.7">
+          Rejoignez ma newsletter et profitez d'astuces, d'idées et d'inspiration 💌
         </p>
 
         <p data-newsletter-popup-target="errorMessage"
-           style="display:none;background:rgba(252,165,165,0.10);color:#fca5a5;border:1px solid rgba(252,165,165,0.20);font-size:13px;padding:8px 16px;border-radius:8px;margin-bottom:16px"></p>
+           style="display:none;background:rgba(252,165,165,0.12);color:#c0392b;border:1px solid rgba(252,165,165,0.30);font-size:13px;padding:8px 16px;border-radius:8px;margin-bottom:16px"></p>
 
         <form data-newsletter-popup-target="formElement"
               action="<%= subscribers_path %>"
@@ -60,43 +58,43 @@
                  type="text" name="subscriber[first_name]" required
                  placeholder="Ton prénom"
                  class="font-body"
-                 style="width:100%;background:transparent;color:#f6f1e8;font-size:15px;padding:12px 0;border:none;border-bottom:1px solid rgba(246,241,232,0.20);text-align:center;outline:none">
+                 style="width:100%;background:var(--color-cream);color:var(--color-ink);font-size:15px;padding:12px 16px;border:1px solid rgba(150,129,107,0.20);border-radius:10px;text-align:center;outline:none">
 
           <input data-newsletter-popup-target="email"
                  type="email" name="subscriber[email]" required
                  placeholder="Ton adresse email"
                  class="font-body"
-                 style="width:100%;background:transparent;color:#f6f1e8;font-size:15px;padding:12px 0;border:none;border-bottom:1px solid rgba(246,241,232,0.20);text-align:center;outline:none">
+                 style="width:100%;background:var(--color-cream);color:var(--color-ink);font-size:15px;padding:12px 16px;border:1px solid rgba(150,129,107,0.20);border-radius:10px;text-align:center;outline:none">
 
-          <div style="padding-top:8px">
+          <div style="padding-top:4px">
             <button data-newsletter-popup-target="submitBtn" type="submit"
-                    class="btn-primary font-body"
-                    style="width:100%;padding:16px 32px;font-size:15px;letter-spacing:0.5px;cursor:pointer">
-              Je reçois ma vidéo →
+                    class="btn-primary font-accent uppercase"
+                    style="width:100%;padding:15px 32px;font-size:13px;letter-spacing:1.5px;cursor:pointer">
+              Je m'abonne →
             </button>
           </div>
         </form>
 
         <button data-action="newsletter-popup#close" type="button"
                 class="font-body"
-                style="margin-top:16px;font-size:12px;color:rgba(246,241,232,0.30);background:none;border:none;cursor:pointer">
+                style="margin-top:16px;font-size:12px;color:var(--color-taupe);background:none;border:none;cursor:pointer">
           Non merci, pas maintenant
         </button>
       </div>
 
       <%# Success view %>
       <div data-newsletter-popup-target="success" style="display:none" class="p-8 text-center">
-        <div style="width:64px;height:64px;border-radius:50%;background:rgba(134,239,172,0.10);display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
-          <svg style="width:32px;height:32px;color:#86efac" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--color-blush);display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+          <svg style="width:32px;height:32px;color:var(--color-primary)" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
           </svg>
         </div>
-        <h4 class="font-display" style="font-size:24px;font-weight:400;color:#f6f1e8;margin-bottom:12px">C'est envoyé !</h4>
-        <p class="font-body" style="font-size:14px;color:rgba(246,241,232,0.50);line-height:1.8;margin-bottom:24px">
-          Vérifie ta boîte mail (et tes spams).
+        <h4 class="font-display" style="font-size:24px;font-weight:700;color:var(--color-ink);margin-bottom:12px">Bienvenue !</h4>
+        <p class="font-body" style="font-size:14px;color:var(--color-ink-soft);line-height:1.7;margin-bottom:24px">
+          Tu es bien inscrit·e. Vérifie ta boîte mail (et tes spams).
         </p>
         <button data-action="newsletter-popup#close" type="button"
-                class="font-body" style="color:#fcdfb5;font-size:14px;background:none;border:none;cursor:pointer">
+                class="font-accent uppercase" style="color:var(--color-primary);font-size:13px;letter-spacing:1px;font-weight:600;background:none;border:none;cursor:pointer">
           Fermer
         </button>
       </div>

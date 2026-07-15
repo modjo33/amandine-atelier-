@@ -9,13 +9,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-dark font-body text-light min-h-screen">
+  <body class="font-body text-ink min-h-screen" style="background:var(--color-cream)">
     <div class="flex min-h-screen">
 
       <%# ── Sidebar ── %>
-      <aside class="hidden lg:flex flex-col w-64 shrink-0" style="background:rgba(246,241,232,0.03);border-right:1px solid rgba(246,241,232,0.08)">
-        <div class="p-6" style="border-bottom:1px solid rgba(246,241,232,0.08)">
-          <a href="/" class="font-body text-light block" style="font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase">
+      <aside class="hidden lg:flex flex-col w-64 shrink-0" style="background:#ffffff;border-right:1px solid rgba(150,129,107,0.15)">
+        <div class="p-6" style="border-bottom:1px solid rgba(150,129,107,0.15)">
+          <a href="/" class="font-body text-ink block" style="font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase">
             Amandine Atelier
           </a>
           <p class="font-accent text-accent mt-1" style="font-size:18px">Admin</p>
@@ -31,18 +31,18 @@
           <%= admin_sidebar_link "Messages", admin_contacts_path, "mail" %>
         </nav>
 
-        <div class="p-4" style="border-top:1px solid rgba(246,241,232,0.08)">
-          <%= link_to "← Voir le site", root_path, class: "admin-sidebar-link", style: "font-size:13px;color:rgba(246,241,232,0.45)" %>
+        <div class="p-4" style="border-top:1px solid rgba(150,129,107,0.15)">
+          <%= link_to "← Voir le site", root_path, class: "admin-sidebar-link", style: "font-size:13px;color:var(--color-ink-soft)" %>
           <% if admin_signed_in? %>
-            <%= link_to "Déconnexion", destroy_admin_session_path, data: { turbo_method: :delete }, class: "admin-sidebar-link mt-2 block", style: "font-size:13px;color:rgba(246,241,232,0.35)" %>
+            <%= link_to "Déconnexion", destroy_admin_session_path, data: { turbo_method: :delete }, class: "admin-sidebar-link mt-2 block", style: "font-size:13px;color:var(--color-taupe)" %>
           <% end %>
         </div>
       </aside>
 
       <%# ── Mobile header ── %>
       <div class="flex-1 flex flex-col min-w-0">
-        <header class="lg:hidden flex items-center justify-between px-4 py-3" style="border-bottom:1px solid rgba(246,241,232,0.08);background:rgba(246,241,232,0.03)">
-          <a href="/" class="font-body text-light" style="font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase">Admin</a>
+        <header class="lg:hidden flex items-center justify-between px-4 py-3" style="border-bottom:1px solid rgba(150,129,107,0.15);background:#ffffff">
+          <a href="/" class="font-body text-ink" style="font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase">Admin</a>
           <div class="flex items-center gap-3">
             <a href="<%= admin_dashboard_path %>" class="admin-mobile-btn">🏠</a>
             <a href="<%= admin_site_contents_path %>" class="admin-mobile-btn">✏️</a>
@@ -56,12 +56,12 @@
 
         <%# ── Flash messages ── %>
         <% if notice.present? %>
-          <div class="mx-6 mt-4 px-5 py-3 rounded-xl" style="background:rgba(134,239,172,0.10);border:1px solid rgba(134,239,172,0.20);color:#86efac;font-size:14px">
+          <div class="mx-6 mt-4 px-5 py-3 rounded-xl" style="background:rgba(134,239,172,0.15);border:1px solid rgba(134,239,172,0.4);color:#15803d;font-size:14px">
             <%= notice %>
           </div>
         <% end %>
         <% if alert.present? %>
-          <div class="mx-6 mt-4 px-5 py-3 rounded-xl" style="background:rgba(252,165,165,0.10);border:1px solid rgba(252,165,165,0.20);color:#fca5a5;font-size:14px">
+          <div class="mx-6 mt-4 px-5 py-3 rounded-xl" style="background:rgba(252,165,165,0.15);border:1px solid rgba(220,38,38,0.3);color:#c0392b;font-size:14px">
             <%= alert %>
           </div>
         <% end %>

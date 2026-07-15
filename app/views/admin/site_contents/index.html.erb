@@ -1,10 +1,10 @@
 <div class="mb-10">
-  <h1 class="font-display text-light" style="font-size:clamp(28px,3vw,38px);font-weight:400">Contenu du site</h1>
-  <p class="font-body mt-2" style="font-size:14px;color:rgba(246,241,232,0.45)">Clique sur une section pour modifier ses textes et images.</p>
+  <h1 class="font-display text-ink" style="font-size:clamp(28px,3vw,38px);font-weight:400">Contenu du site</h1>
+  <p class="font-body mt-2" style="font-size:14px;color:var(--color-taupe)">Clique sur une section pour modifier ses textes et images.</p>
 </div>
 
 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-  <% section_order = %w[hero marquee problem solution offers counters testimonials newsletter instagram footer] %>
+  <% section_order = %w[hero marquee problem solution offers counters testimonials newsletter instagram cta footer] %>
   <% section_order.each do |section_key| %>
     <% contents = @sections[section_key] %>
     <% next unless contents %>
@@ -14,17 +14,17 @@
       <div class="flex items-start gap-4">
         <div class="admin-section-icon"><%= info[:icon] %></div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-body text-light group-hover:text-accent transition-colors" style="font-size:16px;font-weight:500">
+          <h3 class="font-body text-ink group-hover:text-accent transition-colors" style="font-size:16px;font-weight:500">
             <%= info[:label] %>
           </h3>
-          <p class="font-body mt-1" style="font-size:13px;color:rgba(246,241,232,0.40)">
+          <p class="font-body mt-1" style="font-size:13px;color:var(--color-taupe)">
             <%= info[:description] %>
           </p>
-          <p class="font-body mt-3" style="font-size:12px;color:rgba(252,223,181,0.50)">
+          <p class="font-body mt-3" style="font-size:12px;color:var(--color-primary)">
             <%= contents.count %> élément<%= "s" if contents.count > 1 %>
           </p>
         </div>
-        <svg class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-1" style="color:rgba(252,223,181,0.60)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-1" style="color:var(--color-primary)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
         </svg>
       </div>

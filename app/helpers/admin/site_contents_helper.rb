@@ -9,6 +9,7 @@ module Admin::SiteContentsHelper
     "newsletter" => { label: "Newsletter", icon: "📧", description: "Section inscription newsletter" },
     "instagram" => { label: "Instagram", icon: "📸", description: "Lien et handle Instagram" },
     "counters" => { label: "Chiffres clés", icon: "🔢", description: "Les compteurs animés (stats)" },
+    "cta" => { label: "Bande d'appel à l'action", icon: "📣", description: "Le bandeau rose « Prête à donner une vraie voix… » (avant Instagram) — textes + photo de fond floutée optionnelle" },
     "footer" => { label: "Footer", icon: "📋", description: "Pied de page" }
   }.freeze
 
@@ -19,9 +20,9 @@ module Admin::SiteContentsHelper
     "hero_cta_primary" => "Bouton principal",
     "hero_cta_secondary" => "Bouton secondaire",
     "hero_image" => "Photo hero",
-    "marquee_prefix" => "Texte avant le chiffre",
-    "marquee_highlight" => "Chiffre mis en avant",
-    "marquee_suffix" => "Texte après le chiffre",
+    "marquee_prefix" => "Texte de gauche",
+    "marquee_highlight" => "Texte mis en avant (au centre, en gras)",
+    "marquee_suffix" => "Texte de droite",
     "problem_title" => "Titre de la section",
     "problem_card1_title" => "Carte 1 — Titre",
     "problem_card1_text" => "Carte 1 — Texte",
@@ -105,6 +106,12 @@ module Admin::SiteContentsHelper
     "counter3_number" => "Compteur 3 — Chiffre",
     "counter3_suffix" => "Compteur 3 — Suffixe",
     "counter3_label" => "Compteur 3 — Label",
+    "counters_image" => "Photo de fond (optionnelle — sera automatiquement floutée derrière les chiffres ; laisser vide = fond marron uni)",
+    "cta_eyebrow" => "Sur-titre (petit texte au-dessus)",
+    "cta_title" => "Titre principal",
+    "cta_description" => "Texte descriptif",
+    "cta_button" => "Texte du bouton",
+    "cta_image" => "Photo de fond (optionnelle — sera automatiquement floutée derrière le texte ; laisser vide = dégradé rose)",
     "footer_tagline" => "Accroche cursive",
     "footer_description" => "Description"
   }.freeze

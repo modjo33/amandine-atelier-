@@ -1,8 +1,8 @@
 <%= form_with model: [:admin, post], class: "space-y-6", multipart: true do |f| %>
   <% if post.errors.any? %>
-    <div class="rounded-xl p-4" style="background:rgba(252,165,165,0.10);border:1px solid rgba(252,165,165,0.20)">
-      <p class="font-body font-medium mb-2" style="color:#fca5a5"><%= pluralize(post.errors.count, "erreur") %> :</p>
-      <ul class="list-disc list-inside text-sm font-body" style="color:rgba(252,165,165,0.80)">
+    <div class="rounded-xl p-4" style="background:rgba(252,165,165,0.15);border:1px solid rgba(220,38,38,0.3)">
+      <p class="font-body font-medium mb-2" style="color:#c0392b"><%= pluralize(post.errors.count, "erreur") %> :</p>
+      <ul class="list-disc list-inside text-sm font-body" style="color:#c0392b">
         <% post.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
@@ -37,13 +37,13 @@
     </div>
     <div class="admin-field-card flex items-center gap-3">
       <%= f.check_box :active, class: "w-5 h-5 rounded accent-accent" %>
-      <label class="font-body text-light" style="font-size:14px">Actif</label>
+      <label class="font-body text-ink" style="font-size:14px">Actif</label>
     </div>
   </div>
 
   <div class="flex items-center gap-4 pt-2">
     <%= f.submit post.persisted? ? "Mettre à jour" : "Créer le post",
         class: "btn-primary font-body cursor-pointer", style: "padding:14px 36px;font-size:15px" %>
-    <%= link_to "Annuler", admin_posts_path, class: "font-body hover:text-accent transition-colors", style: "font-size:14px;color:rgba(246,241,232,0.40)" %>
+    <%= link_to "Annuler", admin_posts_path, class: "font-body hover:text-accent transition-colors", style: "font-size:14px;color:var(--color-taupe)" %>
   </div>
 <% end %>

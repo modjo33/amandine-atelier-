@@ -2,9 +2,9 @@
 
 contents = [
   # ── Hero ──
-  { key: "hero_tagline", value: "Stratégie • Formation • Organisation", content_type: "text", section: "hero", position: 1 },
-  { key: "hero_title", value: "Tu gères la com'… mais c'est pas ton job ?", content_type: "text", section: "hero", position: 2 },
-  { key: "hero_description", value: "Je t'aide à structurer ta communication digitale pour qu'elle devienne un vrai levier business, sans y passer ta vie.", content_type: "text", section: "hero", position: 3 },
+  { key: "hero_tagline", value: "Accompagnement · Autonomie · Réseaux sociaux", content_type: "text", section: "hero", position: 1 },
+  { key: "hero_title", value: "Révéler votre authenticité avec une communication digitale grâce à un accompagnement humain et sur mesure.", content_type: "text", section: "hero", position: 2 },
+  { key: "hero_description", value: "Social Media Manager, j'aide les indépendants, artisans, commerçants et entreprises locales à simplifier leur présence sur les réseaux sociaux — fidèle à leur identité et à leurs objectifs.", content_type: "text", section: "hero", position: 3 },
   { key: "hero_cta_primary", value: "Découvrir la méthode", content_type: "text", section: "hero", position: 4 },
   { key: "hero_cta_secondary", value: "Voir mon Instagram", content_type: "text", section: "hero", position: 5 },
   { key: "hero_image", value: "", content_type: "image", section: "hero", position: 6 },
@@ -92,14 +92,22 @@ contents = [
 
   # ── Chiffres clés ──
   { key: "counter1_number", value: "50", content_type: "text", section: "counters", position: 1 },
-  { key: "counter1_suffix", value: "+", content_type: "text", section: "counters", position: 2 },
-  { key: "counter1_label", value: "Entreprises accompagnées", content_type: "text", section: "counters", position: 3 },
-  { key: "counter2_number", value: "3", content_type: "text", section: "counters", position: 4 },
-  { key: "counter2_suffix", value: "h", content_type: "text", section: "counters", position: 5 },
-  { key: "counter2_label", value: "Gagnées par semaine", content_type: "text", section: "counters", position: 6 },
-  { key: "counter3_number", value: "95", content_type: "text", section: "counters", position: 7 },
+  { key: "counter1_suffix", value: "M", content_type: "text", section: "counters", position: 2 },
+  { key: "counter1_label", value: "de Français utilisent les réseaux sociaux en 2025", content_type: "text", section: "counters", position: 3 },
+  { key: "counter2_number", value: "66", content_type: "text", section: "counters", position: 4 },
+  { key: "counter2_suffix", value: "%", content_type: "text", section: "counters", position: 5 },
+  { key: "counter2_label", value: "des TPE-PME françaises utilisent les réseaux sociaux pour leur activité", content_type: "text", section: "counters", position: 6 },
+  { key: "counter3_number", value: "57", content_type: "text", section: "counters", position: 7 },
   { key: "counter3_suffix", value: "%", content_type: "text", section: "counters", position: 8 },
-  { key: "counter3_label", value: "De satisfaction client", content_type: "text", section: "counters", position: 9 },
+  { key: "counter3_label", value: "des 15-25 ans découvrent des produits ou services via les réseaux sociaux", content_type: "text", section: "counters", position: 9 },
+  { key: "counters_image", value: "", content_type: "image", section: "counters", position: 10 },
+
+  # ── Bande CTA (avant Instagram) ──
+  { key: "cta_eyebrow", value: "On en parle ?", content_type: "text", section: "cta", position: 1 },
+  { key: "cta_title", value: "Prête à donner une vraie voix à votre communication ?", content_type: "text", section: "cta", position: 2 },
+  { key: "cta_description", value: "Discutons de votre projet et construisons ensemble une présence qui vous ressemble.", content_type: "text", section: "cta", position: 3 },
+  { key: "cta_button", value: "Prendre contact", content_type: "text", section: "cta", position: 4 },
+  { key: "cta_image", value: "", content_type: "image", section: "cta", position: 5 },
 
   # ── Footer ──
   { key: "footer_tagline", value: "Stratégie & sérénité", content_type: "text", section: "footer", position: 1 },
@@ -119,9 +127,7 @@ puts "✓ #{SiteContent.count} contenus créés/vérifiés"
 
 # ── Testimonials ──
 testimonials = [
-  { quote: "En 3 mois, ma visibilité a explosé. Amandine a su capter l'essence de ma marque et la traduire en stratégie concrète.", name: "Marie L.", role: "Créatrice de bijoux", position: 1 },
-  { quote: "Je me sentais perdue avec les réseaux sociaux. Aujourd'hui j'ai un planning clair et des résultats mesurables.", name: "Sophie D.", role: "Fondatrice PME", position: 2 },
-  { quote: "Grâce à l'organisation mise en place, on publie régulièrement sans stress. Les leads arrivent tout seuls.", name: "Camille R.", role: "Responsable communication", position: 3 }
+  { quote: "Merci bcp. Pour tout Amandine !!! Ta formation est vraiment top. Ce n'était pas gagné je pars de zéro !!! Tu as vraiment su capter mes attentes. Tu m'as vraiment bien aidé et je voulais te dire que j'ai de super retours ! Merci merci merci !!!", name: "Pauline V.", role: "Spécialiste traitement anti-poux au naturel", position: 1 }
 ]
 
 testimonials.each do |attrs|

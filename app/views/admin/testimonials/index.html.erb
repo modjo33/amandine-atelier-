@@ -1,7 +1,7 @@
 <div class="mb-10 flex items-center justify-between flex-wrap gap-4">
   <div>
-    <h1 class="font-display text-light" style="font-size:clamp(28px,3vw,38px);font-weight:400">Témoignages</h1>
-    <p class="font-body mt-2" style="font-size:14px;color:rgba(246,241,232,0.45)"><%= @testimonials.count %> témoignage<%= "s" if @testimonials.count > 1 %></p>
+    <h1 class="font-display text-ink" style="font-size:clamp(28px,3vw,38px);font-weight:400">Témoignages</h1>
+    <p class="font-body mt-2" style="font-size:14px;color:var(--color-taupe)"><%= @testimonials.count %> témoignage<%= "s" if @testimonials.count > 1 %></p>
   </div>
   <%= link_to new_admin_testimonial_path, class: "btn-primary font-body", style: "padding:12px 28px;font-size:14px" do %>
     + Ajouter
@@ -16,14 +16,14 @@
           <div class="flex items-center gap-3 mb-2">
             <p class="font-body text-accent" style="font-size:15px;font-weight:500"><%= testimonial.name %></p>
             <% if testimonial.role.present? %>
-              <span class="font-body" style="font-size:12px;color:rgba(246,241,232,0.40)"><%= testimonial.role %></span>
+              <span class="font-body" style="font-size:12px;color:var(--color-taupe)"><%= testimonial.role %></span>
             <% end %>
             <% unless testimonial.active? %>
-              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-body" style="background:rgba(252,165,165,0.12);color:#fca5a5">Masqué</span>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-body" style="background:rgba(252,165,165,0.15);color:#c0392b">Masqué</span>
             <% end %>
           </div>
-          <p class="font-body italic" style="font-size:14px;color:rgba(246,241,232,0.60);line-height:1.8">"<%= testimonial.quote.truncate(150) %>"</p>
-          <p class="font-body mt-2" style="font-size:12px;color:rgba(246,241,232,0.30)">Position : <%= testimonial.position %></p>
+          <p class="font-body italic" style="font-size:14px;color:var(--color-ink-soft);line-height:1.8">"<%= testimonial.quote.truncate(150) %>"</p>
+          <p class="font-body mt-2" style="font-size:12px;color:var(--color-taupe)">Position : <%= testimonial.position %></p>
         </div>
         <div class="flex items-center gap-2 shrink-0">
           <%= link_to edit_admin_testimonial_path(testimonial), class: "admin-btn-sm" do %>
@@ -37,8 +37,8 @@
     <% end %>
   </div>
 <% else %>
-  <div class="text-center py-16 rounded-2xl" style="background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.08)">
-    <p class="font-body mb-4" style="color:rgba(246,241,232,0.35)">Aucun témoignage pour le moment.</p>
+  <div class="text-center py-16 rounded-2xl" style="background:#ffffff;border:1px solid rgba(150,129,107,0.15)">
+    <p class="font-body mb-4" style="color:var(--color-taupe)">Aucun témoignage pour le moment.</p>
     <%= link_to "Ajouter le premier", new_admin_testimonial_path, class: "btn-primary font-body", style: "padding:12px 28px;font-size:14px" %>
   </div>
 <% end %>

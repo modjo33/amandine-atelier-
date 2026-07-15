@@ -6,7 +6,7 @@ export default class extends Controller {
   static values = { delay: { type: Number, default: 10000 } }
 
   connect() {
-    if (localStorage.getItem("popup_seen")) return
+    if (localStorage.getItem("popup_seen_v2")) return
 
     this.timeout = setTimeout(() => this.open(), this.delayValue)
   }
@@ -25,7 +25,7 @@ export default class extends Controller {
   }
 
   close() {
-    localStorage.setItem("popup_seen", "true")
+    localStorage.setItem("popup_seen_v2", "true")
     this.overlayTarget.style.opacity = "0"
     this.panelTarget.style.transform = "translateX(100%)"
     setTimeout(() => { this.element.style.display = "none" }, 500)
@@ -70,12 +70,12 @@ export default class extends Controller {
       if (response.ok) {
         this.formWrapperTarget.style.display = "none"
         this.successTarget.style.display = "block"
-        localStorage.setItem("popup_seen", "true")
+        localStorage.setItem("popup_seen_v2", "true")
       } else {
         this.errorMessageTarget.textContent = data.errors.join(", ")
         this.errorMessageTarget.style.display = "block"
         this.submitBtnTarget.disabled = false
-        this.submitBtnTarget.textContent = "Je reçois ma vidéo →"
+        this.submitBtnTarget.textContent = "Je m'abonne →"
       }
     } catch {
       this.errorMessageTarget.textContent = "Une erreur est survenue. Réessayez."

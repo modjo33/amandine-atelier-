@@ -7,7 +7,7 @@ class NewsletterMailer < ApplicationMailer
     mail(
       to: contact.email,
       subject: article.title,
-      from: "Amandine Atelier Digital <noreply@amandine-atelier.fr>"
+      from: "Amandine Atelier Digital <contact@amandineatelierdigital.fr>"
     )
   end
 end
